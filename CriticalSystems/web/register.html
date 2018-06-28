@@ -11,7 +11,16 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        氏名:<input type="text" name="name">
-        
+        <form action="">
+            氏名:<input type="text" name="name"><br>
+            性別:<input type="radio" name="gender" value="male" checked="">男<input type="radio" name="gender" value="female">女<br>
+            生年月日:<input type="text" name="year">年<input type="text" name="manth">月<input type="text" name="day">日<br>
+            電話番号:<input type="text" name="tel">
+            郵便番号:<input type="text" name="addNo">
+            住所:<input type="text" name="address"><br>
+            身分証番号:<input type="text" name="mibunNo">
+            <input type="radio" name="mibun" value="menkyo" checked="">免許証<input type="radio" name="mibun" value="hoken">保険証<br>
+            <input type="submit" value="送信">
+        </form>
     </body>
 </html>
