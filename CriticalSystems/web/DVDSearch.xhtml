@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>DVD検索</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+            検索ワード:<h:inputText value=""/><br/>
+            ジャンル:
+            媒体区分:<h:selectOneRadio>
+                <f:selectItem itemValue="DVD" itemLabel="dvd" />
+                <f:selectItem itemValue="blu-ray" itemLabel="bluray" /><br/>
+                <f:selectItem itemValue="指定なし" itemLabel="nasi" />
+            </h:selectOneRadio>
+        </h:form>
+    </body>
+</html>
