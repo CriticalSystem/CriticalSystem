@@ -8,71 +8,72 @@ import javax.validation.constraints.NotNull;
 @Entity
 @NamedQuery(name = "Employee.EmployeeQAll" , query = "SELECT e FROM Employee")
 public class Employee implements Serializable {
-    
     public static final String EmployeeQAll = "EmployeeQAll";
+    
     @Id
     @NotNull
-    private static String EmpCD;
+    private  String EmpCD;
     @NotNull
-    private static String EmpName;
+    private  String EmpName;
     @NotNull
-    private static String password;
+    private  String password;
     
-    private static Shop Shop;
-   
+    private  Shop Shop;
+
     /**
-     * @return the CD
+     * @return the EmpCD
      */
-    public static String getCD() {
+    public String getEmpCD() {
         return EmpCD;
     }
 
     /**
-     * @param aEmpCD the CD to set
+     * @param EmpCD the EmpCD to set
      */
-    public static void setCD(String aEmpCD) {
-        EmpCD = aEmpCD;
+    public void setEmpCD(String EmpCD) {
+        this.EmpCD = EmpCD;
     }
 
     /**
-     * @return the Name
+     * @return the EmpName
      */
-    public static String getEmpName() {
+    public String getEmpName() {
         return EmpName;
     }
 
     /**
-     * @param aEmpName the Name to set
+     * @param EmpName the EmpName to set
      */
-    public static void setEmpName(String aEmpName) {
-        EmpName = aEmpName;
+    public void setEmpName(String EmpName) {
+        this.EmpName = EmpName;
     }
 
     /**
      * @return the password
      */
-    public static String getPassword() {
+    public String getPassword() {
         return password;
     }
 
     /**
-     * @param aPassword the password to set
+     * @param password the password to set
      */
-    public static void setPassword(String aPassword) {
-        password = aPassword;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
      * @return the Shop
      */
-    public static Shop getShop() {
+    public Shop getShop() {
         return Shop;
     }
 
     /**
-     * @param aShop the Shop to set
+     * @param Shop the Shop to set
      */
-    public static void setShop(Shop aShop) {
-        Shop = aShop;
+    public void setShop(Shop Shop) {
+        this.Shop = Shop;
     }
+   
 }

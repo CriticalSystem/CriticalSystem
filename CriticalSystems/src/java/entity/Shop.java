@@ -19,100 +19,99 @@ public class Shop implements Serializable {
     
     @Id
     @NotNull
-    private static String ShopCD;
+    private String ShopCD;
     
-    private static String ShopName;
+    private String ShopName;
 
-    private static String ShopAddres;
+    private String ShopAddres;
     
-    private static String ShopTel;
+    private String ShopTel;
     
-    private static String ShopMAP;
+    private String ShopMAP;
     
-    private static String ShopMail;
+    private String ShopMail;
 
     /**
      * @return the ShopCD
      */
-    public static String getShopCD() {
+    public String getShopCD() {
         return ShopCD;
     }
 
     /**
-     * @param aShopCD the ShopCD to set
+     * @param ShopCD the ShopCD to set
      */
-    public static void setShopCD(String aShopCD) {
-        ShopCD = aShopCD;
+    public void setShopCD(String ShopCD) {
+        this.ShopCD = ShopCD;
     }
 
     /**
      * @return the ShopName
      */
-    public static String getShopName() {
+    public String getShopName() {
         return ShopName;
     }
 
     /**
-     * @param aShopName the ShopName to set
+     * @param ShopName the ShopName to set
      */
-    public static void setShopName(String aShopName) {
-        ShopName = aShopName;
+    public void setShopName(String ShopName) {
+        this.ShopName = ShopName;
     }
 
     /**
      * @return the ShopAddres
      */
-    public static String getShopAddres() {
+    public String getShopAddres() {
         return ShopAddres;
     }
 
     /**
-     * @param aShopAddres the ShopAddres to set
+     * @param ShopAddres the ShopAddres to set
      */
-    public static void setShopAddres(String aShopAddres) {
-        ShopAddres = aShopAddres;
+    public void setShopAddres(String ShopAddres) {
+        this.ShopAddres = ShopAddres;
     }
 
     /**
      * @return the ShopTel
      */
-    public static String getShopTel() {
+    public String getShopTel() {
         return ShopTel;
     }
 
     /**
-     * @param aShopTel the ShopTel to set
+     * @param ShopTel the ShopTel to set
      */
-    public static void setShopTel(String aShopTel) {
-        ShopTel = aShopTel;
+    public void setShopTel(String ShopTel) {
+        this.ShopTel = ShopTel;
     }
 
     /**
      * @return the ShopMAP
      */
-    public static String getShopMAP() {
+    public String getShopMAP() {
         return ShopMAP;
     }
 
     /**
-     * @param aShopM the ShopMAP to set
+     * @param ShopMAP the ShopMAP to set
      */
-    public static void setShopMAP(String aShopM) {
-        ShopMAP = aShopM;
+    public void setShopMAP(String ShopMAP) {
+        this.ShopMAP = ShopMAP;
     }
 
     /**
      * @return the ShopMail
      */
-    public static String getShopMail() {
+    public String getShopMail() {
         return ShopMail;
     }
 
     /**
-     * @param aShopMail the ShopMail to set
+     * @param ShopMail the ShopMail to set
      */
-    public static void setShopMail(String aShopMail) {
-        ShopMail = aShopMail;
+    public void setShopMail(String ShopMail) {
+        this.ShopMail = ShopMail;
     }
-    
 }
