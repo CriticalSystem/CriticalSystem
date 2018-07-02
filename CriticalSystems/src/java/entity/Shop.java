@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,7 +16,9 @@ import javax.validation.constraints.NotNull;
  * @author s20163048
  */
 @Entity
+@NamedQuery(name = "Shop.ShopQAll" , query = "SELECT e FROM Shop")
 public class Shop implements Serializable {
+    public static final String ShopQAll = "ShopQAll";
     
     @Id
     @NotNull

@@ -18,8 +18,8 @@ public class EmployeeDb {
     public void delete (Employee emp){
         em.remove(emp);
     }
-    public void find (){
-        
+    public Employee find (String key){
+        return em.find(Employee.class, key);
     }
     public List<Employee> getAll (){
         return em.createNamedQuery(Employee.EmployeeQAll,Employee.class).getResultList();
