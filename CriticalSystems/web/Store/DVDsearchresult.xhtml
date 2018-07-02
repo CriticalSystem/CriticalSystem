@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="bootstrap/css/bootstrap.min.css" />
+        <!--<h:outputStylesheet library="css" name="base.css" />-->
+        <h:outputScript library="js" name="jquery-3.2.0.min.js" />
+        <h:outputScript name="bootstrap/js/bootstrap.min.js" />
+        <title>DVD検索</title>
+    </h:head>
+    <h:body>
+        <h1>DVD検索結果</h1>
+        <h:form>
+            <h:outputLabel value="キーワードから探す"/><br/>
+            <h:inputText value="#{meiboBean.number}" size="50" p:placeholder="キーワードを入力してください"/><br/>
+            <h:outputLabel value="ジャンルを選択"/><br/>
+            <h:selectOneMenu value="#{bb.region}" styleClass="sel">
+                <f:selectItems value="#{bb.regionItems}" />
+            </h:selectOneMenu><br/>
+            <h:commandButton value="検索" /><br/>
+            <div class="btn-group btn-group-justified" role="group">
+	<a href="#" class="btn btn-default" role="button">新しい順</a>
+	<a href="#" class="btn btn-default" role="button">古い順</a>
+	<a href="#" class="btn btn-default" role="button">おすすめ順</a>
+            </div>
+            <!--以下に検索結果を表示-->
+        </h:form>
+    </h:body>
+</html>
