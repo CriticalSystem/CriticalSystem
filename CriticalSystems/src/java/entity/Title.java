@@ -5,7 +5,6 @@
  */
 package entity;
 
-import java.util.Date;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 

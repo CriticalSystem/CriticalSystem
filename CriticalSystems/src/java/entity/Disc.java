@@ -16,7 +16,7 @@ public class Disc implements Serializable {
     private Date Date;
     private String kubun;
     private Shop Shop;
-    private boolean flg;
+    private boolean kasidasiflg;
     private boolean haikiflg;
     private String baitai;
 
@@ -107,15 +107,15 @@ public class Disc implements Serializable {
     /**
      * @return the flg
      */
-    public boolean isFlg() {
-        return flg;
+    public boolean isKasidasiflg() {
+        return kasidasiflg;
     }
 
     /**
      * @param flg the flg to set
      */
-    public void setFlg(boolean flg) {
-        this.flg = flg;
+    public void setKasidasiflg(boolean flg) {
+        this.kasidasiflg = flg;
     }
 
     /**
