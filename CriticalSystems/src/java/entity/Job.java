@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 /**
- *
- * @author s20163048
+ * 職業
  */
+
 @Entity
 @NamedQuery(name = "Job.JobQAll" , query = "SELECT e FROM Job")
 public class Job implements Serializable{

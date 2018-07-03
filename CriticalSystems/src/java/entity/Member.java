@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- *
- * @author s20163048
+ * 会員
  */
+
 public class Member implements Serializable {
     @Id
     private String MemberCD;

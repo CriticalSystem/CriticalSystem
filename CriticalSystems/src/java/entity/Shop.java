@@ -12,9 +12,9 @@ import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
- *
- * @author s20163048
+ * 店舗
  */
+
 @Entity
 @NamedQuery(name = "Shop.ShopQAll" , query = "SELECT e FROM Shop")
 public class Shop implements Serializable {

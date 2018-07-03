@@ -10,9 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 /**
- *
- * @author s20163048
+ * ジャンル
  */
+
 @Entity
 @NamedQuery(name = "Genre.GenreQAll" , query = "SELECT e FROM Genre")
 public class Genre {

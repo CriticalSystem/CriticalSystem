@@ -5,6 +5,11 @@ import java.util.Date;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+/*
+* ディスク
+*/
+
+
 public class Disc implements Serializable {
 
     @Id

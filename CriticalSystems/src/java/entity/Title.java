@@ -9,9 +9,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
- *
- * @author s20163048
+ * タイトル
  */
+
 public class Title {
     @Id
     @NotNull

@@ -5,6 +5,10 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 店員
+ */
+
 @Entity
 @NamedQuery(name = "Employee.EmployeeQAll" , query = "SELECT e FROM Employee")
 public class Employee implements Serializable {
