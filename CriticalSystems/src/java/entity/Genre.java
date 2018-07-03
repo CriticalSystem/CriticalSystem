@@ -5,6 +5,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
@@ -15,10 +16,9 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "Genre.GenreQAll" , query = "SELECT e FROM Genre")
-public class Genre {
+public class Genre implements Serializable{
     @Id
     private String genreCD;
-    
     private String genreName;
 
     /**

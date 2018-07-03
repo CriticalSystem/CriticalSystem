@@ -7,14 +7,18 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
  * 会員
  */
-
+@NamedQuery(name = "Member.MemberQAll" , query = "SELECT e FROM Member")
+@Entity
 public class Member implements Serializable {
+    public static final String MemberQAll = "MemberQAll";
     @Id
     private String MemberCD;
     @NotNull

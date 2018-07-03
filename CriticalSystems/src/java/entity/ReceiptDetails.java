@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -18,6 +19,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class ReceiptDetails implements Serializable{
+    
     @EmbeddedId
     private PK DetailsPK;
     private Disc disc;

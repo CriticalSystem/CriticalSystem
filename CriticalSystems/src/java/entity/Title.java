@@ -5,14 +5,19 @@
  */
 package entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
  * タイトル
  */
-
-public class Title {
+@Entity
+@NamedQuery(name = "Title.TitleQAll" , query = "SELECT e FROM Title")
+public class Title implements Serializable{
+    public static final String TitleQAll = "TitleQAll";
     @Id
     @NotNull
     private String TitleCD;

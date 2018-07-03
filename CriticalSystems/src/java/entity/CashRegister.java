@@ -6,11 +6,13 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
  * レジ
  */
+@Entity
 public class CashRegister implements Serializable{
     @Id
     private String registerCD;

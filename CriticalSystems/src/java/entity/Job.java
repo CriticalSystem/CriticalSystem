@@ -17,6 +17,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQuery(name = "Job.JobQAll" , query = "SELECT e FROM Job")
 public class Job implements Serializable{
+    public static final String JobQAll = "JobQAll";
+    
     @Id
     private String jobCD;
     

@@ -2,16 +2,19 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /*
 * ディスク
 */
 
-
+@Entity
+@NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM Disc")
 public class Disc implements Serializable {
-
+    public static final String DiscQAll = "DiscQAll";
     @Id
     @NotNull
     private String DiscCD;
