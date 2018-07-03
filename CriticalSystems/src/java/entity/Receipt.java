@@ -22,7 +22,7 @@ public class Receipt implements Serializable{
     private Shop Shop;
     private Date Date;
     private int subtotal;
-    private int Register;
+    private CashRegister Register;   // レジ
 
     /**
      * @return the receiptNo
@@ -111,14 +111,14 @@ public class Receipt implements Serializable{
     /**
      * @return the Register
      */
-    public int getRegister() {
+    public CashRegister getRegister() {
         return Register;
     }
 
     /**
      * @param Register the Register to set
      */
-    public void setRegister(int Register) {
+    public void setRegister(CashRegister Register) {
         this.Register = Register;
     }
     
