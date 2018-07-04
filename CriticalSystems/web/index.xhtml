@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="./bootstrap/css/bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="./base.css" />
+        <h:outputScript library="js" name="./jquery-3.2.0.min.js" />
+        <h:outputScript name="./bootstrap/js/bootstrap.min.js" />
+        <title>HCSビデオレンタルシステム</title>
+    </h:head>
+    <h:body>
+        
+        
+        
+        <!--これはコンテンツ画面-->
+        
+        
+        
+        
+        
+        <ui:composition template="/templates/template.xhtml" >
+            <ui:define name="title">HCSビデオレンタルシステム</ui:define>
+            <ui:define name="content">
+                <div class="jumbotron" id="keyVisual">
+                    <div class="container">
+                        <h1 id="keyText">Today's Schedule</h1>
+                    </div>
+                </div>
+                <div class="container">
+                    <section>
+                        <div class="row">
+                            <h3><span class="glyphicon glyphicon-info-sign"></span>今日の
+                                予定</h3>
+                            <p>予定</p>
+                        </div>
+                    </section>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
