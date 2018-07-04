@@ -15,8 +15,8 @@ import javax.persistence.Id;
 @Entity
 public class CashRegister implements Serializable{
     @Id
-    private String registerCD;
-    private Shop Shop;
+    private String registerCD;  //レジCD
+    private Store store;        //店舗CD
 
     /**
      * @return the registerCD
@@ -33,16 +33,16 @@ public class CashRegister implements Serializable{
     }
 
     /**
-     * @return the Shop
+     * @return the Store
      */
-    public Shop getShop() {
-        return Shop;
+    public Store getStore() {
+        return store;
     }
 
     /**
-     * @param Shop the Shop to set
+     * @param Store the Store to set
      */
-    public void setShop(Shop Shop) {
-        this.Shop = Shop;
+    public void setStore(Store store) {
+        this.store = store;
     }
 }

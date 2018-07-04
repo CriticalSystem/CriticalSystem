@@ -20,55 +20,57 @@ public class Title implements Serializable{
     public static final String TitleQAll = "TitleQAll";
     @Id
     @NotNull
-    private String TitleCD;
+    private String titleCD;
     @NotNull
-    private String TitleName;
-    private String syuen;
+    private String titleName;
+    private String starring;
     private String rating;
     private String comment;
     @NotNull
     private Genre genre;
+    @NotNull
+    private String imgPath;
 
     /**
      * @return the TitleCD
      */
-    public String getTitleCD() {
-        return TitleCD;
+    public String gettitleCD() {
+        return titleCD;
     }
 
     /**
      * @param TitleCD the TitleCD to set
      */
-    public void setTitleCD(String TitleCD) {
-        this.TitleCD = TitleCD;
+    public void setTitleCD(String titleCD) {
+        this.titleCD = titleCD;
     }
 
     /**
      * @return the TitleName
      */
     public String getTitleName() {
-        return TitleName;
+        return titleName;
     }
 
     /**
      * @param TitleName the TitleName to set
      */
-    public void setTitleName(String TitleName) {
-        this.TitleName = TitleName;
+    public void setTitleName(String titleName) {
+        this.titleName = titleName;
     }
 
     /**
      * @return the syuen
      */
-    public String getSyuen() {
-        return syuen;
+    public String getStarring() {
+        return starring;
     }
 
     /**
      * @param syuen the syuen to set
      */
-    public void setSyuen(String syuen) {
-        this.syuen = syuen;
+    public void setStarring(String starring) {
+        this.starring = starring;
     }
 
     /**

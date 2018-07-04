@@ -18,8 +18,8 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Genre.GenreQAll" , query = "SELECT e FROM Genre")
 public class Genre implements Serializable{
     @Id
-    private String genreCD;
-    private String genreName;
+    private String genreCD;     //ジャンルCD
+    private String genreName;   //ジャンル名
 
     /**
      * @return the genreCD

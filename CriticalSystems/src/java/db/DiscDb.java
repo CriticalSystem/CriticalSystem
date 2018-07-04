@@ -24,5 +24,4 @@ public class DiscDb {
     public List<Disc> getAll (){
         return em.createNamedQuery(Disc.DiscQAll,Disc.class).getResultList();
     }
-            
 }

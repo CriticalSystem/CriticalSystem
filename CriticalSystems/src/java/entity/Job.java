@@ -20,9 +20,9 @@ public class Job implements Serializable{
     public static final String JobQAll = "JobQAll";
     
     @Id
-    private String jobCD;
+    private String jobCD;   //職業CD
     
-    private String jobName;
+    private String jobName; //職業名
 
     /**
      * @return the jobCD

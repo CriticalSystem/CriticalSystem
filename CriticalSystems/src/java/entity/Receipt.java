@@ -6,7 +6,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,12 +16,12 @@ import javax.persistence.Id;
 @Entity
 public class Receipt implements Serializable{
     @Id
-    private int receiptNo;
-    private Member Member;
-    private Employee Employee;
-    private Shop Shop;
-    private Date Date;
-    private int subtotal;
+    private int receiptNo;      //伝票No
+    private Member Member;      //会員CD
+    private Employee Employee;  //店員CD
+    private Store store;         //店舗
+    private Date LendDate;      //貸出日時
+    private int subtotal;       //合計金額
     private CashRegister Register;   // レジ
 
     /**
@@ -67,31 +67,31 @@ public class Receipt implements Serializable{
     }
 
     /**
-     * @return the Shop
+     * @return the Store
      */
-    public Shop getShop() {
-        return Shop;
+    public Store getStore() {
+        return store;
     }
 
     /**
-     * @param Shop the Shop to set
+     * @param store the Store to set
      */
-    public void setShop(Shop Shop) {
-        this.Shop = Shop;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     /**
      * @return the Date
      */
-    public Date getDate() {
-        return Date;
+    public Date getLendDate() {
+        return LendDate;
     }
 
     /**
      * @param Date the Date to set
      */
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setLendDate(Date LendDate) {
+        this.LendDate = LendDate;
     }
 
     /**

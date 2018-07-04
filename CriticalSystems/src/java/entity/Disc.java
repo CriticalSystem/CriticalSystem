@@ -1,9 +1,10 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
@@ -12,146 +13,144 @@ import javax.validation.constraints.NotNull;
 */
 
 @Entity
-@NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM Disc")
+@NamedQueries({
+    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM Disc"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE Disc SET is_lend = 1 WHERE  ")
+})
 public class Disc implements Serializable {
     public static final String DiscQAll = "DiscQAll";
+    public static final String DiscQ = "DiscQ";
     @Id
     @NotNull
-    private String DiscCD;
+    private String discCD;      //ディスクCD
     @NotNull
-    private Title Title;
-    private int tanaNo;
-    private Date Date;
-    private String kubun;
-    private Shop Shop;
-    private boolean kasidasiflg;
-    private boolean haikiflg;
-    private String baitai;
+    private Title title;        //タイトル
+    private int rackNo;         //棚番号
+    private Date arrivalDate;   //入荷日
+    private String sorting;     //区分
+    private Store store;        //店舗
+    private boolean lendFlg;    //貸出フラグ
+    private boolean disposalFlg;//廃棄フラグ    
+    private String media;       //媒体区分
 
     /**
      * @return the DiscCD
      */
     public String getDiscCD() {
-        return DiscCD;
+        return discCD;
     }
 
     /**
      * @param DiscCD the DiscCD to set
      */
     public void setDiscCD(String DiscCD) {
-        this.DiscCD = DiscCD;
+        this.discCD = DiscCD;
     }
 
     /**
      * @return the Title
      */
     public Title getTitle() {
-        return Title;
+        return title;
     }
 
     /**
      * @param Title the Title to set
      */
     public void setTitle(Title Title) {
-        this.Title = Title;
+        this.title = Title;
     }
 
     /**
      * @return the tanaNo
      */
-    public int getTanaNo() {
-        return tanaNo;
+    public int getRackNo() {
+        return rackNo;
     }
 
     /**
-     * @param tanaNo the tanaNo to set
+     * @param RackaNo the rackNo to set
      */
-    public void setTanaNo(int tanaNo) {
-        this.tanaNo = tanaNo;
+    public void setRackNo(int rackNo) {
+        this.rackNo = rackNo;
     }
 
     /**
      * @return the Date
      */
-    public Date getDate() {
-        return Date;
+    public Date getArrivalDate() {
+        return arrivalDate;
     }
 
     /**
-     * @param Date the Date to set
+     * @param arrivalDate the arrivalDate to set
      */
-    public void setDate(Date Date) {
-        this.Date = Date;
+    public void setDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
     }
 
     /**
-     * @return the kubun
+     * @return the sorting
      */
-    public String getKubun() {
-        return kubun;
+    public String getMedia() {
+        return sorting;
     }
 
     /**
-     * @param kubun the kubun to set
+     * @param kubun the sorting to set
      */
     public void setKubun(String kubun) {
-        this.kubun = kubun;
+        this.sorting = kubun;
     }
 
     /**
-     * @return the Shop
+     * @return the Store
      */
-    public Shop getShop() {
-        return Shop;
+    public Store getStore() {
+        return store;
     }
 
     /**
-     * @param Shop the Shop to set
+     * @param Store the Store to set
      */
-    public void setShop(Shop Shop) {
-        this.Shop = Shop;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     /**
      * @return the flg
      */
-    public boolean isKasidasiflg() {
-        return kasidasiflg;
+    public boolean isLendFlg() {
+        return lendFlg;
     }
 
     /**
      * @param flg the flg to set
      */
-    public void setKasidasiflg(boolean flg) {
-        this.kasidasiflg = flg;
+    public void setLendFlg(boolean lendFlg) {
+        this.lendFlg = lendFlg;
     }
 
     /**
-     * @return the haikiflg
+     * @return the disposalFlg
      */
-    public boolean isHaikiflg() {
-        return haikiflg;
+    public boolean isDisposalFlg() {
+        return disposalFlg;
     }
 
     /**
-     * @param haikiflg the haikiflg to set
+     * @param disposalFlg the disposalFlg to set
      */
-    public void setHaikiflg(boolean haikiflg) {
-        this.haikiflg = haikiflg;
+    public void setDisposalFlg(boolean disposalFlg) {
+        this.disposalFlg = disposalFlg;
     }
 
     /**
-     * @return the baitai
+     * @param media the media to set
      */
-    public String getBaitai() {
-        return baitai;
+    public void setMedia(String media) {
+        this.media = media;
     }
 
-    /**
-     * @param baitai the baitai to set
-     */
-    public void setBaitai(String baitai) {
-        this.baitai = baitai;
-    }
     
 }

@@ -24,5 +24,6 @@ public class MemberDb {
     public List<Member> getAll (){
         return em.createNamedQuery(Member.MemberQAll,Member.class).getResultList();
     }
+    
             
 }

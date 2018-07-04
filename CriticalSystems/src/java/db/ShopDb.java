@@ -1,6 +1,6 @@
 package db;
 
-import entity.Shop;
+import entity.Store;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,20 +9,20 @@ public class ShopDb {
     @PersistenceContext
     private EntityManager em;
     
-    public void create (Shop shop) {
+    public void create (Store shop) {
         em.persist(shop);
     }
-    public void update (Shop shop){
+    public void update (Store shop){
         em.merge(shop);
     }
-    public void delete (Shop shop){
+    public void delete (Store shop){
         em.remove(shop);
     }
-    public Shop find (String key){
-        return em.find(Shop.class, key);
+    public Store find (String key){
+        return em.find(Store.class, key);
     }
-    public List<Shop> getAll (){
-        return em.createNamedQuery(Shop.ShopQAll,Shop.class).getResultList();
+    public List<Store> getAll (){
+        return em.createNamedQuery(Store.ShopQAll,Store.class).getResultList();
     }
             
 }

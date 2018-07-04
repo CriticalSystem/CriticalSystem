@@ -9,55 +9,56 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 /**
- * 会員
+ *
+ * @author s20163048
  */
-@NamedQuery(name = "Member.MemberQAll" , query = "SELECT e FROM Member")
 @Entity
-public class Member implements Serializable {
-    public static final String MemberQAll = "MemberQAll";
+public class TempMember implements Serializable{
     @Id
-    private String MemberCD;        //会員CD
     @NotNull
-    private String Name;      //会員名
+    private String tempMemNo;
     @NotNull
-    private String NameRuby;  //会員名カナ
-    @NotNull
-    private String Gender;          //性別
-    @NotNull
-    private Date Birthday;    //生年月日
-    @NotNull
-    private int PostalCD;     //郵便番号
-    @NotNull
-    private String Address;   //住所
-    @NotNull
-    private String Tel;       //電話番号
-    private String Mail;      //メールアドレス
-    @NotNull
-    private String Magazine;        //メールマガジン
-    @NotNull
-    private String JoinDate;        //入会日
-    @NotNull
-    private String Stats;     //状態
-    @NotNull
-    private Job Job;                //職業
-    private Discount Discount;      //割引CD
+    private Date tempRegDate;
+    private String Name;
+    private String NameRuby;
+    private String Gender;
+    private String Birthday;
+    private String PostalCD;
+    private String Address;
+    private String Tel;
+    private String Mail;
+    private String Job;
+    private String Magazine;
 
     /**
-     * @return the MemberCD
+     * @return the tempMemNo
      */
-    public String getMemberCD() {
-        return MemberCD;
+    public String getTempMemNo() {
+        return tempMemNo;
     }
 
     /**
-     * @param MemberCD the MemberCD to set
+     * @param tempMemNo the tempMemNo to set
      */
-    public void setMemberCD(String MemberCD) {
-        this.MemberCD = MemberCD;
+    public void setTempMemNo(String tempMemNo) {
+        this.tempMemNo = tempMemNo;
+    }
+
+    /**
+     * @return the tempRegDate
+     */
+    public Date getTempRegDate() {
+        return tempRegDate;
+    }
+
+    /**
+     * @param tempRegDate the tempRegDate to set
+     */
+    public void setTempRegDate(Date tempRegDate) {
+        this.tempRegDate = tempRegDate;
     }
 
     /**
@@ -105,28 +106,28 @@ public class Member implements Serializable {
     /**
      * @return the Birthday
      */
-    public Date getBirthday() {
+    public String getBirthday() {
         return Birthday;
     }
 
     /**
      * @param Birthday the Birthday to set
      */
-    public void setBirthday(Date Birthday) {
+    public void setBirthday(String Birthday) {
         this.Birthday = Birthday;
     }
 
     /**
      * @return the PostalCD
      */
-    public int getPostalCD() {
+    public String getPostalCD() {
         return PostalCD;
     }
 
     /**
      * @param PostalCD the PostalCD to set
      */
-    public void setPostalCD(int PostalCD) {
+    public void setPostalCD(String PostalCD) {
         this.PostalCD = PostalCD;
     }
 
@@ -173,6 +174,20 @@ public class Member implements Serializable {
     }
 
     /**
+     * @return the Job
+     */
+    public String getJob() {
+        return Job;
+    }
+
+    /**
+     * @param Job the Job to set
+     */
+    public void setJob(String Job) {
+        this.Job = Job;
+    }
+
+    /**
      * @return the Magazine
      */
     public String getMagazine() {
@@ -186,62 +201,5 @@ public class Member implements Serializable {
         this.Magazine = Magazine;
     }
 
-    /**
-     * @return the JoinDate
-     */
-    public String getJoinDate() {
-        return JoinDate;
-    }
-
-    /**
-     * @param JoinDate the JoinDate to set
-     */
-    public void setJoinDate(String JoinDate) {
-        this.JoinDate = JoinDate;
-    }
-
-    /**
-     * @return the Stats
-     */
-    public String getStats() {
-        return Stats;
-    }
-
-    /**
-     * @param Stats the Stats to set
-     */
-    public void setStats(String Stats) {
-        this.Stats = Stats;
-    }
-
-    /**
-     * @return the Job
-     */
-    public Job getJob() {
-        return Job;
-    }
-
-    /**
-     * @param Job the Job to set
-     */
-    public void setJob(Job Job) {
-        this.Job = Job;
-    }
-
-    /**
-     * @return the Discount
-     */
-    public Discount getDiscount() {
-        return Discount;
-    }
-
-    /**
-     * @param Discount the Discount to set
-     */
-    public void setDiscount(Discount Discount) {
-        this.Discount = Discount;
-    }
-
-    
     
 }

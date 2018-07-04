@@ -21,12 +21,12 @@ import javax.persistence.NamedQuery;
 public class ReceiptDetails implements Serializable{
     
     @EmbeddedId
-    private PK DetailsPK;
-    private Disc disc;
-    private Date returnDate;
-    private Date dueDate;
-    private int lateFees;
-    private int fee;
+    private PK DetailsPK;       //伝票
+    private Disc disc;          //ディスク
+    private Date returnDate;    //返却日
+    private Date dueDate;       //返却予定日
+    private int lateFees;       //延滞料
+    private int fee;            //料金
 
     /**
      * @return the DetailsPK

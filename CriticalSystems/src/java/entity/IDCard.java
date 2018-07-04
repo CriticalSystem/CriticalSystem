@@ -16,9 +16,9 @@ import javax.persistence.Id;
 @Entity
 public class IDCard implements Serializable{
     @Id
-    private String IDCardNo;
-    private Member Member;
-    private String IDCardForm;
+    private String IDCardNo;    //身分証番号    
+    private Member Member;      //会員
+    private String IDCardType;  //身分証分類
 
     /**
      * @return the IDCardNo
@@ -49,17 +49,17 @@ public class IDCard implements Serializable{
     }
 
     /**
-     * @return the IDCardForm
+     * @return the IDCardType
      */
-    public String getIDCardForm() {
-        return IDCardForm;
+    public String getIDCardType() {
+        return IDCardType;
     }
 
     /**
-     * @param IDCardForm the IDCardForm to set
+     * @param IDCardType the IDCardType to set
      */
-    public void setIDCardForm(String IDCardForm) {
-        this.IDCardForm = IDCardForm;
+    public void setIDCardType(String IDCardType) {
+        this.IDCardType = IDCardType;
     }
                     
 }
