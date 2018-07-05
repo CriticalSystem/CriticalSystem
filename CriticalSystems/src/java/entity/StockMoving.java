@@ -20,7 +20,7 @@ public class StockMoving implements Serializable{
     private int serialNo;       //連番
     @NotNull
     private Title title;        //タイトル
-    
+    @NotNull
     private String stats;       //承認状況
     @NotNull
     private Store reqStore;     //申請店舗

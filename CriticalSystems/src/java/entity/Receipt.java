@@ -9,19 +9,33 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 /**
  * 貸出
  */
+@NamedQueries({
+    @NamedQuery(name = "Receipt.ReceiptQAll" , query = "INSERT "),
+})
 @Entity
 public class Receipt implements Serializable{
+    public static final String ReceiptQAll = "ReceiptQAll";
     @Id
+    @NotNull
     private int receiptNo;      //伝票No
+    @NotNull
     private Member Member;      //会員CD
+    @NotNull
     private Employee Employee;  //店員CD
+    @NotNull
     private Store store;         //店舗
+    @NotNull
     private Date LendDate;      //貸出日時
+    @NotNull
     private int subtotal;       //合計金額
+    @NotNull
     private CashRegister Register;   // レジ
 
     /**

@@ -23,11 +23,11 @@ public class Store implements Serializable {
     @Id
     @NotNull
     private String StoreCD;      //店舗CD
-    
+    @NotNull
     private String Name;    //店舗名
-
+    @NotNull
     private String Addres;  //住所
-    
+    @NotNull
     private String Tel;     //電話番号
     
     private String StoreMAP;     //店舗見取り図

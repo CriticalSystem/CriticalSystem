@@ -22,15 +22,24 @@ public class TempMember implements Serializable{
     private String tempMemNo;
     @NotNull
     private Date tempRegDate;
+    @NotNull
     private String Name;
+    @NotNull
     private String NameRuby;
+    @NotNull
     private String Gender;
+    @NotNull
     private String Birthday;
+    @NotNull
     private String PostalCD;
+    @NotNull
     private String Address;
+    @NotNull
     private String Tel;
     private String Mail;
+    @NotNull
     private String Job;
+    @NotNull
     private String Magazine;
 
     /**

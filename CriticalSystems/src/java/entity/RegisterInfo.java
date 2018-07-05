@@ -6,14 +6,21 @@
 package entity;
 
 import java.sql.Date;
+import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * レジ内金額 
  */
 public class RegisterInfo {
+    @Id
+    @NotNull
     private CashRegister register;
+    @NotNull
     private Date date;
+    @NotNull
     private int total;
+    @NotNull
     private int Entry;
 
     /**

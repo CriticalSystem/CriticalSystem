@@ -22,9 +22,7 @@ public class Employee implements Serializable {
     private  String empName;    //店員名
     @NotNull
     private  String password;   //パスワード
-    
     private  Store store;       //店舗
-    
     private Role role;          //役職
 
     /**

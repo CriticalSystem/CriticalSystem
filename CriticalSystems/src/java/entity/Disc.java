@@ -14,8 +14,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM Disc"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE Disc SET is_lend = 1 WHERE  ")
+    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM disc"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT e FROM disc WHERE title_code = :1"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE disc SET is_lend = 1 WHERE disc_code = :1")
 })
 public class Disc implements Serializable {
     public static final String DiscQAll = "DiscQAll";
@@ -26,11 +27,15 @@ public class Disc implements Serializable {
     @NotNull
     private Title title;        //タイトル
     private int rackNo;         //棚番号
+    @NotNull
     private Date arrivalDate;   //入荷日
     private String sorting;     //区分
     private Store store;        //店舗
+    @NotNull
     private boolean lendFlg;    //貸出フラグ
-    private boolean disposalFlg;//廃棄フラグ    
+    @NotNull
+    private boolean disposalFlg;//廃棄フラグ
+    @NotNull
     private String media;       //媒体区分
 
     /**

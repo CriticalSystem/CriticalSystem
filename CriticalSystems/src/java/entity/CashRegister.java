@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * レジ
@@ -15,7 +16,9 @@ import javax.persistence.Id;
 @Entity
 public class CashRegister implements Serializable{
     @Id
+    @NotNull
     private String registerCD;  //レジCD
+    @NotNull
     private Store store;        //店舗CD
 
     /**

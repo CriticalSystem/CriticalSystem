@@ -1,9 +1,11 @@
 package db;
 
 import entity.IDCard;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+@Stateless
 public class IDCardDb {
     @PersistenceContext
     private EntityManager em;

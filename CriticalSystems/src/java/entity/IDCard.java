@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * 身分証
@@ -16,8 +17,11 @@ import javax.persistence.Id;
 @Entity
 public class IDCard implements Serializable{
     @Id
+    @NotNull
     private String IDCardNo;    //身分証番号    
+    @NotNull
     private Member Member;      //会員
+    @NotNull
     private String IDCardType;  //身分証分類
 
     /**

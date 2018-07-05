@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +16,12 @@ import javax.validation.constraints.NotNull;
  * タイトル
  */
 @Entity
-@NamedQuery(name = "Title.TitleQAll" , query = "SELECT e FROM Title")
+@NamedQueries({
+        @NamedQuery(name = "Title.TitleQAll" , query = "SELECT t FROM Title t"),
+        @NamedQuery(name = "Title.TitleQ" , query = "SELECT t FROM Title t WHERE title_code = ?1"),
+        @NamedQuery(name = "Title.TitleQ" , query = "SELECT t FROM Title t WHERE genre_code = ?1")
+})
+
 public class Title implements Serializable{
     public static final String TitleQAll = "TitleQAll";
     @Id
@@ -24,6 +30,7 @@ public class Title implements Serializable{
     @NotNull
     private String titleName;
     private String starring;
+    @NotNull
     private String rating;
     private String comment;
     @NotNull

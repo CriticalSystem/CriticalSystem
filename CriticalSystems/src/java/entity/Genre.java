@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 /**
  * ジャンル
@@ -18,7 +19,9 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name = "Genre.GenreQAll" , query = "SELECT e FROM Genre")
 public class Genre implements Serializable{
     @Id
+    @NotNull
     private String genreCD;     //ジャンルCD
+    @NotNull
     private String genreName;   //ジャンル名
 
     /**

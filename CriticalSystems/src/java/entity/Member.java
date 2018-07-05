@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 public class Member implements Serializable {
     public static final String MemberQAll = "MemberQAll";
     @Id
+    @NotNull
     private String MemberCD;        //会員CD
     @NotNull
     private String Name;      //会員名

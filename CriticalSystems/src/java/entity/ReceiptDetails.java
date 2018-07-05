@@ -11,6 +11,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -21,11 +22,15 @@ import javax.persistence.NamedQuery;
 public class ReceiptDetails implements Serializable{
     
     @EmbeddedId
+    @NotNull
     private PK DetailsPK;       //伝票
+    @NotNull
     private Disc disc;          //ディスク
     private Date returnDate;    //返却日
+    @NotNull
     private Date dueDate;       //返却予定日
     private int lateFees;       //延滞料
+    @NotNull
     private int fee;            //料金
 
     /**
