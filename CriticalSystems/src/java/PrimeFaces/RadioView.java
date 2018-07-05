@@ -15,19 +15,24 @@ public class RadioView {
     private String color;
      
     @PostConstruct
+//  ジャンル記入　test
     public void init() {
         cities = new ArrayList<String>();
-        cities.add("Miami");
-        cities.add("London");
-        cities.add("Paris");
-        cities.add("Istanbul");
-        cities.add("Berlin");
-        cities.add("Barcelona");
-        cities.add("Rome");
-        cities.add("Brasilia");
-        cities.add("Amsterdam");
+        cities.add("すべて");
+        cities.add("アクション");
+        cities.add("アニメ");
+        cities.add("ドラマ");
+        cities.add("ホラー");
+        cities.add("キッズビデオ");
+        cities.add("SF");
+        cities.add("洋画");
+        cities.add("邦画");
+        cities.add("ドキュメンタリー");
+        cities.add("コメディアン");
+        cities.add("アダルト ※18禁");
     }
- 
+    
+    
     public String getConsole() {
         return console;
     }
