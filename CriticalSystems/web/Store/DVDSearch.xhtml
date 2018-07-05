@@ -1,22 +1,51 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="./bootstrap/css/bootstrap.min.css" />
+        <h:outputStylesheet library="css" name="./base.css" />
+        <h:outputScript library="js" name="./jquery-3.2.0.min.js" />
+        <h:outputScript name="./bootstrap/js/bootstrap.min.js" />
         <title>DVD検索</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <h:form>
-            検索ワード:<h:inputText value=""/><br/>
-            ジャンル:
-            媒体区分:<h:selectOneRadio>
-                <f:selectItem itemValue="DVD" itemLabel="dvd" />
-                <f:selectItem itemValue="blu-ray" itemLabel="bluray" /><br/>
-                <f:selectItem itemValue="指定なし" itemLabel="nasi" />
-            </h:selectOneRadio>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml" >
+            <ui:define name="title">HCSビデオレンタルシステム</ui:define>
+            <ui:define name="content">
+                <h:form>
+            <p:outputLabel value="検索ワード:" /><p:inputText /><br/>
+<h:form>
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <p:outputLabel value="ジャンル:" />
+        <p:selectOneRadio id="city" value="#{radioView.city}"  layout="grid" columns="3">
+            <f:selectItems value="#{radioView.cities}" var="c" itemLabel="#{city}" itemValue="#{city}"/>
+        </p:selectOneRadio>
+    </h:panelGrid>
+ 
+</h:form>
+<!--↑できればseleceonemenuに変えたい-->
+<h:form>
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+        <p:outputLabel value="媒体:" />
+        <p:selectOneButton value="#{selectOneView.option}">
+            <f:selectItem itemLabel="DVD/Blu-ray" itemValue="all" />
+            <f:selectItem itemLabel="DVD" itemValue="DVD" />
+            <f:selectItem itemLabel="Blu-ray" itemValue="Blu-ray" />
+        </p:selectOneButton>
+        <p:spacer width="10" height="100" />
+        <p:commandButton value="Submit" icon="ui-icon-search" />
+    </h:panelGrid>
+</h:form>
         </h:form>
-    </body>
+        </ui:define>
+        </ui:composition>
+    </h:body>
 </html>
