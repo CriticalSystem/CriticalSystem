@@ -16,12 +16,12 @@ import javax.validation.constraints.NotNull;
  * 店舗
  */
 
-@NamedQuery(name = "Shop.ShopQAll" , query = "SELECT e FROM Shop")
+@NamedQuery(name = "Store.StoreQAll" , query = "SELECT e FROM Store")
 
 @Entity
 @Table(name="STORE")
 public class Store implements Serializable {
-    public static final String ShopQAll = "ShopQAll";
+    public static final String StoreQAll = "StoreQAll";
     
     @Id
     @NotNull
