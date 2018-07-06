@@ -4,14 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 店員
  */
 
-@Entity
 @NamedQuery(name = "Employee.EmployeeQAll" , query = "SELECT e FROM Employee")
+
+@Entity
+@Table(name="EMPLOYEE")
 public class Employee implements Serializable {
     public static final String EmployeeQAll = "EmployeeQAll";
     

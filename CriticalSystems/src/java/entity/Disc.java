@@ -6,18 +6,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-/*
+/**
 * ディスク
 */
-
-@Entity
 @NamedQueries({
     @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM disc"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT e FROM disc WHERE title_code = :1"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE disc SET is_lend = 1 WHERE disc_code = :1")
+    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT d FROM disc d WHERE d.title_code LIKE '%' || :1 || '%' AND d.media = :2"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE disc SET is_lend = 1 WHERE disc_code = :1"),
 })
+
+@Entity
+@Table(name="DISC")
 public class Disc implements Serializable {
     public static final String DiscQAll = "DiscQAll";
     public static final String DiscQ = "DiscQ";
@@ -37,7 +39,7 @@ public class Disc implements Serializable {
     private boolean disposalFlg;//廃棄フラグ
     @NotNull
     private String media;       //媒体区分
-
+    
     /**
      * @return the DiscCD
      */

@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- * レジ
+ * 売り上げ
  */
 @Entity
+@Table(name="SALES")
 public class Sales implements Serializable{
     @Id
     @NotNull

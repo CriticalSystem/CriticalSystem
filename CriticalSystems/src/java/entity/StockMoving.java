@@ -9,12 +9,14 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 在庫移動
  */
 @Entity
+@Table(name="STOCK_MOVING")
 public class StockMoving implements Serializable{
     @Id
     private int serialNo;       //連番

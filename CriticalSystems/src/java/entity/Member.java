@@ -9,15 +9,21 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 会員
  */
-@NamedQuery(name = "Member.MemberQAll" , query = "SELECT e FROM Member")
+@NamedQueries({
+    @NamedQuery(name = "Member.MemberQAll", query = "SELECT e FROM Member")
+})
 @Entity
+@Table(name = "MEMBER")
 public class Member implements Serializable {
+
     public static final String MemberQAll = "MemberQAll";
     @Id
     @NotNull
@@ -243,6 +249,4 @@ public class Member implements Serializable {
         this.Discount = Discount;
     }
 
-    
-    
 }

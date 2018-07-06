@@ -10,18 +10,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * タイトル
  */
-@Entity
 @NamedQueries({
         @NamedQuery(name = "Title.TitleQAll" , query = "SELECT t FROM Title t"),
-        @NamedQuery(name = "Title.TitleQ" , query = "SELECT t FROM Title t WHERE title_code = ?1"),
-        @NamedQuery(name = "Title.TitleQ" , query = "SELECT t FROM Title t WHERE genre_code = ?1")
+        @NamedQuery(name = "Title.TitleQFindName" , query = "SELECT t FROM Title t WHERE title_name = ?1"),
+        @NamedQuery(name = "Title.TitleQFindGenre" , query = "SELECT t FROM Title t WHERE genre_code = ?1")
 })
 
+@Entity
+@Table(name="TITLE")
 public class Title implements Serializable{
     public static final String TitleQAll = "TitleQAll";
     @Id

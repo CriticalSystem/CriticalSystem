@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
  * @author s20163048
  */
 @Entity
+@Table(name="TEMP_MEMBER")
 public class TempMember implements Serializable{
     @Id
     @NotNull

@@ -8,13 +8,15 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * レジ
  */
 @Entity
-public class CashRegister implements Serializable{
+@Table(name="REGISTER")
+public class Register implements Serializable{
     @Id
     @NotNull
     private String registerCD;  //レジCD

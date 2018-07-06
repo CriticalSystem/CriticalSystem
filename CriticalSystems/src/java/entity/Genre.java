@@ -8,15 +8,19 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * ジャンル
  */
-
+@NamedQueries({
+    @NamedQuery(name = "Genre.GenreQAll" , query = "SELECT g FROM Genre g")
+})
 @Entity
-@NamedQuery(name = "Genre.GenreQAll" , query = "SELECT e FROM Genre")
+@Table(name="GENRE")
 public class Genre implements Serializable{
     @Id
     @NotNull

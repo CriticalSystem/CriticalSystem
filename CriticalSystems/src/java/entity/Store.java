@@ -9,14 +9,17 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 店舗
  */
 
-@Entity
 @NamedQuery(name = "Shop.ShopQAll" , query = "SELECT e FROM Shop")
+
+@Entity
+@Table(name="STORE")
 public class Store implements Serializable {
     public static final String ShopQAll = "ShopQAll";
     

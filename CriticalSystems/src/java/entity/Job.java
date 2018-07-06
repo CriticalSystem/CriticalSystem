@@ -8,18 +8,23 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 職業
  */
-
+@NamedQueries({
+    @NamedQuery(name = "Job.JobQAll", query = "SELECT e FROM Job")
+})
 @Entity
-@NamedQuery(name = "Job.JobQAll" , query = "SELECT e FROM Job")
-public class Job implements Serializable{
+@Table(name = "JOB")
+public class Job implements Serializable {
+
     public static final String JobQAll = "JobQAll";
-    
+
     @Id
     @NotNull
     private String jobCD;   //職業CD
@@ -53,5 +58,5 @@ public class Job implements Serializable{
     public void setJobName(String jobName) {
         this.jobName = jobName;
     }
-    
+
 }

@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
+@Table(name="IDCARD")
 public class IDCard implements Serializable{
     @Id
     @NotNull

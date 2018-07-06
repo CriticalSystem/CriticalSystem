@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,6 +21,7 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Receipt.ReceiptQAll" , query = "INSERT "),
 })
 @Entity
+@Table(name="RECEIPT")
 public class Receipt implements Serializable{
     public static final String ReceiptQAll = "ReceiptQAll";
     @Id
@@ -36,7 +38,7 @@ public class Receipt implements Serializable{
     @NotNull
     private int subtotal;       //合計金額
     @NotNull
-    private CashRegister Register;   // レジ
+    private Register Register;   // レジ
 
     /**
      * @return the receiptNo
@@ -125,14 +127,14 @@ public class Receipt implements Serializable{
     /**
      * @return the Register
      */
-    public CashRegister getRegister() {
+    public Register getRegister() {
         return Register;
     }
 
     /**
      * @param Register the Register to set
      */
-    public void setRegister(CashRegister Register) {
+    public void setRegister(Register Register) {
         this.Register = Register;
     }
     

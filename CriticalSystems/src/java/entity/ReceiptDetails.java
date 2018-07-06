@@ -11,6 +11,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,6 +20,7 @@ import javax.validation.constraints.NotNull;
  * 貸出明細
  */
 @Entity
+@Table(name="RECEIPT_DETAILS")
 public class ReceiptDetails implements Serializable{
     
     @EmbeddedId

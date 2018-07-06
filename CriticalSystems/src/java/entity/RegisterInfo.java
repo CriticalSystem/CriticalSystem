@@ -5,17 +5,22 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * レジ内金額 
  */
-public class RegisterInfo {
+@Table(name="REGISTER_INFO")
+@Entity
+public class RegisterInfo implements Serializable{
     @Id
     @NotNull
-    private CashRegister register;
+    private Register register;
     @NotNull
     private Date date;
     @NotNull
@@ -26,14 +31,14 @@ public class RegisterInfo {
     /**
      * @return the register
      */
-    public CashRegister getRegister() {
+    public Register getRegister() {
         return register;
     }
 
     /**
      * @param register the register to set
      */
-    public void setRegister(CashRegister register) {
+    public void setRegister(Register register) {
         this.register = register;
     }
 
