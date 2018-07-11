@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,15 +26,21 @@ public class ReceiptDetails implements Serializable{
     
     @EmbeddedId
     @NotNull
+    @Column(name = "")
     private PK DetailsPK;       //伝票
     @NotNull
+    @Column(name = "disc_code")
     private Disc disc;          //ディスク
+    @Column(name = "return_date")
     private Date returnDate;    //返却日
     @NotNull
+    @Column(name = "due_date")
     private Date dueDate;       //返却予定日
+    @Column(name = "late_fees")
     private int lateFees;       //延滞料
     @NotNull
-    private int fee;            //料金
+    @Column(name = "price")
+    private int price;            //料金
 
     /**
      * @return the DetailsPK
@@ -106,24 +113,28 @@ public class ReceiptDetails implements Serializable{
     }
 
     /**
-     * @return the fee
+     * @return the price
      */
-    public int getFee() {
-        return fee;
+    public int getPrice() {
+        return price;
     }
 
     /**
-     * @param fee the fee to set
+     * @param price the price to set
      */
-    public void setFee(int fee) {
-        this.fee = fee;
+    public void setPrice(int price) {
+        this.price = price;
     }
+
+
    
     /**
      * 主キー用のクラス
      */
     private static class PK {
+        @Column(name = "slip_number")
         private Receipt receipt;
+        @Column(name = "details_number")
         private int No;
         
         public PK(Receipt receipt , int No){

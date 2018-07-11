@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,12 +21,16 @@ import javax.validation.constraints.NotNull;
 public class RegisterInfo implements Serializable{
     @Id
     @NotNull
+    @Column(name = "register_code")
     private Register register;
     @NotNull
+    @Column(name = "reg_date")
     private Date date;
     @NotNull
+    @Column(name = "register_total_price")
     private int total;
     @NotNull
+    @Column(name = "entry_people")
     private int Entry;
 
     /**

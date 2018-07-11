@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,9 +20,12 @@ import javax.validation.constraints.NotNull;
 public class Ranking implements Serializable{
     @Id
     @NotNull
+    @Column(name = "store_code")
     private Store store;
+    @Column(name = "title_code")
     private Title title;
-    private int rankNo;
+    @Column(name = "ranking")
+    private int ranking;
 
     /**
      * @return the store
@@ -54,15 +58,15 @@ public class Ranking implements Serializable{
     /**
      * @return the rankNo
      */
-    public int getRankNo() {
-        return rankNo;
+    public int getRanking() {
+        return ranking;
     }
 
     /**
-     * @param rankNo the rankNo to set
+     * @param ranking the rankNo to set
      */
-    public void setRankNo(int rankNo) {
-        this.rankNo = rankNo;
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
     
 }

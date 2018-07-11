@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,8 +21,10 @@ import javax.validation.constraints.NotNull;
 public class Discount implements Serializable{
     @Id
     @NotNull
+    @Column(name = "discount_number")
     private int DiscountNo;
     @NotNull
+    @Column(name = "discount_times")
     private int Discount;
     
     /**

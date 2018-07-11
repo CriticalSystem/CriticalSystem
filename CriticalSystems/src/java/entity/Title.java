@@ -18,8 +18,7 @@ import javax.validation.constraints.NotNull;
  */
 @NamedQueries({
         @NamedQuery(name = "Title.TitleQAll" , query = "SELECT t FROM Title t"),
-        @NamedQuery(name = "Title.TitleQFindName" , query = "SELECT t FROM Title t WHERE title_name = ?1"),
-        @NamedQuery(name = "Title.TitleQFindGenre" , query = "SELECT t FROM Title t WHERE genre_code = ?1")
+        @NamedQuery(name = "Title.TitleQFindName" , query = "")
 })
 
 @Entity
@@ -123,5 +122,19 @@ public class Title implements Serializable{
     public void setGenre(Genre genre) {
         this.genre = genre;
     }
+
+    /**
+     * @return the imgPath
+     */
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    /**
+     * @param imgPath the imgPath to set
+     */
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
+    }
     
-}
+    }

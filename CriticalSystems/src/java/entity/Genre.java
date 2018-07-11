@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -24,8 +25,10 @@ import javax.validation.constraints.NotNull;
 public class Genre implements Serializable{
     @Id
     @NotNull
+    @Column(name = "genre_code")
     private String genreCD;     //ジャンルCD
     @NotNull
+    @Column(name = "genre_name")
     private String genreName;   //ジャンル名
 
     /**

@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -21,27 +22,39 @@ import javax.validation.constraints.NotNull;
 public class TempMember implements Serializable{
     @Id
     @NotNull
+    @Column(name = "temp_reg_code")
     private String tempMemNo;
     @NotNull
+    @Column(name = "temp_reg_time")
     private Date tempRegDate;
     @NotNull
+    @Column(name = "name")
     private String Name;
     @NotNull
+    @Column(name = "name_ruby")
     private String NameRuby;
     @NotNull
+    @Column(name = "gender")
     private String Gender;
     @NotNull
+    @Column(name = "birthday")
     private String Birthday;
     @NotNull
+    @Column(name = "postal_code")
     private String PostalCD;
     @NotNull
+    @Column(name = "address")
     private String Address;
     @NotNull
+    @Column(name = "tel_number")
     private String Tel;
+    @Column(name = "email")
     private String Mail;
     @NotNull
+    @Column(name = "job_code")
     private String Job;
     @NotNull
+    @Column(name = "is_magazine")
     private String Magazine;
 
     /**

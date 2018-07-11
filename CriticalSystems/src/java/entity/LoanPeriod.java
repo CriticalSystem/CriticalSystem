@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,10 +20,13 @@ import javax.validation.constraints.NotNull;
 public class LoanPeriod implements Serializable{
     @Id
     @NotNull
+    @Column(name = "div_code")
     private Division div;
     @NotNull
+    @Column(name = "loan_date")
     private int loanDate;
     @NotNull
+    @Column(name = "price")
     private int price;
 
     /**

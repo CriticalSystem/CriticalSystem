@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,16 +20,23 @@ import javax.validation.constraints.NotNull;
 @Table(name="STOCK_MOVING")
 public class StockMoving implements Serializable{
     @Id
+    @Column(name = "serial_number")
     private int serialNo;       //連番
     @NotNull
+    @Column(name = "title_code")
     private Title title;        //タイトル
     @NotNull
+    @Column(name = "approval")
     private String stats;       //承認状況
     @NotNull
+    @Column(name = "req_store")
     private Store reqStore;     //申請店舗
+    @Column(name = "offer_store")
     private Store offerStore;   //提供店舗
     @NotNull
-    private Date reqDate;       //申請日   
+    @Column(name = "req_date")
+    private Date reqDate;       //申請日
+    @Column(name = "req_number")
     private int Number;         //個数 
 
     /**

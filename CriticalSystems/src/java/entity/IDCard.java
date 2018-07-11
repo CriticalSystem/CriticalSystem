@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -20,10 +21,13 @@ import javax.validation.constraints.NotNull;
 public class IDCard implements Serializable{
     @Id
     @NotNull
+    @Column(name = "ident_number")
     private String IDCardNo;    //身分証番号    
     @NotNull
+    @Column(name = "member_code")
     private Member Member;      //会員
     @NotNull
+    @Column(name = "ident_type")
     private String IDCardType;  //身分証分類
 
     /**

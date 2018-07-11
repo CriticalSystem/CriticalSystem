@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,8 +20,10 @@ import javax.validation.constraints.NotNull;
 public class Register implements Serializable{
     @Id
     @NotNull
+    @Column(name = "register_code")
     private String registerCD;  //レジCD
     @NotNull
+    @Column(name = "store_code")
     private Store store;        //店舗CD
 
     /**

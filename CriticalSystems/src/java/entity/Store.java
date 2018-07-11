@@ -6,6 +6,7 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
@@ -25,15 +26,22 @@ public class Store implements Serializable {
     
     @Id
     @NotNull
+    @Column(name = "store_code")
     private String StoreCD;      //店舗CD
     @NotNull
+    @Column(name = "store_name")
     private String Name;    //店舗名
     @NotNull
+    @Column(name = "address")
     private String Addres;  //住所
     @NotNull
+    @Column(name = "tel_number")
     private String Tel;     //電話番号
-    
+    @Column(name = "store_map")
     private String StoreMAP;     //店舗見取り図
+    @Column(name = "email")
+    private String email;
+    
 
     /**
      * @return the StoreCD
@@ -103,6 +111,20 @@ public class Store implements Serializable {
      */
     public void setStoreMAP(String StoreMAP) {
         this.StoreMAP = StoreMAP;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     

@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -27,30 +28,44 @@ public class Member implements Serializable {
     public static final String MemberQAll = "MemberQAll";
     @Id
     @NotNull
+    @Column(name = "member_code")
     private String MemberCD;        //会員CD
     @NotNull
+    @Column(name = "name")
     private String Name;      //会員名
     @NotNull
+    @Column(name = "name_ruby")
     private String NameRuby;  //会員名カナ
     @NotNull
+    @Column(name = "gender")
     private String Gender;          //性別
     @NotNull
+    @Column(name = "birthday")
     private Date Birthday;    //生年月日
     @NotNull
+    @Column(name = "postal_code")
     private int PostalCD;     //郵便番号
     @NotNull
+    @Column(name = "address")
     private String Address;   //住所
     @NotNull
+    @Column(name = "tel_number")
     private String Tel;       //電話番号
+    @Column(name = "email")
     private String Mail;      //メールアドレス
     @NotNull
+    @Column(name = "is_magazine")
     private String Magazine;        //メールマガジン
     @NotNull
+    @Column(name = "join_date")
     private String JoinDate;        //入会日
     @NotNull
+    @Column(name = "member_state")
     private String Stats;     //状態
     @NotNull
+    @Column(name = "job_code")
     private Job Job;                //職業
+    @Column(name = "discount_number")
     private Discount Discount;      //割引CD
 
     /**

@@ -1,5 +1,7 @@
 package entity;
 import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
@@ -20,13 +22,18 @@ public class Employee implements Serializable {
     
     @Id
     @NotNull
+    @Column(name = "employees_code")
     private  String empCD;      //店員CD
     @NotNull
+    @Column(name = "employees_name")
     private  String empName;    //店員名
     @NotNull
+    @Column(name = "password")
     private  String password;   //パスワード
+    @Column(name = "store_code")
     private  Store store;       //店舗
-    private Role role;          //役職
+    @Column(name = "joined_on")
+    private Date joined_on; //入社日
 
     /**
      * @return the empCD
