@@ -38,7 +38,7 @@ public class TempMember implements Serializable{
     private String Gender;
     @NotNull
     @Column(name = "birthday")
-    private String Birthday;
+    private Date Birthday;
     @NotNull
     @Column(name = "postal_code")
     private String PostalCD;
@@ -52,7 +52,7 @@ public class TempMember implements Serializable{
     private String Mail;
     @NotNull
     @Column(name = "job_code")
-    private String Job;
+    private Job Job;
     @NotNull
     @Column(name = "is_magazine")
     private String Magazine;
@@ -130,14 +130,14 @@ public class TempMember implements Serializable{
     /**
      * @return the Birthday
      */
-    public String getBirthday() {
+    public Date getBirthday() {
         return Birthday;
     }
 
     /**
      * @param Birthday the Birthday to set
      */
-    public void setBirthday(String Birthday) {
+    public void setBirthday(Date Birthday) {
         this.Birthday = Birthday;
     }
 
@@ -200,14 +200,14 @@ public class TempMember implements Serializable{
     /**
      * @return the Job
      */
-    public String getJob() {
+    public Job getJob() {
         return Job;
     }
 
     /**
      * @param Job the Job to set
      */
-    public void setJob(String Job) {
+    public void setJob(Job Job) {
         this.Job = Job;
     }
 
