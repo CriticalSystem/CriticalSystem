@@ -21,8 +21,8 @@ import javax.validation.constraints.NotNull;
     @NamedQuery(name = "Ranking.RankingQGetRank",
             query = "Select rownum ,temp.title_code , temp.cnt"
             + "FROM"
-            + "(select t. title_code , count(*) as cnt from title t, disc d, receipt_details rd"
-            + "WHERE t.title_code = d.title_code and d.disc_code = rd.disc_code"
+            + "(select t. title_code , count(*) as cnt from title t, disc d, receipt_details rd , store s"
+            + "WHERE t.title_code = d.title_code and d.disc_code = rd.disc_code and r.store_code = s.store_code and r.store_code = ?1"
             + "group by t.title_code order by count(*) desc) temp"
             + "where rownum <= 20;"),
     })

@@ -38,8 +38,8 @@ public class Member implements Serializable {
     @Column(name = "name_ruby")
     private String NameRuby;  //会員名カナ
     @NotNull
-    @Column(name = "gender")
-    private String Gender;          //性別
+    @Column(name = "sex")
+    private String Sex;          //性別
     @NotNull
     @Column(name = "birthday")
     private Date Birthday;    //生年月日
@@ -112,17 +112,17 @@ public class Member implements Serializable {
     }
 
     /**
-     * @return the Gender
+     * @return the Sex
      */
-    public String getGender() {
-        return Gender;
+    public String getSex() {
+        return Sex;
     }
 
     /**
-     * @param Gender the Gender to set
+     * @param Sex the Sex to set
      */
-    public void setGender(String Gender) {
-        this.Gender = Gender;
+    public void setSex(String Sex) {
+        this.Sex = Sex;
     }
 
     /**
