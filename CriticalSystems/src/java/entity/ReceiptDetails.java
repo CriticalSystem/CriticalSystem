@@ -16,8 +16,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
- *
- * @author s20163048
  * 貸出明細
  */
 @Entity
@@ -40,7 +38,7 @@ public class ReceiptDetails implements Serializable{
     private int lateFees;       //延滞料
     @NotNull
     @Column(name = "price")
-    private int price;            //料金
+    private int price;          //料金
 
     /**
      * @return the DetailsPK

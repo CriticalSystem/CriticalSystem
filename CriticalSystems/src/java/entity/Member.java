@@ -19,7 +19,8 @@ import javax.validation.constraints.NotNull;
  * 会員
  */
 @NamedQueries({
-    @NamedQuery(name = "Member.MemberQAll", query = "SELECT e FROM Member")
+    @NamedQuery(name = "Member.MemberQAll", query = "SELECT e FROM Member"),
+    @NamedQuery(name = "Member.MemberQ", query = "SELECT e FROM Member WHERE name LIKE '%'| ?1 |'%';")
 })
 @Entity
 @Table(name = "MEMBER")

@@ -18,13 +18,20 @@ import javax.validation.constraints.NotNull;
  */
 @NamedQueries({
         @NamedQuery(name = "Title.TitleQAll" , query = "SELECT t FROM Title t"),
-        @NamedQuery(name = "Title.TitleQFindName" , query = "")
+        @NamedQuery(name = "Title.TitleQSearch" , 
+                    query = "SELECT t.title_code, t.title_name , COUNT(d.disc_code) FROM Title t, genre g, disc d" +
+                            "WHERE t.genre_code = g.genre_code AND t.title_code = d.title_code AND" +
+                            "t.title_name LIKE %| ?1 |% AND t.genre_code LIKE ?2 AND d.media LIKE ?3 AND d.store_code = ?4" +
+                            "GROUP BY t.title_code,t.title_name;"),
+        @NamedQuery(name = "" , query = ""),
 })
 
-@Entity
+@Entity 
 @Table(name="TITLE")
 public class Title implements Serializable{
     public static final String TitleQAll = "TitleQAll";
+    public static final String TitleQSearch = "TitleQSearch";
+    
     @Id
     @NotNull
     private String titleCD;

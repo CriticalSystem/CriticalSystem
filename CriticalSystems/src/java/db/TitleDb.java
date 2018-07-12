@@ -5,10 +5,13 @@
  */
 package db;
 
+import entity.Event;
 import entity.Title;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,6 +33,18 @@ public class TitleDb {
     }
     public Title find (String key){
         return em.find(Title.class, key);
+    }
+    
+    /*
+    * DVD検索
+    */
+    public List<Title> getSearch (String name ,String genre, String media, String store ){
+        TypedQuery<Title> q = em.createNamedQuery(Title.TitleQSearch, Title.class);
+        q.setParameter(1,name);
+        q.setParameter(2,genre);
+        q.setParameter(3,media);
+        q.setParameter(4,store);
+        return q.getResultList();
     }
     
 }

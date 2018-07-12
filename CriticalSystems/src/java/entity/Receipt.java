@@ -19,12 +19,12 @@ import javax.validation.constraints.NotNull;
  * 貸出
  */
 @NamedQueries({
-    @NamedQuery(name = "Receipt.ReceiptQAll" , query = "INSERT "),
+    @NamedQuery(name = "" , query = ""),
 })
 @Entity
 @Table(name="RECEIPT")
 public class Receipt implements Serializable{
-    public static final String ReceiptQAll = "ReceiptQAll";
+    public static final String ReceiptQAll = "";
     @Id
     @NotNull
     @Column(name = "slip_number")

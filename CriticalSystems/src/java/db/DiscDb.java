@@ -1,11 +1,13 @@
 package db;
 
 import entity.Disc;
+import entity.Event;
 import java.util.List;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 @Stateless
 public class DiscDb {
@@ -27,4 +29,5 @@ public class DiscDb {
     public List<Disc> getAll (){
         return em.createNamedQuery(Disc.DiscQAll,Disc.class).getResultList();
     }
+    
 }

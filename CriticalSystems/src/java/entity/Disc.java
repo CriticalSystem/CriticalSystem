@@ -15,15 +15,17 @@ import javax.validation.constraints.NotNull;
 */
 @NamedQueries({
     @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM disc"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT d FROM disc d WHERE d.title_code LIKE '%' || :1 || '%' AND d.media = :2"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "UPDATE disc SET is_lend = 1 WHERE disc_code = :1"),
+    
 })
 
 @Entity
 @Table(name="DISC")
 public class Disc implements Serializable {
     public static final String DiscQAll = "DiscQAll";
-    public static final String DiscQ = "DiscQ";
+    public static final String DiscQLend = "DiscQLend";
+    public static final String DiscQRackNo = "DiscQRackNo";
+    public static final String DiscQDisposal = "DiscQDisposal";
+    
     @Id
     @NotNull
     @Column(name = "disc_code")

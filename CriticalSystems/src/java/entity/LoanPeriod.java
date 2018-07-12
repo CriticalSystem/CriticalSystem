@@ -9,12 +9,17 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 貸出期間
  */
+@NamedQueries({
+    @NamedQuery(name = "", query = "")
+})
 @Entity
 @Table(name="LOAN_PERIOD")
 public class LoanPeriod implements Serializable{
