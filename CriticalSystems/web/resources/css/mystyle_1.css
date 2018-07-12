@@ -70,6 +70,18 @@ input[type="button"] {
   background: linear-gradient(to right, #d50000 0%, #ff80ab 80%, #ff80ab 100%);
 }
 
+.bg-gradient5 span,
+.bg-gradient5:before {
+  background: #aa00ff;
+  background: linear-gradient(to right, #aa00ff 0%, #b388ff 80%, #b388ff 100%);
+}
+
+.bg-gradient6 span,
+.bg-gradient6:before {
+  background: #5d4037;
+  background: linear-gradient(to right, #5d4037 0%, #bdbdbd 80%, #bdbdbd 100%);
+}
+
 /* General */
 .wrapper {
   margin: 5% auto;
