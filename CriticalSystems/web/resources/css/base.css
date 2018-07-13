@@ -10,7 +10,8 @@ body {
 .header{
     position: relative;
     height:30px;
-    background-color: #c5e2de;
+    background-color: #9595fb;
+    
 }
 
 .header .login-ifno {
@@ -27,6 +28,9 @@ body {
     position:absolute; top:15%; right:10%;
 }
 
+.Logout{
+    color: white;
+}
 .cp_btn{
     position:absolute; top:1%; right:1%;
     display: block;
@@ -94,28 +98,6 @@ footer{
 }
 footer a{
     color: #fff;
-}
-
-/* keyVisualデザイン */
-#keyVisual {
-
-	padding-top: 70px;
-	height: 350px;
-	background: url('images/kv_img.jpg') no-repeat;
-	background-size: cover;
-}
-/* keyTextデザイン */
-#keyText {
-	font-family: Georgia;
-	font-style:italic;
-	font-size: 64px;
-	color: #2c3742;
-	float: left;
-}
-
-#bottom{
-    /*top:1000px;*/
-    margin-top: 200px;
 }
 
 .control-label{
