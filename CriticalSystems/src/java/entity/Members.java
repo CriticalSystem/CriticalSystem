@@ -19,18 +19,20 @@ import javax.validation.constraints.NotNull;
  * 会員
  */
 @NamedQueries({
-    @NamedQuery(name = "Member.MemberQAll", query = "SELECT e FROM Member"),
-    @NamedQuery(name = "Member.MemberQ", query = "SELECT e FROM Member WHERE name LIKE '%'| ?1 |'%';")
+    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Member m"),
+    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Member m WHERE name LIKE '%'| ?1 |'%';")
 })
 @Entity
-@Table(name = "MEMBER")
-public class Member implements Serializable {
+@Table(name = "MEMBERS")
+public class Members implements Serializable {
 
-    public static final String MemberQAll = "MemberQAll";
+    public static final String MembersQAll = "MembersQAll";
+    public static final String MembersQCode = "MembersQCode";
+    
     @Id
     @NotNull
-    @Column(name = "member_code")
-    private String MemberCD;        //会員CD
+    @Column(name = "members_code")
+    private String MembersCD;        //会員CD
     @NotNull
     @Column(name = "name")
     private String Name;      //会員名
@@ -61,7 +63,7 @@ public class Member implements Serializable {
     @Column(name = "join_date")
     private String JoinDate;        //入会日
     @NotNull
-    @Column(name = "member_state")
+    @Column(name = "members_state")
     private String Stats;     //状態
     @NotNull
     @Column(name = "job_code")
@@ -70,17 +72,17 @@ public class Member implements Serializable {
     private Discount Discount;      //割引CD
 
     /**
-     * @return the MemberCD
+     * @return the MembersCD
      */
-    public String getMemberCD() {
-        return MemberCD;
+    public String getMembersCD() {
+        return MembersCD;
     }
 
     /**
-     * @param MemberCD the MemberCD to set
+     * @param MembersCD the MembersCD to set
      */
-    public void setMemberCD(String MemberCD) {
-        this.MemberCD = MemberCD;
+    public void setMembersCD(String MembersCD) {
+        this.MembersCD = MembersCD;
     }
 
     /**
