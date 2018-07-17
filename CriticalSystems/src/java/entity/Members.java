@@ -8,8 +8,10 @@ package entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -19,8 +21,8 @@ import javax.validation.constraints.NotNull;
  * 会員
  */
 @NamedQueries({
-    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Member m"),
-    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Member m WHERE name LIKE '%'| ?1 |'%';")
+    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Members m"),
+    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Members m WHERE name LIKE '%'| ?1 |'%';")
 })
 @Entity
 @Table(name = "MEMBERS")
@@ -61,13 +63,17 @@ public class Members implements Serializable {
     private String Magazine;        //メールマガジン
     @NotNull
     @Column(name = "join_date")
-    private String JoinDate;        //入会日
+    private String JoinDate;  //入会日
+    @Column(name = "defect_date")
+    private String DefectDate;
     @NotNull
     @Column(name = "members_state")
     private String Stats;     //状態
     @NotNull
     @Column(name = "job_code")
+    @ManyToOne
     private Job Job;                //職業
+    @ManyToOne
     @Column(name = "discount_number")
     private Discount Discount;      //割引CD
 
@@ -265,6 +271,20 @@ public class Members implements Serializable {
      */
     public void setDiscount(Discount Discount) {
         this.Discount = Discount;
+    }
+
+    /**
+     * @return the DefectDate
+     */
+    public String getDefectDate() {
+        return DefectDate;
+    }
+
+    /**
+     * @param DefectDate the DefectDate to set
+     */
+    public void setDefectDate(String DefectDate) {
+        this.DefectDate = DefectDate;
     }
 
 }

@@ -31,7 +31,7 @@ public class Receipt implements Serializable{
     private int receiptNo;      //伝票No
     @NotNull
     @Column(name = "member_code")
-    private Member Member;      //会員CD
+    private Members Members;      //会員CD
     @NotNull
     @Column(name = "employees_code")
     private Employee Employee;  //店員CD
@@ -64,17 +64,17 @@ public class Receipt implements Serializable{
     }
 
     /**
-     * @return the Member
+     * @return the Members
      */
-    public Member getMember() {
-        return Member;
+    public Members getMembers() {
+        return Members;
     }
 
     /**
-     * @param Member the Member to set
+     * @param Members the Members to set
      */
-    public void setMember(Member Member) {
-        this.Member = Member;
+    public void setMembers(Members Members) {
+        this.Members = Members;
     }
 
     /**

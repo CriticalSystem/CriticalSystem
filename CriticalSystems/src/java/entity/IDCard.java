@@ -25,7 +25,7 @@ public class IDCard implements Serializable{
     private String IDCardNo;    //身分証番号    
     @NotNull
     @Column(name = "member_code")
-    private Member Member;      //会員
+    private Members Members;      //会員
     @NotNull
     @Column(name = "ident_type")
     private String IDCardType;  //身分証分類
@@ -45,17 +45,17 @@ public class IDCard implements Serializable{
     }
 
     /**
-     * @return the Member
+     * @return the Members
      */
-    public Member getMember() {
-        return Member;
+    public Members getMembers() {
+        return Members;
     }
 
     /**
-     * @param Member the Member to set
+     * @param Members the Members to set
      */
-    public void setMember(Member Member) {
-        this.Member = Member;
+    public void setMembers(Members Members) {
+        this.Members = Members;
     }
 
     /**

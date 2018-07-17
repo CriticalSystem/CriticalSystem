@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
@@ -29,6 +30,7 @@ public class Job implements Serializable {
     @Id
     @NotNull
     @Column(name = "job_code")
+    @EmbeddedId
     private String jobCD;   //職業CD
     @NotNull
     @Column(name = "job_name")
