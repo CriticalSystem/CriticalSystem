@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>会員登録</title>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+
+                <h:form>   
+                    
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <br/><br/>
+                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                        <p:tab id="personal" title="会員登録">
+                            <p:panel header="会員情報" >
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <span>
+                                        <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#" required="true" id="lastname" requiredMessage="★必須" styleClass="sel" />
+                                        <div class="mozi">　　　　　　　名 </div><h:inputText value="#" required="true" id="firstname" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="　　　性別：　" class="mozi"/>
+                                    <h:selectOneRadio id="sex" value="#">
+                                        <f:selectItem itemValue="1" itemLabel="男性"/>
+                                        <f:selectItem itemValue="2" itemLabel="女性"/>
+                                    </h:selectOneRadio>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="10" columnClasses="label, value">
+                                    <h:outputText value="　生年月日：　" class="mozi"/>
+                                    <span>
+                                        <h:selectOneMenu value="#" required="true" id="year" requiredMessage="★必須" styleClass="sel" />年
+                                        <h:selectOneMenu value="#" required="true" id="manth" requiredMessage="★必須" styleClass="sel" />月
+                                        <h:selectOneMenu value="#" required="true" id="day" requiredMessage="★必須" styleClass="sel" />日
+                                        <h:inputText value="#" required="true" id="age" requiredMessage="★必須" styleClass="sel" />歳
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="8" columnClasses="label, value">
+                                    <h:outputText value="　電話番号：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#" required="true" id="tel1" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#" required="true" id="tel2" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#" required="true" id="tel3" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="6" columnClasses="label, value">
+                                    <h:outputText value="　郵便番号：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#" required="true" id="post1" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#" required="true" id="post2" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" columnClasses="label, value">
+                                    <h:outputText value="　　　住所：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#" required="true" id="address" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" columnClasses="label, value">
+                                    <h:outputText value="身分証番号：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#" required="true" id="idNum" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="　　　　　　　" />
+                                    <h:selectOneRadio id="idKbn" value="#">
+                                        <f:selectItem itemValue="1" itemLabel="免許証"/>
+                                        <f:selectItem itemValue="2" itemLabel="保険証"/>
+                                        <f:selectItem itemValue="3" itemLabel="学生証"/>
+                                    </h:selectOneRadio>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="confirm" title="確認" >
+                            <p:panel header="Confirmation">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="　　　氏名：　姓" />
+                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="　　　　　　　名" />
+                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Age: " />
+                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Street: " />
+                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Postal: " />
+                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="City: " />
+                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Email: " />
+                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Phone " />
+                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Info: " />
+                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+
+                                        <h:outputText />
+                                        <h:outputText />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
