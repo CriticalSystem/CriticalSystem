@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -22,6 +23,7 @@ public class Discount implements Serializable{
     @Id
     @NotNull
     @Column(name = "discount_number")
+    @EmbeddedId
     private int DiscountNo;
     @NotNull
     @Column(name = "discount_times")

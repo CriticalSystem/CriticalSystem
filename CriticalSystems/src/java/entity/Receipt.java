@@ -63,17 +63,17 @@ public class Receipt implements Serializable{
     }
 
     /**
-     * @return the Member
+     * @return the Members
      */
-    public Members getMember() {
-        return Member;
+    public Members getMembers() {
+        return Members;
     }
 
     /**
-     * @param Member the Member to set
+     * @param Members the Members to set
      */
-    public void setMember(Members Member) {
-        this.Member = Member;
+    public void setMembers(Members Members) {
+        this.Members = Members;
     }
 
     /**

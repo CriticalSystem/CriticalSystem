@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -64,7 +65,9 @@ public class Members implements Serializable {
     private String Magazine;        //メールマガジン
     @NotNull
     @Column(name = "join_date")
-    private String JoinDate;        //入会日
+    private String JoinDate;  //入会日
+    @Column(name = "defect_date")
+    private String DefectDate;
     @NotNull
     @Column(name = "members_state")
     private String Stats;     //状態
@@ -270,6 +273,20 @@ public class Members implements Serializable {
      */
     public void setDiscount(Discount Discount) {
         this.Discount = Discount;
+    }
+
+    /**
+     * @return the DefectDate
+     */
+    public String getDefectDate() {
+        return DefectDate;
+    }
+
+    /**
+     * @param DefectDate the DefectDate to set
+     */
+    public void setDefectDate(String DefectDate) {
+        this.DefectDate = DefectDate;
     }
 
 }
