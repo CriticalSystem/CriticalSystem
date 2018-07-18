@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>会員登録</title>
+        <title>会員情報</title>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
@@ -15,17 +15,16 @@
             <ui:define name="content">
 
                 <h:form>   
-                    
+                    <h1>会員情報</h1>
                     <p:growl id="growl" sticky="true" showDetail="true"/>
-                    <br/><br/>
                     <p:wizard flowListener="#{userWizard.onFlowProcess}">
                         <p:tab id="personal" title="参照・更新">
                             <p:panel header="会員情報" >
                                 <p:messages />
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <span>
-                                        <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#" required="true" id="lastname" requiredMessage="★必須" styleClass="sel" />
-                                        <div class="mozi">　　　　　　　名 </div><h:inputText value="#" required="true" id="firstname" requiredMessage="★必須" styleClass="sel" />
+                                        <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#" id="lastname" styleClass="sel" />
+                                        <div class="mozi">　　　　　　　名 </div><h:inputText value="#" id="firstname" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
@@ -40,41 +39,41 @@
                                 <h:panelGrid columns="10" columnClasses="label, value">
                                     <h:outputText value="　生年月日：　" class="mozi"/>
                                     <span>
-                                        <h:selectOneMenu value="#" required="true" id="year" requiredMessage="★必須" styleClass="sel" />年
-                                        <h:selectOneMenu value="#" required="true" id="manth" requiredMessage="★必須" styleClass="sel" />月
-                                        <h:selectOneMenu value="#" required="true" id="day" requiredMessage="★必須" styleClass="sel" />日
-                                        <h:inputText value="#" required="true" id="age" requiredMessage="★必須" styleClass="sel" />歳
+                                        <h:selectOneMenu value="#" id="year" styleClass="sel" />年
+                                        <h:selectOneMenu value="#" id="manth" styleClass="sel" />月
+                                        <h:selectOneMenu value="#" id="day" styleClass="sel" />日
+                                        <h:inputText value="#" id="age" styleClass="sel" />歳
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="8" columnClasses="label, value">
                                     <h:outputText value="　電話番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="tel1" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="tel2" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="tel3" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#" id="tel1" styleClass="sel" />－
+                                        <h:inputText value="#" id="tel2" styleClass="sel" />－
+                                        <h:inputText value="#" id="tel3" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="6" columnClasses="label, value">
                                     <h:outputText value="　郵便番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="post1" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="post2" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#" id="post1" styleClass="sel" />－
+                                        <h:inputText value="#" id="post2" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="3" columnClasses="label, value">
                                     <h:outputText value="　　　住所：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="address" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#" id="address" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="3" columnClasses="label, value">
                                     <h:outputText value="身分証番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="idNum" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#" id="idNum" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
