@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="CriticalSystemsPU2" transaction-type="JTA">
-    <jta-data-source>jdbc/mmydb</jta-data-source>
-    <class>entity.Members</class>
+    <jta-data-source>jdbc/se</jta-data-source>
     <class>entity.Disc</class>
     <class>entity.Discount</class>
     <class>entity.Division</class>
@@ -11,6 +10,7 @@
     <class>entity.IDCard</class>
     <class>entity.Job</class>
     <class>entity.LoanPeriod</class>
+    <class>entity.Members</class>
     <class>entity.Rack</class>
     <class>entity.Ranking</class>
     <class>entity.Receipt</class>

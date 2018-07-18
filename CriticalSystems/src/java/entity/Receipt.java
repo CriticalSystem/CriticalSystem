@@ -29,8 +29,8 @@ public class Receipt implements Serializable{
     @Column(name = "slip_number")
     private int receiptNo;      //伝票No
     @NotNull
-    @JoinColumn(name = "member_code")
-    private Members Member;      //会員CD
+    @JoinColumn(name = "members_code")
+    private Members Members;      //会員CD
     @NotNull
     @JoinColumn(name = "employees_code")
     private Employee Employee;  //店員CD

@@ -25,7 +25,7 @@ public class IDCard implements Serializable{
     @Column(name = "ident_number")
     private String IDCardNo;    //身分証番号    
     @NotNull
-    @Column(name = "member_code")
+    @JoinColumn(name = "members_code")
     private Members Members;      //会員
     @NotNull
     @Column(name = "ident_type")
