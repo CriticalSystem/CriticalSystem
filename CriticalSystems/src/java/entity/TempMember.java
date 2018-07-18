@@ -10,6 +10,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -51,7 +52,7 @@ public class TempMember implements Serializable{
     @Column(name = "email")
     private String Mail;
     @NotNull
-    @Column(name = "job_code")
+    @JoinColumn(name = "job_code")
     private Job Job;
     @NotNull
     @Column(name = "is_magazine")

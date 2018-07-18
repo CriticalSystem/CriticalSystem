@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,24 +18,27 @@ import javax.validation.constraints.NotNull;
 /**
  * ランキング
  */
-@NamedQueries({
-    @NamedQuery(name = "Ranking.RankingQGetRank",
-            query = "Select rownum ,temp.title_code , temp.cnt"
-            + "FROM"
-            + "(select t. title_code , count(*) as cnt from title t, disc d, receipt_details rd , store s"
-            + "WHERE t.title_code = d.title_code and d.disc_code = rd.disc_code and r.store_code = s.store_code and r.store_code = ?1"
-            + "group by t.title_code order by count(*) desc) temp"
-            + "where rownum <= 20;"),
-    })
+//@NamedQueries({
+//    @NamedQuery(name = "Ranking.RankingQGetRank",
+//            query = "Select rownum ,temp.title_code , temp.cnt"
+//            + "FROM"
+//            + "(select t. title_code , count(*) as cnt from title t, disc d, receipt_details rd , store s"
+//            + "WHERE t.title_code = d.title_code and d.disc_code = rd.disc_code and r.store_code = s.store_code and r.store_code = ?1"
+//            + "group by t.title_code order by count(*) desc) temp"
+//            + "where rownum <= 20;"),
+//    })
 @Entity
 @Table(name = "RANKING")
 public class Ranking implements Serializable {
 
     @Id
     @NotNull
-    @Column(name = "store_code")
+    private int serial;       //連番
+    @NotNull
+    @JoinColumn(name = "store_code")
     private Store store;
-    @Column(name = "title_code")
+    @JoinColumn(name = "title_code")
+    @NotNull
     private Title title;
     @Column(name = "ranking")
     private int ranking;

@@ -10,6 +10,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,7 +22,9 @@ import javax.validation.constraints.NotNull;
 public class Sales implements Serializable{
     @Id
     @NotNull
-    @Column(name = "store_code")
+    private int serial;       //連番
+    @NotNull
+    @JoinColumn(name = "store_code")
     private Store store;    //店舗CD
     @NotNull
     @Column(name = "month")

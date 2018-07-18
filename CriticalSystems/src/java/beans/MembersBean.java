@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
@@ -45,7 +46,7 @@ public class MembersBean implements Serializable {
     @Inject
     Conversation conv;
 
-    @PreDestroy
+    @PostConstruct
     public void start(){
         if(!conv.isTransient()){
             log.info(log.getName() + "｜会話スコープ終了");
@@ -71,12 +72,22 @@ public class MembersBean implements Serializable {
         return "削除完了画面パス";
     }
     
+    public String test() {
+        if(conv.isTransient()) {
+            conv.begin();
+        }
+        Members members = membersdb.find(member_code);
+        setName(members.getName());
+        setAddress(members.getAddress());
+        return "testt.xhtml";
+    }
+    
 //    public String execCreate() {
 //        log.info(log.getName() + " | イベント登録処理");
-//        Member member = new Member();
+//        Members member = new Members();
 //        try {
-//            memberdb.create(member);
-//            memberList = memberdb.find(member_code);
+//            membersdb.create(member);
+//            membersList = membersdb.find(member_code);
 //        } catch (Exception e) {
 //            log.fine("■" + log.getName() + "|" + e.getMessage());
 //        }

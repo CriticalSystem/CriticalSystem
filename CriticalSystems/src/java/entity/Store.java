@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * 店舗
  */
 
-@NamedQuery(name = "Store.StoreQAll" , query = "SELECT e FROM Store")
+@NamedQuery(name = "Store.StoreQAll" , query = "SELECT s FROM Store s")
 
 @Entity
 @Table(name="STORE")

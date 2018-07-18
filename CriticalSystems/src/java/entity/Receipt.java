@@ -10,6 +10,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -18,9 +19,7 @@ import javax.validation.constraints.NotNull;
 /**
  * 貸出
  */
-@NamedQueries({
-    @NamedQuery(name = "" , query = ""),
-})
+
 @Entity
 @Table(name="RECEIPT")
 public class Receipt implements Serializable{
@@ -30,13 +29,13 @@ public class Receipt implements Serializable{
     @Column(name = "slip_number")
     private int receiptNo;      //伝票No
     @NotNull
-    @Column(name = "member_code")
-    private Member Member;      //会員CD
+    @JoinColumn(name = "member_code")
+    private Members Member;      //会員CD
     @NotNull
-    @Column(name = "employees_code")
+    @JoinColumn(name = "employees_code")
     private Employee Employee;  //店員CD
     @NotNull
-    @Column(name = "store_code")
+    @JoinColumn(name = "store_code")
     private Store store;         //店舗
     @NotNull
     @Column(name = "lend_date")
@@ -45,7 +44,7 @@ public class Receipt implements Serializable{
     @Column(name = "total_price")
     private int subtotal;       //合計金額
     @NotNull
-    @Column(name = "register_code")
+    @JoinColumn(name = "register_code")
     private Register Register;   // レジ
     @Column(name = "is_discount")
     private boolean discountFlg;   // 割引フラグ
@@ -66,14 +65,14 @@ public class Receipt implements Serializable{
     /**
      * @return the Member
      */
-    public Member getMember() {
+    public Members getMember() {
         return Member;
     }
 
     /**
      * @param Member the Member to set
      */
-    public void setMember(Member Member) {
+    public void setMember(Members Member) {
         this.Member = Member;
     }
 

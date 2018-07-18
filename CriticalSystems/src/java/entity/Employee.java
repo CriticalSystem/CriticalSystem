@@ -4,6 +4,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * 店員
  */
 
-@NamedQuery(name = "Employee.EmployeeQAll" , query = "SELECT e FROM Employee")
+@NamedQuery(name = "Employee.EmployeeQAll" , query = "SELECT e FROM Employee e")
 
 @Entity
 @Table(name="EMPLOYEE")
@@ -30,7 +31,7 @@ public class Employee implements Serializable {
     @NotNull
     @Column(name = "password")
     private  String password;   //パスワード
-    @Column(name = "store_code")
+    @JoinColumn(name = "store_code")
     private  Store store;       //店舗
     @Column(name = "joined_on")
     private Date joined_on; //入社日

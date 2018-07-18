@@ -10,8 +10,11 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,8 +22,8 @@ import javax.validation.constraints.NotNull;
  * 会員
  */
 @NamedQueries({
-    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Member m"),
-    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Member m WHERE name LIKE '%'| ?1 |'%';")
+//    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Members m ;"),
+//    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Members m WHERE name LIKE '%'| ?1 |'%';")
 })
 @Entity
 @Table(name = "MEMBERS")
@@ -66,9 +69,11 @@ public class Members implements Serializable {
     @Column(name = "members_state")
     private String Stats;     //状態
     @NotNull
-    @Column(name = "job_code")
+    @ManyToOne
+    @JoinColumn(name = "job_code")
     private Job Job;                //職業
-    @Column(name = "discount_number")
+    @OneToOne
+    @JoinColumn(name = "discount_number")
     private Discount Discount;      //割引CD
 
     /**

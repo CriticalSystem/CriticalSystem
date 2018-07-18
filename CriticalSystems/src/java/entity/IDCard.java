@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -24,8 +25,8 @@ public class IDCard implements Serializable{
     @Column(name = "ident_number")
     private String IDCardNo;    //身分証番号    
     @NotNull
-    @Column(name = "member_code")
-    private Member Member;      //会員
+    @JoinColumn(name = "member_code")
+    private Members Member;      //会員
     @NotNull
     @Column(name = "ident_type")
     private String IDCardType;  //身分証分類
@@ -47,14 +48,14 @@ public class IDCard implements Serializable{
     /**
      * @return the Member
      */
-    public Member getMember() {
+    public Members getMember() {
         return Member;
     }
 
     /**
      * @param Member the Member to set
      */
-    public void setMember(Member Member) {
+    public void setMember(Members Member) {
         this.Member = Member;
     }
 

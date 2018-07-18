@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
  * 職業
  */
 @NamedQueries({
-    @NamedQuery(name = "Job.JobQAll", query = "SELECT e FROM Job")
+    @NamedQuery(name = "Job.JobQAll", query = "SELECT j FROM Job j")
 })
 @Entity
 @Table(name = "JOB")

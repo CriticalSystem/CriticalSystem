@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -17,15 +18,15 @@ import javax.validation.constraints.NotNull;
 /**
  * 貸出期間
  */
-@NamedQueries({
-    @NamedQuery(name = "", query = "")
-})
 @Entity
 @Table(name="LOAN_PERIOD")
 public class LoanPeriod implements Serializable{
     @Id
     @NotNull
-    @Column(name = "div_code")
+    @JoinColumn(name = "serial_number")
+    private String serial;
+    @NotNull
+    @JoinColumn(name = "div_code")
     private Division div;
     @NotNull
     @Column(name = "loan_date")

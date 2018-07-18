@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -14,8 +15,7 @@ import javax.validation.constraints.NotNull;
 * ディスク
 */
 @NamedQueries({
-    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT e FROM disc"),
-    
+    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT d FROM Disc d")
 })
 
 @Entity
@@ -31,17 +31,16 @@ public class Disc implements Serializable {
     @Column(name = "disc_code")
     private String discCD;      //ディスクCD
     @NotNull
-    @Column(name = "title_code")
+    @JoinColumn(name = "title_code")
     private Title title;        //タイトル
-    @Column(name = "rack_number")
-    private int rackNo;         //棚番号
+    
     @NotNull
     @Column(name = "arrival_date")
     private Date arrivalDate;   //入荷日
-    @Column(name = "div_code")
-    private String division;     //区分
-    @Column(name = "store_code")
-    private Store store;        //店舗
+    @JoinColumn(name = "div_code")
+    private Division division;     //区分
+    @JoinColumn(name = "serial_number")
+    private int serial;       //連番
     @NotNull
     @Column(name = "is_lend")
     private boolean lendFlg;    //貸出フラグ
@@ -80,19 +79,7 @@ public class Disc implements Serializable {
         this.title = title;
     }
 
-    /**
-     * @return the rackNo
-     */
-    public int getRackNo() {
-        return rackNo;
-    }
-
-    /**
-     * @param rackNo the rackNo to set
-     */
-    public void setRackNo(int rackNo) {
-        this.rackNo = rackNo;
-    }
+ 
 
     /**
      * @return the arrivalDate
@@ -106,34 +93,6 @@ public class Disc implements Serializable {
      */
     public void setArrivalDate(Date arrivalDate) {
         this.arrivalDate = arrivalDate;
-    }
-
-    /**
-     * @return the division
-     */
-    public String getDivision() {
-        return division;
-    }
-
-    /**
-     * @param division the division to set
-     */
-    public void setDivision(String division) {
-        this.division = division;
-    }
-
-    /**
-     * @return the store
-     */
-    public Store getStore() {
-        return store;
-    }
-
-    /**
-     * @param store the store to set
-     */
-    public void setStore(Store store) {
-        this.store = store;
     }
 
     /**
@@ -176,6 +135,34 @@ public class Disc implements Serializable {
      */
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    /**
+     * @return the division
+     */
+    public Division getDivision() {
+        return division;
+    }
+
+    /**
+     * @param division the division to set
+     */
+    public void setDivision(Division division) {
+        this.division = division;
+    }
+
+    /**
+     * @return the serial
+     */
+    public int getSerial() {
+        return serial;
+    }
+
+    /**
+     * @param serial the serial to set
+     */
+    public void setSerial(int serial) {
+        this.serial = serial;
     }
     
     

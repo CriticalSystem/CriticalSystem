@@ -7,7 +7,7 @@ import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.inject.Inject;
 
-//@Dependent
+@Dependent
 public class LoggerProducer {
 
     @Inject

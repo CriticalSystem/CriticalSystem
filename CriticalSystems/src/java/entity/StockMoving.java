@@ -10,6 +10,7 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -23,15 +24,15 @@ public class StockMoving implements Serializable{
     @Column(name = "serial_number")
     private int serialNo;       //連番
     @NotNull
-    @Column(name = "title_code")
+    @JoinColumn(name = "title_code")
     private Title title;        //タイトル
     @NotNull
     @Column(name = "approval")
     private String stats;       //承認状況
     @NotNull
-    @Column(name = "req_store")
+    @JoinColumn(name = "req_store")
     private Store reqStore;     //申請店舗
-    @Column(name = "offer_store")
+    @JoinColumn(name = "offer_store")
     private Store offerStore;   //提供店舗
     @NotNull
     @Column(name = "req_date")

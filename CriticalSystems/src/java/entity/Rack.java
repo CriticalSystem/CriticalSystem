@@ -9,6 +9,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,7 +22,10 @@ import javax.validation.constraints.NotNull;
 public class Rack implements Serializable{
     @Id
     @NotNull
-    @Column(name = "store_code")
+    private int serial;       //連番
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "store_code")
     private Store store;
     @NotNull
     @Column(name = "rack_number")

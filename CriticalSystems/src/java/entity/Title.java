@@ -6,8 +6,10 @@
 package entity;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -18,14 +20,13 @@ import javax.validation.constraints.NotNull;
  */
 @NamedQueries({
         @NamedQuery(name = "Title.TitleQAll" , query = "SELECT t FROM Title t"),
-        @NamedQuery(name = "Title.TitleQSearch" , 
-                    query = "SELECT t.title_code, t.title_name , COUNT(d.disc_code) FROM Title t, genre g, disc d" +
-                            "WHERE t.genre_code = g.genre_code AND t.title_code = d.title_code AND" +
-                            "t.title_name LIKE %| ?1 |% AND t.genre_code LIKE ?2 AND d.media LIKE ?3 AND d.store_code = ?4" +
-                            "GROUP BY t.title_code,t.title_name;"),
-        @NamedQuery(name = "" , query = ""),
+//        @NamedQuery(name = "Title.TitleQSearch" , 
+//                    query = "SELECT t.title_code, t.title_name , COUNT(d.disc_code) FROM Title t, genre g, disc d" +
+//                            "WHERE t.genre_code = g.genre_code AND t.title_code = d.title_code AND" +
+//                            "t.title_name LIKE %| ?1 |% AND t.genre_code LIKE ?2 AND d.media LIKE ?3 AND d.store_code = ?4" +
+//                            "GROUP BY t.title_code,t.title_name;"),
+//        @NamedQuery(name = "" , query = ""),
 })
-
 @Entity 
 @Table(name="TITLE")
 public class Title implements Serializable{
@@ -34,16 +35,23 @@ public class Title implements Serializable{
     
     @Id
     @NotNull
+    @Column(name = "Title_code")
     private String titleCD;
     @NotNull
+    @Column(name = "Title_name")
     private String titleName;
+    @Column(name = "starring")
     private String starring;
     @NotNull
+    @Column(name = "rating")
     private String rating;
+    @Column(name = "comment")
     private String comment;
     @NotNull
+    @JoinColumn(name = "genre_code")
     private Genre genre;
     @NotNull
+    @Column(name = "imgPath")
     private String imgPath;
 
     /**

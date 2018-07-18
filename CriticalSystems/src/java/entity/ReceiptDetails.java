@@ -5,13 +5,19 @@
  */
 package entity;
 
+import static com.sun.xml.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Objects;
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -22,12 +28,20 @@ import javax.validation.constraints.NotNull;
 @Table(name="RECEIPT_DETAILS")
 public class ReceiptDetails implements Serializable{
     
-    @EmbeddedId
+    @Id
     @NotNull
-    @Column(name = "")
-    private PK DetailsPK;       //伝票
+    @Column(name = "serial_number")
+    private int serial;       //連番
     @NotNull
-    @Column(name = "disc_code")
+    @ManyToOne
+    @JoinColumn(name = "slip_number")
+    private Receipt slip_number;
+    @NotNull
+    @Column(name = "No")
+    private int No;
+    @NotNull
+    @OneToOne
+    @JoinColumn(name = "disc_code")
     private Disc disc;          //ディスク
     @Column(name = "return_date")
     private Date returnDate;    //返却日
@@ -40,19 +54,7 @@ public class ReceiptDetails implements Serializable{
     @Column(name = "price")
     private int price;          //料金
 
-    /**
-     * @return the DetailsPK
-     */
-    public PK getDetailsPK() {
-        return DetailsPK;
-    }
 
-    /**
-     * @param DetailsPK the DetailsPK to set
-     */
-    public void setDetailsPK(PK DetailsPK) {
-        this.DetailsPK = DetailsPK;
-    }
 
     /**
      * @return the disc
@@ -124,49 +126,4 @@ public class ReceiptDetails implements Serializable{
         this.price = price;
     }
 
-
-   
-    /**
-     * 主キー用のクラス
-     */
-    private static class PK {
-        @Column(name = "slip_number")
-        private Receipt receipt;
-        @Column(name = "details_number")
-        private int No;
-        
-        public PK(Receipt receipt , int No){
-            this.setReceipt(receipt);
-            this.setNo(No);
-        }
-        /**
-         * @return the receipt
-         */
-        public Receipt getReceipt() {
-            return receipt;
-        }
-
-        /**
-         * @param receipt the receipt to set
-         */
-        public void setReceipt(Receipt receipt) {
-            this.receipt = receipt;
-        }
-
-        /**
-         * @return the No
-         */
-        public int getNo() {
-            return No;
-        }
-
-        /**
-         * @param No the No to set
-         */
-        public void setNo(int No) {
-            this.No = No;
-        }
-        
-    }
-    
 }
