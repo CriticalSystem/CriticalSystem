@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>レジ〆</title>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+
+                <h:form>   
+                    <h1>レジ〆</h1> 
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                        <p:tab id="personal" title="入力">
+                            <p:panel header="レジ内金額入力" >
+                                <p:messages />
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <table border="0" class="tarou">
+                                        <thead>
+                                            <tr>
+                                                <th>　　金種　　</th>
+                                                <th>　　本数　　</th>
+                                                <th>　　枚数　　</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>　一万円紙幣</td>
+                                            <td></td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <td>　五千円紙幣</td>
+                                            <td></td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　二千円紙幣</td>
+                                            <td></td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　千円紙幣</td>
+                                            <td></td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　五百円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　百円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　五十円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　十円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　五円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　一円硬貨</td>
+                                            <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
+                                            <td>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>
+                                                <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>　　合計金額</td>
+                                            <td colspan="2"><output></output>円</td>
+                                        </tr>
+                                    </table>
+
+                                    <table border="0" class="ziros">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>　　　　金額　　　　</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>売上金額</td>
+                                            <td><output></output>円</td>
+                                        </tr> 
+                                        <tr>
+                                            <td>合計金額</td>
+                                            <td><output></output>円</td>
+                                        </tr>
+                                        <tr>
+                                            <td>過不足額</td>
+                                            <td><output></output>円</td>
+                                        </tr>
+                                    </table>
+                                </h:panelGrid>
+                            </p:panel>
+                        </p:tab>
+                        <p:tab id="confirm" title="確認" >
+                            <p:panel header="Confirmation">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="　　　氏名：　姓" />
+                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="　　　　　　　名" />
+                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Age: " />
+                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Street: " />
+                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Postal: " />
+                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="City: " />
+                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Email: " />
+                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Phone " />
+                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Info: " />
+                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+
+                                        <h:outputText />
+                                        <h:outputText />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+
+                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+</html>
