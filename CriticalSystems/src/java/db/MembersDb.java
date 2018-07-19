@@ -35,5 +35,9 @@ public class MembersDb {
         return em.createNamedQuery(Members.MembersQAll,Members.class).getResultList();
     }
     
+    public List<Members> getMaxCode (){
+        return em.createNamedQuery(Members.MembersQMaxCode,Members.class).getResultList();
+    }
+    
             
 }

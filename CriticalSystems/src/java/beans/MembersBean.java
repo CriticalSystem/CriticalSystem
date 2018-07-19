@@ -77,7 +77,9 @@ public class MembersBean implements Serializable {
         if(conv.isTransient()) {
             conv.begin();
         }
-        Members members = membersdb.find(member_code);
+        Members members = membersdb.getMaxCode().get(0);
+        
+        setMember_code(members.getMembersCD());
         setName(members.getName());
         setAddress(members.getAddress());
         return "testt.xhtml";

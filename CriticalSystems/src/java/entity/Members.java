@@ -25,6 +25,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 //    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Members m ;"),
 //    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Members m WHERE name LIKE '%'| ?1 |'%';")
+    @NamedQuery(name = Members.MembersQMaxCode, query = "SELECT m FROM Members m WHERE m.MembersCD = (SELECT MAX(m.MembersCD) FROM Members m)")
 })
 @Entity
 @Table(name = "MEMBERS")
@@ -32,7 +33,7 @@ public class Members implements Serializable {
 
     public static final String MembersQAll = "MembersQAll";
     public static final String MembersQCode = "MembersQCode";
-    
+    public static final String MembersQMaxCode = "MembersQMaxCode";
     @Id
     @NotNull
     @Column(name = "members_code")
