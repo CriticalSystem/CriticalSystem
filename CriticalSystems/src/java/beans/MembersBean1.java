@@ -1,26 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package beans;
 
-import db.MembersDb;
-import entity.Event;
-import entity.Members;
+import db.MembersDb1;
+import entity.Members1;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.*;
 
+/**
+ *
+ * @author s20163045
+ */
 @Named
 @ConversationScoped
-public class MembersBean implements Serializable {
-
-    @NotNull
+public class MembersBean1 implements Serializable{
     private String member_code;
     private String name;
     private String name_ruby;
@@ -36,83 +36,14 @@ public class MembersBean implements Serializable {
     private String member_state;
     private String job_code;
     private String discount_number;
-    private List<Members> membersList;
+    private List<Members1> membersList;
     
     @EJB
-    MembersDb membersdb;
+    MembersDb1 membersdb1;
     
-    @Inject
-    transient Logger log;
-    
-    @Inject
-    Conversation conv;
-
-    @PostConstruct
-    public void start(){
-        if(!conv.isTransient()){
-            log.info(log.getName() + "｜会話スコープ終了");
-            conv.end();
-        }
-    }
-    
-    public String create() {
-        log.info(log.getName() + " | イベント登録画面 ");
-        if(conv.isTransient()) {
-            conv.begin();
-        }
-        return "/pages/member/create.xhtml";
-    }
-    
-    public String confirm() {
-        log.info(log.getName() + " | イベント登録確認画面");
-        return "confirm.xhtml";
-    }
-
-    public String delete(Members member) {	// 削除
-        membersdb.delete(member);
-        return "削除完了画面パス";
-    }
-    
-    public String test() {
-        if(conv.isTransient()) {
-            conv.begin();
-        }
-        Members members = membersdb.find(member_code);
-        setName(members.getName());
-        setAddress(members.getAddress());
-        return "testt.xhtml";
-    }
-    
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members members = new Members(member_code);// 新規登録
-//        try {
-//            membersDb.create(members);
-//            membersList = membersDb.find(members_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
-    
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members member = new Members();
-//        try {
-//            membersdb.create(member);
-//            membersList = membersdb.find(member_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
-
-    public void clear() {	// 変数をクリア
-        member_code = null;
+    public String list() {
+        setMembersList(membersdb1.getAll());
+        return "/memberlist.xhtml";
     }
 
     /**
@@ -326,40 +257,16 @@ public class MembersBean implements Serializable {
     }
 
     /**
-     * @return the memberList
+     * @return the membersList
      */
-    public List<Members> getMembersList() {
+    public List<Members1> getMembersList() {
         return membersList;
     }
 
     /**
      * @param membersList the membersList to set
      */
-    public void setMemberList(List<Members> membersList) {
+    public void setMembersList(List<Members1> membersList) {
         this.membersList = membersList;
-    }
-
-    public MembersDb getMemberDb() {
-        return membersdb;
-    }
-
-    public void setMemberDB(MembersDb membersdb) {
-        this.membersdb = membersdb;
-    }
-
-    public Logger getLog() {
-        return log;
-    }
-
-    public void setLog(Logger log) {
-        this.log = log;
-    }
-
-    public Conversation getConv() {
-        return conv;
-    }
-
-    public void setConv(Conversation conv) {
-        this.conv = conv;
     }
 }

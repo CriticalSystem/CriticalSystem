@@ -27,7 +27,7 @@ public class MembersListBean implements Serializable {
     transient Logger log;
     
     public String list() {
-        log.info(log.getName() + " | イベント一覧画面");
+//        log.info(log.getName() + " | イベント一覧画面");
         setMembersList(membersDb.getAll());
         return "/memberlist.xhtml";
     }

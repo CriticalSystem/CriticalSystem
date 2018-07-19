@@ -1,25 +1,34 @@
-package beans;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package entity;
 
-import db.MembersDb;
-import entity.Event;
-import entity.Members;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ejb.EJB;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.validation.constraints.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-@Named
-@ConversationScoped
-public class MembersBean implements Serializable {
+/**
+ *
+ * @author s20163045
+ */
+//@NamedQuery(name = "Members1.MembersQ", query = "SELECT new entity.Members1(m.MembersCD, m.Name) FROM Members m")
+@NamedQueries({
+    @NamedQuery(name = "Members1.MembersQ", query = "SELECT m FROM Members1 m")
+})
+@Entity
+@Table(name = "MEMBERS1")
+public class Members1 implements Serializable {
 
+    public static final String MembersQ = "MembersQ";
+
+    @Id
     @NotNull
     private String member_code;
     private String name;
@@ -36,84 +45,6 @@ public class MembersBean implements Serializable {
     private String member_state;
     private String job_code;
     private String discount_number;
-    private List<Members> membersList;
-    
-    @EJB
-    MembersDb membersdb;
-    
-    @Inject
-    transient Logger log;
-    
-    @Inject
-    Conversation conv;
-
-    @PostConstruct
-    public void start(){
-        if(!conv.isTransient()){
-            log.info(log.getName() + "｜会話スコープ終了");
-            conv.end();
-        }
-    }
-    
-    public String create() {
-        log.info(log.getName() + " | イベント登録画面 ");
-        if(conv.isTransient()) {
-            conv.begin();
-        }
-        return "/pages/member/create.xhtml";
-    }
-    
-    public String confirm() {
-        log.info(log.getName() + " | イベント登録確認画面");
-        return "confirm.xhtml";
-    }
-
-    public String delete(Members member) {	// 削除
-        membersdb.delete(member);
-        return "削除完了画面パス";
-    }
-    
-    public String test() {
-        if(conv.isTransient()) {
-            conv.begin();
-        }
-        Members members = membersdb.find(member_code);
-        setName(members.getName());
-        setAddress(members.getAddress());
-        return "testt.xhtml";
-    }
-    
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members members = new Members(member_code);// 新規登録
-//        try {
-//            membersDb.create(members);
-//            membersList = membersDb.find(members_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
-    
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members member = new Members();
-//        try {
-//            membersdb.create(member);
-//            membersList = membersdb.find(member_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
-
-    public void clear() {	// 変数をクリア
-        member_code = null;
-    }
 
     /**
      * @return the member_code
@@ -325,41 +256,4 @@ public class MembersBean implements Serializable {
         this.discount_number = discount_number;
     }
 
-    /**
-     * @return the memberList
-     */
-    public List<Members> getMembersList() {
-        return membersList;
-    }
-
-    /**
-     * @param membersList the membersList to set
-     */
-    public void setMemberList(List<Members> membersList) {
-        this.membersList = membersList;
-    }
-
-    public MembersDb getMemberDb() {
-        return membersdb;
-    }
-
-    public void setMemberDB(MembersDb membersdb) {
-        this.membersdb = membersdb;
-    }
-
-    public Logger getLog() {
-        return log;
-    }
-
-    public void setLog(Logger log) {
-        this.log = log;
-    }
-
-    public Conversation getConv() {
-        return conv;
-    }
-
-    public void setConv(Conversation conv) {
-        this.conv = conv;
-    }
 }
