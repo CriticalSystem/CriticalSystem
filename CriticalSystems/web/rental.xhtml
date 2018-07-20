@@ -16,8 +16,8 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-        <h:inputText id="membercode" required="true" value="#{ReceiptBean.slip_code}" label="イベント名" styleClass="form-control" />
-         <h:commandButton styleClass="btn btn-primary" value="追加" action="#{ReceiptBean.Add()}"/><br/>
+        <h:inputText id="membercode" required="true" value="#{membersBean.member_code}" label="イベント名" styleClass="form-control" />
+         <h:commandButton styleClass="btn btn-primary" value="追加" action="#{membersBean.Add()}"/><br/>
          <h:outputText value="#{membersBean.member_code}:" />
          <h:outputText value="#{membersBean.name}:" />
          <h:outputText value="#{membersBean.address}:" />

@@ -203,11 +203,9 @@ a:hover, a:focus, a:active {
 .spinner{
     width:30px;
 }
+
 table {
     color: black;
-    margin: 10px auto;
-    height: 400px;
-    width:300px;
 }
 
 table th {
@@ -216,8 +214,9 @@ table th {
 }
 
 table.tarou {
+    height: 400px;
     position: absolute;
-    top:200px;
+    top:225px;
     left:400px;
     border-collapse: collapse;
     border: 2px solid green; /* 外枠を太く */
@@ -235,10 +234,10 @@ table.tarou thead th{
 
 }
 table.ziros{
-    height: 123px;
+    height: 130px;
     position: absolute;
     top:300px;
-    right:200px;
+    right:400px;
     border-collapse: collapse;
     border: 2px solid green; /* 外枠を太く */
 }
