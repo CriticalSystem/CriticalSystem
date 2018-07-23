@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <!--        <ui:composition template="/templates/template.xhtml" />-->
+        <title>貸出</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <h1>会員情報取得</h1>
+                <br></br>
+                <br></br>
+                <div class="container">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-xs-2">会員No:</label>
+                            <div class="col-xs-5">
+                                <input type="text" name="no" class="form-control"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-xs-2">会員名(カナ)</label>
+                            <div class="col-xs-5">
+                                <input type="text" name="name" class="form-control"></input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-offset-2 col-xs-10">
+                            </div>
+                        </div>
+                    </form>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="active">
+                                <th>#</th>
+                                <th>名前</th>
+                                <th>住所</th>
+                                <th>生年月日</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>1</th>
+                                <td>佐藤裕真</td>
+                                <td>北海道北広島市大曲1-1</td>
+                                <td>1993年10月2日</td>
+                            </tr>
+                            <tr class="info">
+                                <th>2</th>
+                                <td>砂糖夕真</td>
+                                <td>北海道札幌市北区2-2</td>
+                                <td>2000年10月1日</td>
+                            </tr>
+                            <tr>
+                                <th>3</th>
+                                <td>佐藤雄間</td>
+                                <td>北海道札幌市南区2-2</td>
+                                <td>1950年10月1日</td>
+                            </tr>
+                            <tr class="info">
+                                <th>4</th>
+                                <td>佐藤優魔</td>
+                                <td>北海道札幌市東区2-2</td>
+                                <td>1975年3月1日</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg pull-right">確定</button>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+
+</html>
