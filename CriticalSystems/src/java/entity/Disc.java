@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 */
 @NamedQueries({
     @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT d FROM Disc d"),
-    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT d FROM Disc d WHERE d.discCD LIKE :code"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT d FROM Disc d WHERE d.disc_code LIKE :code"),
 })
 
 @Entity
@@ -24,10 +24,10 @@ import javax.validation.constraints.NotNull;
 public class Disc implements Serializable {
     public static final String DiscQ = "DiscQ";
     public static final String DiscQAll = "DiscQAll";
-    public static final String DiscQLend = "DiscQLend";
-    public static final String DiscQRackNo = "DiscQRackNo";
-    public static final String DiscQDisposal = "DiscQDisposal";
-    
+//    public static final String DiscQLend = "DiscQLend";
+//    public static final String DiscQRackNo = "DiscQRackNo";
+//    public static final String DiscQDisposal = "DiscQDisposal";
+//    
     @Id
     @NotNull
     @Column(name = "disc_code")
