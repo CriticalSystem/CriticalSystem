@@ -15,12 +15,14 @@ import javax.validation.constraints.NotNull;
 * ディスク
 */
 @NamedQueries({
-    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT d FROM Disc d")
+    @NamedQuery(name = "Disc.DiscQAll" , query = "SELECT d FROM Disc d"),
+    @NamedQuery(name = "Disc.DiscQ" , query = "SELECT d FROM Disc d WHERE d.discCD LIKE :code"),
 })
 
 @Entity
 @Table(name="DISC")
 public class Disc implements Serializable {
+    public static final String DiscQ = "DiscQ";
     public static final String DiscQAll = "DiscQAll";
     public static final String DiscQLend = "DiscQLend";
     public static final String DiscQRackNo = "DiscQRackNo";
@@ -29,16 +31,16 @@ public class Disc implements Serializable {
     @Id
     @NotNull
     @Column(name = "disc_code")
-    private String discCD;      //ディスクCD
+    private String disc_code;      //ディスクCD
     @NotNull
     @JoinColumn(name = "title_code")
-    private Title title;        //タイトル
+    private String title_code;        //タイトル
     
     @NotNull
     @Column(name = "arrival_date")
     private Date arrivalDate;   //入荷日
     @JoinColumn(name = "div_code")
-    private Division division;     //区分
+    private String div_code;     //区分
     @JoinColumn(name = "serial_number")
     private int serial;       //連番
     @NotNull
@@ -50,36 +52,6 @@ public class Disc implements Serializable {
     @NotNull
     @Column(name = "media")
     private String media;       //媒体区分
-
-    /**
-     * @return the discCD
-     */
-    public String getDiscCD() {
-        return discCD;
-    }
-
-    /**
-     * @param discCD the discCD to set
-     */
-    public void setDiscCD(String discCD) {
-        this.discCD = discCD;
-    }
-
-    /**
-     * @return the title
-     */
-    public Title getTitle() {
-        return title;
-    }
-
-    /**
-     * @param title the title to set
-     */
-    public void setTitle(Title title) {
-        this.title = title;
-    }
-
- 
 
     /**
      * @return the arrivalDate
@@ -138,20 +110,6 @@ public class Disc implements Serializable {
     }
 
     /**
-     * @return the division
-     */
-    public Division getDivision() {
-        return division;
-    }
-
-    /**
-     * @param division the division to set
-     */
-    public void setDivision(Division division) {
-        this.division = division;
-    }
-
-    /**
      * @return the serial
      */
     public int getSerial() {
@@ -164,6 +122,47 @@ public class Disc implements Serializable {
     public void setSerial(int serial) {
         this.serial = serial;
     }
-    
+
+    /**
+     * @return the title_code
+     */
+    public String getTitle_code() {
+        return title_code;
+    }
+
+    /**
+     * @param title_code the title_code to set
+     */
+    public void setTitle_code(String title_code) {
+        this.title_code = title_code;
+    }
+
+    /**
+     * @return the div_code
+     */
+    public String getDiv_code() {
+        return div_code;
+    }
+
+    /**
+     * @param div_code the div_code to set
+     */
+    public void setDiv_code(String div_code) {
+        this.div_code = div_code;
+    }
+
+    /**
+     * @return the disc_code
+     */
+    public String getDisc_code() {
+        return disc_code;
+    }
+
+    /**
+     * @param disc_code the disc_code to set
+     */
+    public void setDisc_code(String disc_code) {
+        this.disc_code = disc_code;
+    }
     
 }

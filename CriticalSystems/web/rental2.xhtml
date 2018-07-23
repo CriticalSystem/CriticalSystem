@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h:form>
+        <h:inputText id="disc_code" required="true" value="#{rentalBean.disc_code}" label="ディスクコード" styleClass="form-control" />
+         <h:commandButton styleClass="btn btn-primary" value="追加" action="#{rentalBean.discadd()}"/><br/>
+         <h:outputText value="#{retalBean.member_code}" />
+         <h:outputText value="#{rentalBean.name}" />
+         <h:outputText value="#{rentalBean.address}" />
+         <br/>
+         
+<!--        <h:dataTable value="#{rentalBean.disclist}" var="item" styleClass="table table-striped table-bordered table-hover">
+            <h:outputText value="#{item.disc_code}" />
+            <h:outputText value="#{item.title_code}" />
+            <h:outputText value="#{item.media}" />
+        </h:dataTable>-->
+ 
+             <h:outputText value="#{rentalBean.disc_code}" />
+             <h:outputText value="#{rentalBean.title_code}" />
+             <h:outputText value="#{rentalBean.media}" />
+         </h:form>
+    </body>
+</html>

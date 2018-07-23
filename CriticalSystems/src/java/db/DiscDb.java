@@ -1,9 +1,7 @@
 package db;
 
 import entity.Disc;
-import entity.Event;
 import java.util.List;
-import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +24,11 @@ public class DiscDb {
     public Disc find (String key){
         return em.find(Disc.class, key);
     }
+//    public List<Disc> find(String disc_code) {
+//        TypedQuery<Disc> q = em.createNamedQuery(Disc.DiscQ, Disc.class);
+//        q.setParameter("code", disc_code);
+//        return q.getResultList();
+//    }
     public List<Disc> getAll (){
         return em.createNamedQuery(Disc.DiscQAll,Disc.class).getResultList();
     }

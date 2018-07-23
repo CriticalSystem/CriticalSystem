@@ -16,11 +16,8 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-        <h:inputText id="membercode" required="true" value="#{membersBean.member_code}" label="イベント名" styleClass="form-control" />
-         <h:commandButton styleClass="btn btn-primary" value="追加" action="#{membersBean.Add()}"/><br/>
-         <h:outputText value="#{membersBean.member_code}:" />
-         <h:outputText value="#{membersBean.name}:" />
-         <h:outputText value="#{membersBean.address}:" />
+            <h:inputText id="member_code" required="true" value="#{rentalBean.member_code}" label="イベント名" styleClass="form-control" />
+         <h:commandButton styleClass="btn btn-primary" value="送 信" action="#{rentalBean.memberget()}"/>
          </h:form>
     </body>
 </html>
