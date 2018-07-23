@@ -8,8 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>在庫はイき</title>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
@@ -18,20 +18,32 @@ and open the template in the editor.
     <body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
-                <h1>在庫はイき</h1>
-                <br/><br/><br/>
-                <form id="form02" action="#">
-
-                    <input id="input02" type="text" placeholder="キーワードを入力してください" /><!--
-                    /input間で改行したい場合はコメントアウト必須/
-                    --><input id="submit02" type="submit" value="" />
-                </form>
+                <h:form>   
+                    <h1>在庫廃棄</h1> 
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <p:wizard flowListener="#{userWizard.onFlowProcess}">
+                        <p:tab id="personal" title="廃棄登録">
+                            <p:panel header="廃棄登録" >
+                                <p:messages />
+                <br/>
                 <h:panelGrid columns="2">
-                    <form id="dropdown">
-                        ジャンル　
+                    <div>
+                        <div>　　　　　　　　　　　　　　ＤＩＳＣコード： </div><h:inputText value="#" id="disccode" styleClass="sel" size="60"  />
+                    </div>
+                </h:panelGrid>
+                <br/>
+                <h:panelGrid columns="2">
+                    <div>
+                        <div>　　　　　　　　　　　　　　　　　タイトル： </div><h:outputText value="#" id="title" styleClass="sel" />
+                    </div>
+                </h:panelGrid>
+                <br/>
+                <h:panelGrid columns="2">
+                    <form>
+                        　　　　　　　　　　　　　　　　　　　理由：
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                すべてのジャンル　　　　　　　　　　　　　　　　　　　　　　　　　
+                                選択してください　　　　　　　　　　　　　　　　　　　　　　
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
@@ -42,15 +54,63 @@ and open the template in the editor.
                         </div>
                     </form>
                 </h:panelGrid>
-                <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="　　　　　　　" />
-                        <h:selectOneRadio id="radiobutton" value="#">
-                            <f:selectItem itemValue="1" itemLabel="ＤＶＤ　"/>
-                            <f:selectItem itemValue="2" itemLabel="Blu-ray　"/>
-                            <f:selectItem itemValue="3" itemLabel="指定なし"/>
-                        </h:selectOneRadio>
+                <br/>
+                <h:panelGrid columns="2">
+                    <form><div>　　　　　　　　　　　　　　　　　　　　　　</div>
+                        <p:inputTextarea rows="8" cols="55" queryDelay="750" minQueryLength="4" />
+                    </form>
                 </h:panelGrid>
+                <br/>
+            </p:panel>
+                        </p:tab>
+                        <p:tab id="confirm" title="確認" >
+                            <p:panel header="Confirmation">
+                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="　　　氏名：　姓" />
+                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="　　　　　　　名" />
+                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Age: " />
+                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Street: " />
+                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Postal: " />
+                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="City: " />
+                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
+                                    </h:panelGrid>
+
+                                    <h:panelGrid columns="2" columnClasses="label, value">
+                                        <h:outputText value="Email: " />
+                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Phone " />
+                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
+
+                                        <h:outputText value="Info: " />
+                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
+
+                                        <h:outputText />
+                                        <h:outputText />
+                                    </h:panelGrid>
+                                </h:panelGrid>
+                                
+                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                            </p:panel>
+                        </p:tab>
+                    </p:wizard>
+
+                </h:form>
             </ui:define>
         </ui:composition>
+
     </body>
 </html>
