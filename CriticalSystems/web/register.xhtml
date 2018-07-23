@@ -9,6 +9,7 @@
         <title>会員登録</title>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <script src="hiduke.js"/>
     </h:head>
     <body>
         <ui:composition template="/templates/template.xhtml">
@@ -21,16 +22,25 @@
                         <p:tab id="personal" title="会員登録">
                             <p:panel header="会員情報" >
                                 <p:messages />
+                                <h:panelGrid columns="4" columnClasses="label, value">
+                                    <span>
+                                        <div class="mozi">　　　仮登録番号（ある場合） </div>
+                                        <h:inputText value="#{membersBean.temp_reg_code}" required="true" id="temp_reg_code" styleClass="sel"/>
+                                        <h:commandButton action="#{membersBean.next()}" >
+					    <f:ajax execute="temp_reg_code" render="@form" />
+                                        </h:commandButton>
+                                    </span>
+                                </h:panelGrid>
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <span>
-                                        <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#" required="true" id="lastname" requiredMessage="★必須" styleClass="sel" />
-                                        <div class="mozi">　　　　　　　名 </div><h:inputText value="#" required="true" id="firstname" requiredMessage="★必須" styleClass="sel" />
+                                        <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#{membersBean.sei}" required="true" id="lastname" requiredMessage="★必須" styleClass="sel" />
+                                        <div class="mozi">　　　　　　　名 </div><h:inputText value="#{membersBean.mei}" required="true" id="firstname" requiredMessage="★必須" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="　　　性別：　" class="mozi"/>
-                                    <h:selectOneRadio id="sex" value="#">
+                                    <h:selectOneRadio id="sex" value="#{membersBean.sex}">
                                         <f:selectItem itemValue="1" itemLabel="男性"/>
                                         <f:selectItem itemValue="2" itemLabel="女性"/>
                                     </h:selectOneRadio>
@@ -39,47 +49,47 @@
                                 <h:panelGrid columns="10" columnClasses="label, value">
                                     <h:outputText value="　生年月日：　" class="mozi"/>
                                     <span>
-                                        <h:selectOneMenu value="#" required="true" id="year" requiredMessage="★必須" styleClass="sel" />年
-                                        <h:selectOneMenu value="#" required="true" id="manth" requiredMessage="★必須" styleClass="sel" />月
-                                        <h:selectOneMenu value="#" required="true" id="day" requiredMessage="★必須" styleClass="sel" />日
-                                        <h:outputText />歳
+                                        <h:selectOneMenu value="#{membersBean.year}" required="true" id="year" requiredMessage="★必須" styleClass="sel" />年
+                                        <h:selectOneMenu value="" required="true" id="month" requiredMessage="★必須" styleClass="sel" />月
+                                        <h:selectOneMenu value="" required="true" id="day" requiredMessage="★必須" styleClass="sel" />日
+                                        <h:inputText value="#" required="true" id="age" requiredMessage="★必須" styleClass="sel" />歳
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="8" columnClasses="label, value">
                                     <h:outputText value="　電話番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="tel1" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="tel2" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="tel3" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#{membersBean.tel1}" required="true" id="tel1" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#{membersBean.tel2}" required="true" id="tel2" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#{membersBean.tel3}" required="true" id="tel3" requiredMessage="★必須" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="6" columnClasses="label, value">
                                     <h:outputText value="　郵便番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="post1" requiredMessage="★必須" styleClass="sel" />－
-                                        <h:inputText value="#" required="true" id="post2" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#{membersBean.postal1}" required="true" id="post1" requiredMessage="★必須" styleClass="sel" />－
+                                        <h:inputText value="#{membersBean.postal2}" required="true" id="post2" requiredMessage="★必須" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="3" columnClasses="label, value">
                                     <h:outputText value="　　　住所：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="address" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#{membersBean.address}" required="true" id="address" requiredMessage="★必須" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="3" columnClasses="label, value">
                                     <h:outputText value="身分証番号：　" class="mozi"/>
                                     <span>
-                                        <h:inputText value="#" required="true" id="idNum" requiredMessage="★必須" styleClass="sel" />
+                                        <h:inputText value="#{membersBean.ident_number}" required="true" id="idNum" requiredMessage="★必須" styleClass="sel" />
                                     </span>
                                 </h:panelGrid>
 
                                 <h:panelGrid columns="2" columnClasses="label, value">
                                     <h:outputText value="　　　　　　　" />
-                                    <h:selectOneRadio id="idKbn" value="#">
+                                    <h:selectOneRadio id="idKbn" value="#{membersBean.ident_type}">
                                         <f:selectItem itemValue="1" itemLabel="免許証"/>
                                         <f:selectItem itemValue="2" itemLabel="保険証"/>
                                         <f:selectItem itemValue="3" itemLabel="学生証"/>
@@ -126,7 +136,7 @@
                                         <h:outputText />
                                     </h:panelGrid>
                                 </h:panelGrid>
-                                
+
                                 <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
                             </p:panel>
                         </p:tab>

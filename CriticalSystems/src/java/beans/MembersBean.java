@@ -1,8 +1,9 @@
 package beans;
 
 import db.MembersDb;
-import entity.Event;
+import db.TempMemberDb;
 import entity.Members;
+import entity.TempMember;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
@@ -19,8 +20,8 @@ import javax.validation.constraints.*;
 @Named
 @ConversationScoped
 public class MembersBean implements Serializable {
-
-    @NotNull
+    
+    private String temp_reg_code;
     private String member_code;
     private String name;
     private String name_ruby;
@@ -38,8 +39,27 @@ public class MembersBean implements Serializable {
     private String discount_number;
     private List<Members> membersList;
     
+    private String ident_number;
+    private String ident_type;
+    //入力用変数
+    private String sei;
+    private String mei;
+    
+    private int year;
+    private int month;
+    private int day;
+    
+    private String postal1;
+    private String postal2;
+    
+    private String tel1;
+    private String tel2;
+    private String tel3;
+    
     @EJB
     MembersDb membersdb;
+    @EJB
+    TempMemberDb tmemberdb;
     
     @Inject
     transient Logger log;
@@ -77,7 +97,7 @@ public class MembersBean implements Serializable {
         if(conv.isTransient()) {
             conv.begin();
         }
-        Members members = membersdb.getMaxCode().get(0);
+        Members members = membersdb.find(member_code);
         
         setMember_code(members.getMembersCD());
         setName(members.getName());
@@ -85,7 +105,17 @@ public class MembersBean implements Serializable {
         return "testt.xhtml";
     }
     
-//    public String execCreate() {
+     public String next() {	// 削除
+	
+	TempMember tmem =  tmemberdb.find(temp_reg_code);
+	setSei(tmem.getName());
+	setAddress(tmem.getAddress());
+	setSex(tmem.getGender());
+	
+	return null;
+    }
+    
+//    public String execCreate() {t
 //        log.info(log.getName() + " | イベント登録処理");
 //        Members members = new Members(member_code);// 新規登録
 //        try {
@@ -363,5 +393,187 @@ public class MembersBean implements Serializable {
 
     public void setConv(Conversation conv) {
         this.conv = conv;
+    }
+
+    /**
+     * @return the sei
+     */
+    public String getSei() {
+        return sei;
+    }
+
+    /**
+     * @param sei the sei to set
+     */
+    public void setSei(String sei) {
+        this.sei = sei;
+    }
+
+    /**
+     * @return the mei
+     */
+    public String getMei() {
+        return mei;
+    }
+
+    /**
+     * @param mei the mei to set
+     */
+    public void setMei(String mei) {
+        this.mei = mei;
+    }
+
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
+
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    /**
+     * @return the month
+     */
+    public int getMonth() {
+        return month;
+    }
+
+    /**
+     * @param month the month to set
+     */
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    /**
+     * @return the day
+     */
+    public int getDay() {
+        return day;
+    }
+
+    /**
+     * @param day the day to set
+     */
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    /**
+     * @return the postal1
+     */
+    public String getPostal1() {
+        return postal1;
+    }
+
+    /**
+     * @param postal1 the postal1 to set
+     */
+    public void setPostal1(String postal1) {
+        this.postal1 = postal1;
+    }
+
+    /**
+     * @return the postal2
+     */
+    public String getPostal2() {
+        return postal2;
+    }
+
+    /**
+     * @param postal2 the postal2 to set
+     */
+    public void setPostal2(String postal2) {
+        this.postal2 = postal2;
+    }
+
+    /**
+     * @return the tel1
+     */
+    public String getTel1() {
+        return tel1;
+    }
+
+    /**
+     * @param tel1 the tel1 to set
+     */
+    public void setTel1(String tel1) {
+        this.tel1 = tel1;
+    }
+
+    /**
+     * @return the tel2
+     */
+    public String getTel2() {
+        return tel2;
+    }
+
+    /**
+     * @param tel2 the tel2 to set
+     */
+    public void setTel2(String tel2) {
+        this.tel2 = tel2;
+    }
+
+    /**
+     * @return the tel3
+     */
+    public String getTel3() {
+        return tel3;
+    }
+
+    /**
+     * @param tel3 the tel3 to set
+     */
+    public void setTel3(String tel3) {
+        this.tel3 = tel3;
+    }
+
+    /**
+     * @return the ident_number
+     */
+    public String getIdent_number() {
+        return ident_number;
+    }
+
+    /**
+     * @param ident_number the ident_number to set
+     */
+    public void setIdent_number(String ident_number) {
+        this.ident_number = ident_number;
+    }
+
+    /**
+     * @return the ident_type
+     */
+    public String getIdent_type() {
+        return ident_type;
+    }
+
+    /**
+     * @param ident_type the ident_type to set
+     */
+    public void setIdent_type(String ident_type) {
+        this.ident_type = ident_type;
+    }
+
+    /**
+     * @return the temp_reg_number
+     */
+    public String getTemp_reg_code() {
+        return temp_reg_code;
+    }
+
+    /**
+     * @param temp_reg_code the temp_reg_code to set
+     */
+    public void setTemp_reg_code(String temp_reg_code) {
+        this.temp_reg_code = temp_reg_code;
     }
 }
