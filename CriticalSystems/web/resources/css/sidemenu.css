@@ -62,8 +62,8 @@ html { height: 100%;}
 /*-------------------------------*/
 
 .sidebar-nav {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 30px;
     width: 200px;
     margin: 0;
     padding-top: -10px;

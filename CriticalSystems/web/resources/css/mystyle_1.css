@@ -253,3 +253,12 @@ table.ziros thead th{
     border-bottom: 3px double green; /* ヘッダ行の下線 */
 
 }
+
+#form{
+    position: absolute;top: 350px;
+}
+
+
+#saburou {
+    position: fixed;bottom: -17px;right: 450px;
+}
