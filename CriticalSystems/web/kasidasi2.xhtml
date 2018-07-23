@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <!--        <ui:composition template="/templates/template.xhtml" />-->
+        <title>貸出</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <h2>貸出</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="active bg-light warning">
+                                <th>項番</th>
+                                <th>注文内容</th>
+                                <th>貸し出し期間</th>
+                                <th>分類</th>
+                                <th>返却予定日</th>
+                                <th>請求額</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info">
+                                <td class="text-center">1</td>
+                                <td>アンアンマン</td>
+                                <td class="text-center">
+                                    <select onchange="location = this.options[this.selectedIndex].value">
+                                        <option>選択</option>
+                                        <option value="1ndex.htm">1</option>
+                                        <option value="2frame.htm">2</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">旧作</td>
+                                <td class="text-center">2018年xx月xx日(x)</td>
+                                <td class="text-right">\xxx</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">2</td>
+                                <td >データ5</td>
+                                <td class="text-center">
+                                    <select onchange="location = this.options[this.selectedIndex].value">
+                                        <option>選択</option>
+                                        <option value="1ndex.htm">1</option>
+                                        <option value="2frame.htm">2</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">旧作</td>
+                                <td class="text-center">2018年xx月xx日(x)</td>
+                                <td class="text-right">\xxx</td>
+                            </tr>
+                            <tr class="info">
+                                <td class="text-center">3</td>
+                                <td>データ2</td>
+                                <td class="text-center">
+                                    <select onchange="location = this.options[this.selectedIndex].value">
+                                        <option>選択</option>
+                                        <option value="1ndex.htm">1</option>
+                                        <option value="2frame.htm">2</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">旧作</td>
+                                <td class="text-center">2018年xx月xx日(x)</td>
+                                <td class="text-right">\xxx</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">4</td>
+                                <td>データ2</td>
+                                <td class="text-center">
+                                    <select onchange="location = this.options[this.selectedIndex].value">
+                                        <option>選択</option>
+                                        <option value="1ndex.htm">1</option>
+                                        <option value="2frame.htm">2</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">旧作</td>
+                                <td class="text-center">2018年xx月xx日(x)</td>
+                                <td class="text-right">\xxx</td>
+                            </tr>
+                            <tr class="info">
+                                <td class="text-center">5</td>
+                                <td>データ2</td>
+                                <td class="text-center">
+                                    <select onchange="location = this.options[this.selectedIndex].value">
+                                        <option>選択</option>
+                                        <option value="1ndex.htm">1</option>
+                                        <option value="2frame.htm">2</option>
+                                    </select>
+                                </td>
+                                <td class="text-center">旧作</td>
+                                <td class="text-center">2018年xx月xx日(x)</td>
+                                <td class="text-right">\xxx</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="warning">商品数</th>
+                                <th>x点</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">会員No</th>
+                                <th>xxxxxx</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">会員名</th>
+                                <th>山田太郎</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">年齢</th>
+                                <th>xx歳</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">会員状態</th>
+                                <th>xx会員</th>
+                            </tr>
+
+                        </table>
+                    </div>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-4">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="warning">小計</th>
+                                <th>\xxxxx</th>
+                            </tr>
+                            <tr class="text-warning">
+                                <th class="warning">割引額　</th>
+                                <th>\xx</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">消費税</th>
+                                <th>\xx</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">合計</th>
+                                <th>\xxx</th>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th class="warning">預かり金</th>
+                                <th>\xxxxx</th>
+                            </tr>
+                            <tr>
+                                <th class="warning">おつり</th>
+                                <th>\xxxx</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-2"></div>
+                    <div class="btn-toolbar">
+                        <div class="btn-group-vertical">
+                            <button type="button" class="btn btn-danger pull-left">中止</button>
+                            <button type="button" class="btn btn-warning pull-left">取消し</button>
+                            <button type="button" class="btn btn-primary pull-left">清算</button>
+                        </div>        
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+
+    </h:body>
+
+</html>
