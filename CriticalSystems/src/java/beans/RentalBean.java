@@ -10,6 +10,7 @@ import db.MembersDb;
 import db.ReceiptDb;
 import entity.Disc;
 import entity.Members;
+import entity.Receipt;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -31,31 +32,43 @@ import javax.inject.Named;
 @ConversationScoped
 public class RentalBean implements Serializable{
     
-    
-    private String member_code;
-    private String name;
-    private String name_ruby;
-    private String sex;
-    private Date birthday;
-    private String postal_code;
-    private String address;
-    private String tel_number;
-    private String email;
-    private String is_magazine;
-    private Date join_date;
-    private Date defect_date;
-    private String member_state;
-    private String job_code;
-    private String discount_number;
-    private String disc_code;
-    private Date arrival_date;
-    private String is_disposal;
-    private String is_lend;
-    private String media;
-    private String serial;
-    private String div_code;
-    private String title_code;
+    //会員情報
+    private String member_code;     //会員番号
+    private String name;            //名前
+    private Date birthday;          //誕生日
+    private Date join_date;         //入会日
+    private Date defect_date;       //退会日
+    private String member_state;    //会員状態
+    private String discount_number; //割引番号
+    //ディスク情報
+    private String disc_code;       //ディスク番号
+    private Date arrival_date;      //入荷日
+    private String is_disposal;     //廃棄フラグ
+    private String is_lend;         //貸出フラグ
+    private String media;           //媒体
+    private String rack;            //棚番号
+    private String div_code;        //種類
+    private String title_code;      //タイトル番号
     private List<Disc> disclist = new ArrayList<>();
+    //レシート情報
+    private Receipt receipt;
+    private String slip_number;     //レシート番号
+////    private String members_code;    //会員番号
+//    private String employees_code;  //店員番号
+//    private String store_code;      //店舗番号
+//    private Date lend_date;         //貸出日
+//    private int total_price;     //合計金額
+//    private String is_discount;     //割引フラグ
+    //レシート明細情報
+//    private String slip_number;   //レシート番号
+    private String details_number;  //明細番号
+//    private String disc_code;     //ディスク番号
+    private Date return_date;       //返却日
+    private Date return_plan_date;  //返却予定日
+    private String late_price;      //延滞料金
+    private int subtotal;           //小計
+    private int azukari;            //預かり金
+    private int oturi;             //おつり
     
     @EJB
     ReceiptDb receiptdb;
@@ -105,7 +118,6 @@ public class RentalBean implements Serializable{
         
         setMember_code(members.getMembersCD());
         setName(members.getName());
-        setAddress(members.getAddress());
         return "rental2.xhtml";
     }
     
@@ -114,15 +126,33 @@ public class RentalBean implements Serializable{
             conv.begin();
         }
         Disc disc = discdb.find(disc_code);
-//        disclist = discdb.find(getDisc_code());
-        
-//        setDisc_code(disc.getDisc_code());
-//        setTitle_code(disc.getTitle_code());
-//        setMedia(disc.getMedia());
         disclist.add(disc);
-        return "rental2.xhtml";
+        return null;
     }
-
+    
+    public String execCreate() {
+        log.info(log.getName() + " | イベント登録処理");
+        slip_number = CreateSlipNumber();
+        receipt= new Receipt(slip_number);
+        String store_code = "102";
+        int total_price = 780;
+//        receipt.setStore_code(store_code);
+        receipt.setTotal_price(total_price);
+        receipt.setMembers_code(member_code);
+        try {
+            receiptdb.create(receipt);
+        } catch (Exception e) {
+            log.fine("■" + log.getName() + "|" + e.getMessage());
+        }
+        log.info(log.getName() + " | 会話スコープ終了");
+        conv.end();
+        return "rental1.xhtml";
+    }
+    
+    public String CreateSlipNumber(){
+        slip_number = "1234567890";
+        return slip_number;
+    }
     /**
      * @return the member_code
      */
@@ -149,118 +179,6 @@ public class RentalBean implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return the name_ruby
-     */
-    public String getName_ruby() {
-        return name_ruby;
-    }
-
-    /**
-     * @param name_ruby the name_ruby to set
-     */
-    public void setName_ruby(String name_ruby) {
-        this.name_ruby = name_ruby;
-    }
-
-    /**
-     * @return the sex
-     */
-    public String getSex() {
-        return sex;
-    }
-
-    /**
-     * @param sex the sex to set
-     */
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    /**
-     * @return the birthday
-     */
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    /**
-     * @param birthday the birthday to set
-     */
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    /**
-     * @return the postal_code
-     */
-    public String getPostal_code() {
-        return postal_code;
-    }
-
-    /**
-     * @param postal_code the postal_code to set
-     */
-    public void setPostal_code(String postal_code) {
-        this.postal_code = postal_code;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     * @return the tel_number
-     */
-    public String getTel_number() {
-        return tel_number;
-    }
-
-    /**
-     * @param tel_number the tel_number to set
-     */
-    public void setTel_number(String tel_number) {
-        this.tel_number = tel_number;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the is_magazine
-     */
-    public String getIs_magazine() {
-        return is_magazine;
-    }
-
-    /**
-     * @param is_magazine the is_magazine to set
-     */
-    public void setIs_magazine(String is_magazine) {
-        this.is_magazine = is_magazine;
     }
 
     /**
@@ -304,21 +222,7 @@ public class RentalBean implements Serializable{
     public void setMember_state(String member_state) {
         this.member_state = member_state;
     }
-
-    /**
-     * @return the job_code
-     */
-    public String getJob_code() {
-        return job_code;
-    }
-
-    /**
-     * @param job_code the job_code to set
-     */
-    public void setJob_code(String job_code) {
-        this.job_code = job_code;
-    }
-
+    
     /**
      * @return the discount_number
      */
@@ -404,20 +308,6 @@ public class RentalBean implements Serializable{
     }
 
     /**
-     * @return the serial
-     */
-    public String getSerial() {
-        return serial;
-    }
-
-    /**
-     * @param serial the serial to set
-     */
-    public void setSerial(String serial) {
-        this.serial = serial;
-    }
-
-    /**
      * @return the div_code
      */
     public String getDiv_code() {
@@ -480,7 +370,228 @@ public class RentalBean implements Serializable{
         }
         return true;
     }
-    
-    
 
+    /**
+     * @return the birthday
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * @param birthday the birthday to set
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+     * @return the rack
+     */
+    public String getRack() {
+        return rack;
+    }
+
+    /**
+     * @param rack the rack to set
+     */
+    public void setRack(String rack) {
+        this.rack = rack;
+    }
+
+    /**
+     * @return the slip_number
+     */
+    public String getSlip_number() {
+        return slip_number;
+    }
+
+    /**
+     * @param slip_number the slip_number to set
+     */
+    public void setSlip_number(String slip_number) {
+        this.slip_number = slip_number;
+    }
+
+//    /**
+//     * @return the employees_code
+//     */
+//    public String getEmployees_code() {
+//        return employees_code;
+//    }
+//
+//    /**
+//     * @param employees_code the employees_code to set
+//     */
+//    public void setEmployees_code(String employees_code) {
+//        this.employees_code = employees_code;
+//    }
+//
+//    /**
+//     * @return the store_code
+//     */
+//    public String getStore_code() {
+//        return store_code;
+//    }
+//
+//    /**
+//     * @param store_code the store_code to set
+//     */
+//    public void setStore_code(String store_code) {
+//        this.store_code = store_code;
+//    }
+//
+//    /**
+//     * @return the lend_date
+//     */
+//    public Date getLend_date() {
+//        return lend_date;
+//    }
+//
+//    /**
+//     * @param lend_date the lend_date to set
+//     */
+//    public void setLend_date(Date lend_date) {
+//        this.lend_date = lend_date;
+//    }
+//
+//    /**
+//     * @return the total_price
+//     */
+//    public String getTotal_price() {
+//        return total_price;
+//    }
+//
+//    /**
+//     * @param total_price the total_price to set
+//     */
+//    public void setTotal_price(String total_price) {
+//        this.total_price = total_price;
+//    }
+//
+//    /**
+//     * @return the is_discount
+//     */
+//    public String getIs_discount() {
+//        return is_discount;
+//    }
+//
+//    /**
+//     * @param is_discount the is_discount to set
+//     */
+//    public void setIs_discount(String is_discount) {
+//        this.is_discount = is_discount;
+//    }
+
+    /**
+     * @return the details_number
+     */
+    public String getDetails_number() {
+        return details_number;
+    }
+
+    /**
+     * @param details_number the details_number to set
+     */
+    public void setDetails_number(String details_number) {
+        this.details_number = details_number;
+    }
+
+    /**
+     * @return the return_date
+     */
+    public Date getReturn_date() {
+        return return_date;
+    }
+
+    /**
+     * @param return_date the return_date to set
+     */
+    public void setReturn_date(Date return_date) {
+        this.return_date = return_date;
+    }
+
+    /**
+     * @return the return_plan_date
+     */
+    public Date getReturn_plan_date() {
+        return return_plan_date;
+    }
+
+    /**
+     * @param return_plan_date the return_plan_date to set
+     */
+    public void setReturn_plan_date(Date return_plan_date) {
+        this.return_plan_date = return_plan_date;
+    }
+
+    /**
+     * @return the late_price
+     */
+    public String getLate_price() {
+        return late_price;
+    }
+
+    /**
+     * @param late_price the late_price to set
+     */
+    public void setLate_price(String late_price) {
+        this.late_price = late_price;
+    }
+
+    /**
+     * @return the subtotal
+     */
+    public int getSubtotal() {
+        return subtotal;
+    }
+
+    /**
+     * @param subtotal the subtotal to set
+     */
+    public void setSubtotal(int subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    /**
+     * @return the receipt
+     */
+    public Receipt getReceipt() {
+        return receipt;
+    }
+
+    /**
+     * @param receipt the receipt to set
+     */
+    public void setReceipt(Receipt receipt) {
+        this.receipt = receipt;
+    }
+
+    /**
+     * @return the azukari
+     */
+    public int getAzukari() {
+        return azukari;
+    }
+
+    /**
+     * @param azukari the azukari to set
+     */
+    public void setAzukari(int azukari) {
+        this.azukari = azukari;
+    }
+
+    /**
+     * @return the oturi
+     */
+    public int getOturi() {
+        return oturi;
+    }
+
+    /**
+     * @param oturi the oturi to set
+     */
+    public void setOturi(int oturi) {
+        this.oturi = oturi;
+    }
 }

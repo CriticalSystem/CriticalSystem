@@ -23,142 +23,125 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name="RECEIPT")
 public class Receipt implements Serializable{
-    public static final String ReceiptQAll = "";
+//    public static final String ReceiptQAll = "";
     @Id
-    @NotNull
     @Column(name = "slip_number")
-    private int receiptNo;      //伝票No
-    @NotNull
+    private String slip_number;      //伝票No
     @JoinColumn(name = "members_code")
-    private Members Members;      //会員CD
-    @NotNull
+    private String members_code;      //会員CD
     @JoinColumn(name = "employees_code")
-    private Employee Employee;  //店員CD
-    @NotNull
+    private String employees_code;  //店員CD
     @JoinColumn(name = "store_code")
-    private Store store;         //店舗
-    @NotNull
+    private String store_code;         //店舗
     @Column(name = "lend_date")
-    private Date LendDate;      //貸出日時
-    @NotNull
+    private Date Lend_date;      //貸出日時
     @Column(name = "total_price")
-    private int subtotal;       //合計金額
-    @NotNull
-    @JoinColumn(name = "register_code")
-    private Register Register;   // レジ
+    private int total_price;      //合計金額
     @Column(name = "is_discount")
-    private boolean discountFlg;   // 割引フラグ
-    /**
-     * @return the receiptNo
-     */
-    public int getReceiptNo() {
-        return receiptNo;
-    }
-
-    /**
-     * @param receiptNo the receiptNo to set
-     */
-    public void setReceiptNo(int receiptNo) {
-        this.receiptNo = receiptNo;
-    }
-
-    /**
-     * @return the Members
-     */
-    public Members getMembers() {
-        return Members;
-    }
-
-    /**
-     * @param Members the Members to set
-     */
-    public void setMembers(Members Members) {
-        this.Members = Members;
-    }
-
-    /**
-     * @return the Employee
-     */
-    public Employee getEmployee() {
-        return Employee;
-    }
-
-    /**
-     * @param Employee the Employee to set
-     */
-    public void setEmployee(Employee Employee) {
-        this.Employee = Employee;
-    }
-
-    /**
-     * @return the Store
-     */
-    public Store getStore() {
-        return store;
-    }
-
-    /**
-     * @param store the Store to set
-     */
-    public void setStore(Store store) {
-        this.store = store;
-    }
-
-    /**
-     * @return the Date
-     */
-    public Date getLendDate() {
-        return LendDate;
-    }
-
-    /**
-     * @param Date the Date to set
-     */
-    public void setLendDate(Date LendDate) {
-        this.LendDate = LendDate;
-    }
-
-    /**
-     * @return the subtotal
-     */
-    public int getSubtotal() {
-        return subtotal;
-    }
-
-    /**
-     * @param subtotal the subtotal to set
-     */
-    public void setSubtotal(int subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    /**
-     * @return the Register
-     */
-    public Register getRegister() {
-        return Register;
-    }
-
-    /**
-     * @param Register the Register to set
-     */
-    public void setRegister(Register Register) {
-        this.Register = Register;
-    }
-
-    /**
-     * @return the discountFlg
-     */
-    public boolean isDiscountFlg() {
-        return discountFlg;
-    }
-
-    /**
-     * @param discountFlg the discountFlg to set
-     */
-    public void setDiscountFlg(boolean discountFlg) {
-        this.discountFlg = discountFlg;
+    private boolean is_discount;   // 割引フラグ
+    
+    public Receipt() {
     }
     
-    
+    public Receipt(String slip_number) {
+        this.slip_number = slip_number;
+    }
+
+    /**
+     * @return the slip_number
+     */
+    public String getSlip_number() {
+        return slip_number;
+    }
+
+    /**
+     * @param slip_number the slip_number to set
+     */
+    public void setSlip_number(String slip_number) {
+        this.slip_number = slip_number;
+    }
+
+    /**
+     * @return the members_code
+     */
+    public String getMembers_code() {
+        return members_code;
+    }
+
+    /**
+     * @param members_code the members_code to set
+     */
+    public void setMembers_code(String members_code) {
+        this.members_code = members_code;
+    }
+
+    /**
+     * @return the employees_code
+     */
+    public String getEmployees_code() {
+        return employees_code;
+    }
+
+    /**
+     * @param employees_code the employees_code to set
+     */
+    public void setEmployees_code(String employees_code) {
+        this.employees_code = employees_code;
+    }
+
+    /**
+     * @return the store_code
+     */
+    public String getStore_code() {
+        return store_code;
+    }
+
+    /**
+     * @param store_code the store_code to set
+     */
+    public void setStore_code(String store_code) {
+        this.store_code = store_code;
+    }
+
+    /**
+     * @return the Lend_date
+     */
+    public Date getLend_date() {
+        return Lend_date;
+    }
+
+    /**
+     * @param Lend_date the Lend_date to set
+     */
+    public void setLend_date(Date Lend_date) {
+        this.Lend_date = Lend_date;
+    }
+
+    /**
+     * @return the total_price
+     */
+    public int getTotal_price() {
+        return total_price;
+    }
+
+    /**
+     * @param total_price the total_price to set
+     */
+    public void setTotal_price(int total_price) {
+        this.total_price = total_price;
+    }
+
+    /**
+     * @return the is_discount
+     */
+    public boolean isIs_discount() {
+        return is_discount;
+    }
+
+    /**
+     * @param is_discount the is_discount to set
+     */
+    public void setIs_discount(boolean is_discount) {
+        this.is_discount = is_discount;
+    }
 }

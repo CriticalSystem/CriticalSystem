@@ -39,8 +39,8 @@ public class Disc implements Serializable {
     private Date arrivalDate;   //入荷日
     @JoinColumn(name = "div_code")
     private String div_code;     //区分
-    @JoinColumn(name = "serial_number")
-    private int serial;       //連番
+    @JoinColumn(name = "rack")
+    private int rack;       //連番
     @Column(name = "is_lend")
     private boolean lendFlg;    //貸出フラグ
     @Column(name = "is_disposal")
@@ -103,21 +103,7 @@ public class Disc implements Serializable {
     public void setMedia(String media) {
         this.media = media;
     }
-
-    /**
-     * @return the serial
-     */
-    public int getSerial() {
-        return serial;
-    }
-
-    /**
-     * @param serial the serial to set
-     */
-    public void setSerial(int serial) {
-        this.serial = serial;
-    }
-
+    
     /**
      * @return the title_code
      */
@@ -158,6 +144,20 @@ public class Disc implements Serializable {
      */
     public void setDisc_code(String disc_code) {
         this.disc_code = disc_code;
+    }
+
+    /**
+     * @return the rack
+     */
+    public int getRack() {
+        return rack;
+    }
+
+    /**
+     * @param rack the rack to set
+     */
+    public void setRack(int rack) {
+        this.rack = rack;
     }
     
 }
