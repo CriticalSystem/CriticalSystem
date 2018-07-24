@@ -21,14 +21,9 @@ public class DiscDb {
     public void delete (Disc disc){
         em.remove(disc);
     }
-    public Disc find (String key){
-        return em.find(Disc.class, key);
+    public Disc find (String disc_code){
+        return em.find(Disc.class, disc_code);
     }
-//    public List<Disc> find(String disc_code) {
-//        TypedQuery<Disc> q = em.createNamedQuery(Disc.DiscQ, Disc.class);
-//        q.setParameter("code", disc_code);
-//        return q.getResultList();
-//    }
     public List<Disc> getAll (){
         return em.createNamedQuery(Disc.DiscQAll,Disc.class).getResultList();
     }

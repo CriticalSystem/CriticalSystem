@@ -35,21 +35,16 @@ public class Disc implements Serializable {
     @NotNull
     @JoinColumn(name = "title_code")
     private String title_code;        //タイトル
-    
-    @NotNull
     @Column(name = "arrival_date")
     private Date arrivalDate;   //入荷日
     @JoinColumn(name = "div_code")
     private String div_code;     //区分
     @JoinColumn(name = "serial_number")
     private int serial;       //連番
-    @NotNull
     @Column(name = "is_lend")
     private boolean lendFlg;    //貸出フラグ
-    @NotNull
     @Column(name = "is_disposal")
     private boolean disposalFlg;//廃棄フラグ
-    @NotNull
     @Column(name = "media")
     private String media;       //媒体区分
 

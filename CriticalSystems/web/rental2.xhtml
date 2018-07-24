@@ -21,17 +21,22 @@ and open the template in the editor.
          <h:outputText value="#{retalBean.member_code}" />
          <h:outputText value="#{rentalBean.name}" />
          <h:outputText value="#{rentalBean.address}" />
-         <br/>
          
-<!--        <h:dataTable value="#{rentalBean.disclist}" var="item" styleClass="table table-striped table-bordered table-hover">
+        <h:dataTable value="#{rentalBean.disclist}" var="item" styleClass="table table-striped table-bordered table-hover">
+            <h:column>
             <h:outputText value="#{item.disc_code}" />
+            </h:column>
+            <h:column>
             <h:outputText value="#{item.title_code}" />
+            </h:column>
+            <h:column>
             <h:outputText value="#{item.media}" />
-        </h:dataTable>-->
+            </h:column>
+        </h:dataTable>
  
-             <h:outputText value="#{rentalBean.disc_code}" />
+<!--             <h:outputText value="#{retalBean.disc_code}" />
              <h:outputText value="#{rentalBean.title_code}" />
-             <h:outputText value="#{rentalBean.media}" />
+             <h:outputText value="#{rentalBean.media}" />-->
          </h:form>
     </body>
 </html>

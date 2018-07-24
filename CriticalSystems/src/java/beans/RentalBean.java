@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -115,10 +116,11 @@ public class RentalBean implements Serializable{
         Disc disc = discdb.find(disc_code);
 //        disclist = discdb.find(getDisc_code());
         
-        setDisc_code(disc.getDisc_code());
-        setTitle_code(disc.getTitle_code());
-        setMedia(disc.getMedia());
-        return null;
+//        setDisc_code(disc.getDisc_code());
+//        setTitle_code(disc.getTitle_code());
+//        setMedia(disc.getMedia());
+        disclist.add(disc);
+        return "rental2.xhtml";
     }
 
     /**
@@ -456,4 +458,29 @@ public class RentalBean implements Serializable{
     public void setDisclist(List<Disc> disclist) {
         this.disclist = disclist;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + Objects.hashCode(this.log);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final RentalBean other = (RentalBean) obj;
+        if (!Objects.equals(this.log, other.log)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
 }
