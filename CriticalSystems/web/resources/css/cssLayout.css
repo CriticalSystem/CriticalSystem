@@ -10,7 +10,7 @@
 
 #bottom {
     position: relative;
-/*    background-color: #c2dfef;*/
+    /*    background-color: #c2dfef;*/
     /*padding: 5px;*/
     margin: 10px 0px 0px 0px;
 }
@@ -20,8 +20,8 @@
     /*background-color: blue;*/
     /*padding: 5px;*/
     width: 210px;
-/*    opacity: 0.55;
-    height: 100px;*/
+    /*    opacity: 0.55;
+        height: 100px;*/
 }
 
 #right {
@@ -51,17 +51,27 @@
 }
 
 #top a:link, #top a:visited {
-  color: black;
-  font-weight : bold;
-  text-decoration: none;
+    color: black;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
 .mozi{
     color: black;
+}
+.moziR{
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+}
+.moziT{
+    color: black;
+    text-align: center;
+    vertical-align: middle;
 }

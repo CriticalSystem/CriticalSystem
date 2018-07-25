@@ -205,6 +205,18 @@ a:hover, a:focus, a:active {
     /*     background-color: white;*/
     position: absolute;right: 325px;top: 275px;
 }
+#dropdownR{
+    /*     background-color: white;*/
+    position: absolute;right: 325px;top: 200px;
+}
+#dropdownR2{
+    /*     background-color: white;*/
+    position: absolute;right: 325px;top: 250px;
+}
+#listR{
+    /*     background-color: white;*/
+    position: absolute;right: 310px;top: 350px;
+}
 #radiobutton{
     position: absolute;right: 575px;top: 325px;
 }
@@ -213,13 +225,14 @@ a:hover, a:focus, a:active {
     width:30px;
 }
 
-/table {
-    /color: black;
-/}
+table {
+    color: black;
+}
 
-/table th {
-/    background-color: #CFD8DC
-/}
+table th {
+    background-color: #CFD8DC
+
+}
 
 table.tarou {
     height: 400px;
@@ -269,4 +282,14 @@ table.ziros thead th{
 
 #saburou {
     position: fixed;bottom: -17px;right: 450px;
+}
+
+#sourou {
+    height: 20px;
+    width: 80px;
+}
+#tirou {
+    position: absolute;
+    top: 200px;
+    right: 350px;
 }

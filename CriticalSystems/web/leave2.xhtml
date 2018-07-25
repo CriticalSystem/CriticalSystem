@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>会員退会</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <h:form>   
+                    <h1>会員退会</h1> 
+                    <br/>
+                    <br/>
+                    <h3>　　　　　　　　　　　　　　　　この会員を退会させますか？</h3>
+                    <br/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <div>
+                            <div>　　　　　　　　　　　　　　　　　会員番号： </div><h:outputText value="#" id="code" styleClass="sel" />
+                        </div>
+                    </h:panelGrid>
+                    <br/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <div>
+                            <div>　　　　　　　　　　　　　　　　　会員氏名： </div><h:outputText value="#" id="name" styleClass="sel" />
+                        </div>
+                    </h:panelGrid>
+                    <br/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <div>
+                            <div>　　　　　　　　　　　　　　　　　生年月日： </div><h:outputText value="#" id="birth" styleClass="sel" />
+                        </div>
+                    </h:panelGrid>
+                    <br/>
+                    <br/>
+                    <h:panelGrid columns="2">
+                        <div>
+                            <div>　　　　　　　　　　　　　　　　　住　　所： </div><h:outputText value="#" id="add" styleClass="sel" />
+                        </div>
+                    </h:panelGrid>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-0">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary btn-lg pull-left">は　い</button>
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-3">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-primary btn-lg pull-right">いいえ</button>
+                        </div>
+                    </div>
+<!--                    <div class="row">
+                        
+                    </div>-->
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

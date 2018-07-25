@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <head>
+        <title>DVD人気ランキング</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <h1>ＤＶＤ人気ランキング</h1> 
+                <h:panelGrid columns="2">
+                    <form id="dropdownR">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                検索したいジャンルを選択してください　　　　　　　　　　　　　　　　　　　　　　　　
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト１　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト２</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト３</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </h:panelGrid>
+                <h:panelGrid columns="2">
+                    <form id="dropdownR2">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                期間区分を選択してください　　　　　　　　　　　　　　　　　　　　　　　　　　　　　
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト１　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト２</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト３</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </h:panelGrid>
+                <br/>
+                <br/>
+                <br/>
+                <h:panelGrid columns="2">
+                    <table id="listR">
+                        <tr>
+                            <th>　　　　　　　順位　　　　　　</th><th>　　　　　　　在庫　　　　　　　</th><th>　　　　　作品タイトル　　　　　</th>
+                        </tr>
+                        <tr>
+                            <td><div class="moziR">#</div></td><td><div class="moziR">#</div></td><td><div class="moziR"><img src="resources/images/baka.jpg"  width="130" height="130"/>#</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="moziR">#</div></td><td><div class="moziR">#</div></td><td><div class="moziR"><img src="resources/images/aho.jpg"  width="130" height="130"/>#</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="moziR">#</div></td><td><div class="moziR">#</div></td><td><div class="moziR"><img src="resources/images/manuke.jpg"  width="130" height="130"/>#</div></td>
+                        </tr>
+                        <tr>
+                            <td><div class="moziR">#</div></td><td><div class="moziR">#</div></td><td><div class="moziR"><img src="resources/images/ryuta.jpg"  width="130" height="130"/>#</div></td>
+                        </tr>
+                    </table>
+                </h:panelGrid>
+                <nav>
+                    <ul class="pagination" id="saburou">
+                        <li>
+                            <a href="#" aria-label="前のページへ">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="次のページへ">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

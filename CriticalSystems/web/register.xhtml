@@ -227,25 +227,26 @@
                                     </span>
                                 </h:panelGrid>
 
-                                <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:panelGrid columns="4" columnClasses="label, value">
                                     <h:outputText value="郵便番号：　" class="mozi"/>
-                                    <input id="zip" name="zip" type="text" size="3"/>
-                                    <input class="studentEnrollment_button" type="button" value="住所を自動で入力する" onClick="setState()" />
+                                        <input id="zip" name="zip" type="text" placeholder="1600002"/>
+                                        <h:commandButton onclick="setState()" />
+                                        <!--<input class="studentEnrollment_button" type="button" value="住所を自動で入力する" onClick="setState()" />-->
                                     <span>
                                     <h:outputText value="都道府県：　" class="mozi"/>
-                                        <input id="country" name="state" type="text" />
+                                        <input id="state" name="state" type="text" />
                                     </span>
                                     <span>
                                     <h:outputText value="市区町村：　" class="mozi"/>
-                                        <input id="state" name="city" type="text"  />
+                                        <input id="city" name="city" type="text"  />
                                     </span>
                                     <span>
                                     <h:outputText value="番地：　" class="mozi"/>
-                                        <input id="city" name="address1" type="text"  />
+                                        <input id="address1" name="address1" type="text"  />
                                     </span>
                                     <span>
                                     <h:outputText value="建物名・階・部屋番号：　" class="mozi"/>
-                                        <input id="address1" name="address2" type="text" />
+                                        <input id="address2" name="address2" type="text" />
                                     </span>
                                 </h:panelGrid>
 

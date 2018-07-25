@@ -1,4 +1,4 @@
-function setState() {
+﻿function setState() {
     var zip = $('#zip').val();
 
     // ここでzipのバリデーションを行ってください
@@ -21,9 +21,10 @@ function setState() {
             alert('正しい郵便番号を入力してください');
             return false;
           }
-          $('#country').val(obj[4]['long_name']); // 国
-          $('#state').val(obj[3]['long_name']+obj[2]['long_name']); // 都道府県
-          $('#city').val(obj[1]['long_name']);  // 市区町村
+          //$('#country').val(obj[4]['long_name']); // 国
+          $('#state').val(obj[3]['long_name']); // 都道府県
+          $('#city').val(obj[2]['long_name']);  // 市区町村
+          $('#address1').val(obj[1]['long_name']); // 番地
         }else{
           alert('住所情報が取得できませんでした');
           return false;
