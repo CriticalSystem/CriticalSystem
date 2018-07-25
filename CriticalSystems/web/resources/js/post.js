@@ -21,10 +21,15 @@
             alert('正しい郵便番号を入力してください');
             return false;
           }
-          //$('#country').val(obj[4]['long_name']); // 国
-          $('#state').val(obj[3]['long_name']); // 都道府県
-          $('#city').val(obj[2]['long_name']);  // 市区町村
-          $('#address1').val(obj[1]['long_name']); // 番地
+	  if(obj.length == 5){
+          $('#country').val(obj[3].long_name); // 国
+          $('#state').val(obj[2].long_name); // 都道府県
+          $('#city').val(obj[1].long_name);  // 市区町村
+	  }else if (obj.length == 6){
+	      $('#country').val(obj[4].long_name); // 国
+          $('#state').val(obj[3].long_name + obj[2].long_name); // 都道府県
+          $('#city').val(obj[1].long_name);  // 市区町村
+	  }
         }else{
           alert('住所情報が取得できませんでした');
           return false;
