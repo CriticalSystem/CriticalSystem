@@ -12,23 +12,23 @@ and open the template in the editor.
     <h:head>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <!--        <ui:composition template="/templates/template.xhtml" />-->
-        <title>貸出</title>
+        <title>返却</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
-                <h2>貸出</h2>
+                <h2>返却</h2>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr class="active bg-light warning">
                                 <th>項番</th>
                                 <th>注文内容</th>
-                                <th>貸し出し期間</th>
-                                <th>分類</th>
-                                <th>返却予定日</th>
-                                <th>請求額</th>
+                                <th>貸し出し日</th>
+                                <th>延滞期間</th>
+                                <th>単価</th>
+                                <th>延滞料金</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,10 +36,7 @@ and open the template in the editor.
                                 <td class="text-center">1</td>
                                 <td>アイアンマン1</td>
                                 <td class="text-center">
-                                    <select onchange="location = this.options[this.selectedIndex].value">
-                                        <option>選択</option>
-                                        <option value="1ndex.htm">7泊8日</option>
-                                    </select>
+                                    2018年 7月28日(火)
                                 </td>
                                 <td class="text-center">旧作</td>
                                 <td class="text-center">2018年7月24日(火)</td>
@@ -49,49 +46,27 @@ and open the template in the editor.
                                 <td class="text-center">2</td>
                                 <td>アイアンマン2</td>
                                 <td class="text-center">
-                                    <select onchange="location = this.options[this.selectedIndex].value">
-                                        <option>選択</option>
-                                        <option value="1ndex.htm">7泊8日</option>
-                                    </select>
+                                    2018年 7月28日(火)
                                 </td>
                                 <td class="text-center">旧作</td>
                                 <td class="text-center">2018年7月24日(火)</td>
                                 <td class="text-right">\160</td>
                             </tr>
-                            <tr class="danger">
-                                <td class="text-center">3</td>
-                                <td>新規会員特典 50円割引</td>
-                                <td class="text-center">
-                                    -
-                                </td>
-                                <td class="text-center">-</td>
-                                <td class="text-center">-</td>
-                                <td class="text-right">-\50</td>
-                            </tr>
                             <tr>
-                                <td class="text-center">4</td>
+                                <td class="text-center">3</td>
                                 <td>アイアンマン4</td>
                                 <td class="text-center">
-                                    <select onchange="location = this.options[this.selectedIndex].value">
-                                        <option>選択</option>
-                                        <option value="1ndex.htm">当日</option>
-                                        <option value="2frame.htm">1泊2日</option>
-                                        <option value="2frame.htm">2泊3日</option>
-                                    </select>
+                                    2018年 7月28日(火)
                                 </td>
                                 <td class="text-center">準新作</td>
                                 <td class="text-center">2018年7月24日(火)</td>
                                 <td class="text-right">\260</td>
                             </tr>
                             <tr class="info">
-                                <td class="text-center">5</td>
+                                <td class="text-center">4</td>
                                 <td>アイアンマン5</td>
                                 <td class="text-center">
-                                    <select onchange="location = this.options[this.selectedIndex].value">
-                                        <option>選択</option>
-                                        <option value="1ndex.htm">当日</option>
-                                        <option value="2frame.htm">1泊2日</option>
-                                    </select>
+                                    2018年 7月28日(火)
                                 </td>
                                 <td class="text-center">新作</td>
                                 <td class="text-center">2018年7月24日(火)</td>
@@ -106,7 +81,7 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">商品数</th>
-                                <th>5点</th>
+                                <th>4点</th>
                             </tr>
                             <tr>
                                 <th class="warning">会員No</th>
@@ -131,18 +106,6 @@ and open the template in the editor.
                     <div class="col-md-4">
                         <table class="table table-bordered">
                             <tr>
-                                <th class="warning">小計</th>
-                                <th>\780</th>
-                            </tr>
-                            <tr>
-                                <th class="warning">消費税</th>
-                                <th>\62</th>
-                            </tr>
-                            <tr class="text-warning">
-                                <th class="warning">割引額</th>
-                                <th>\50</th>
-                            </tr>
-                            <tr>
                                 <th class="warning">合計</th>
                                 <th>\792</th>
                             </tr>
@@ -161,34 +124,14 @@ and open the template in the editor.
                     <div class="col-md-2"></div>
                     <div class="btn-toolbar">
                         <div class="btn-group-vertical">
-                            <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
                             <button type="button" class="btn btn-primary pull-left">清算</button>
-                        </div>
-                    </div>
-
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#160;</span></button>
-                                    <h4 class="modal-title">JANコードを入力してください</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="text"></input>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">中止</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
-                                </div>
-                            </div>
-                        </div>
+                        </div>        
                     </div>
                 </div>
             </ui:define>
         </ui:composition>
-
     </h:body>
-
 </html>
+
