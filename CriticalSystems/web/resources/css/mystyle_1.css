@@ -213,14 +213,13 @@ a:hover, a:focus, a:active {
     width:30px;
 }
 
-table {
-    color: black;
-}
+/table {
+    /color: black;
+/}
 
-table th {
-    background-color: #CFD8DC
-
-}
+/table th {
+/    background-color: #CFD8DC
+/}
 
 table.tarou {
     height: 400px;

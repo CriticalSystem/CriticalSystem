@@ -26,51 +26,64 @@ and open the template in the editor.
                                 <th>項番</th>
                                 <th>注文内容</th>
                                 <th>貸し出し日</th>
+                                <th>返却予定日</th>
                                 <th>延滞期間</th>
                                 <th>単価</th>
                                 <th>延滞料金</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="info">
+                            <tr>
                                 <td class="text-center">1</td>
                                 <td>アイアンマン1</td>
                                 <td class="text-center">
-                                    2018年 7月28日(火)
+                                    2018年 7月23日(月)
+                                </td>
+                                <td class="text-center">
+                                    2018年 7月30日(月)
                                 </td>
                                 <td class="text-center">旧作</td>
-                                <td class="text-center">2018年7月24日(火)</td>
-                                <td class="text-right">\160</td>
+                                <td class="text-center">-</td>
+                                <td class="text-right">-</td>
                             </tr>
                             <tr>
                                 <td class="text-center">2</td>
                                 <td>アイアンマン2</td>
                                 <td class="text-center">
-                                    2018年 7月28日(火)
+                                    2018年 7月23日(月)
+                                </td>
+                                <td class="text-center">
+                                    2018年 7月30日(月)
                                 </td>
                                 <td class="text-center">旧作</td>
-                                <td class="text-center">2018年7月24日(火)</td>
-                                <td class="text-right">\160</td>
+                                <td class="text-center">-</td>
+                                <td class="text-right">-</td>
                             </tr>
-                            <tr>
+                            <tr class="danger">
                                 <td class="text-center">3</td>
                                 <td>アイアンマン4</td>
                                 <td class="text-center">
-                                    2018年 7月28日(火)
+                                    2018年 7月23日(月)
+                                </td>
+                                <td class="text-center">
+                                    2018年 7月24日(火)
                                 </td>
                                 <td class="text-center">準新作</td>
-                                <td class="text-center">2018年7月24日(火)</td>
-                                <td class="text-right">\260</td>
+                                <td class="text-center">\300</td>
+                                <td class="text-right">\300</td>
                             </tr>
-                            <tr class="info">
+                            <tr class="danger">
                                 <td class="text-center">4</td>
                                 <td>アイアンマン5</td>
                                 <td class="text-center">
-                                    2018年 7月28日(火)
+                                    2018年 7月23日(月)
+                                </td>
+                                <td class="text-center">
+                                    2018年 7月23日(月)
                                 </td>
                                 <td class="text-center">新作</td>
-                                <td class="text-center">2018年7月24日(火)</td>
-                                <td class="text-right">\200</td>
+                                <td class="text-center">\300</td>
+                                <td class="text-right">\600</td>
                             </tr>
                         </tbody>
                     </table>
@@ -107,7 +120,7 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">合計</th>
-                                <th>\792</th>
+                                <th>\900</th>
                             </tr>
                         </table>
                         <table class="table table-bordered">
@@ -117,17 +130,36 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <th class="warning">おつり</th>
-                                <th>\208</th>
+                                <th>\100</th>
                             </tr>
                         </table>
                     </div>
                     <div class="col-md-2"></div>
-                    <div class="btn-toolbar">
+                                       <div class="btn-toolbar">
                         <div class="btn-group-vertical">
+                            <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
                             <button type="button" class="btn btn-primary pull-left">清算</button>
-                        </div>        
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#160;</span></button>
+                                    <h4 class="modal-title">JANコードを入力してください</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text"></input>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">中止</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </ui:define>
