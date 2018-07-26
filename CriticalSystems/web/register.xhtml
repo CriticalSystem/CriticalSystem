@@ -14,7 +14,6 @@
     <body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
-
                 <h:form>   
                     <h1>会員登録</h1> 
                     <p:growl id="growl" sticky="true" showDetail="true"/>
@@ -275,46 +274,88 @@
                             </p:panel>
                         </p:tab>
                         <p:tab id="confirm" title="確認" >
-                            <p:panel header="Confirmation">
-                                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="　　　氏名：　姓" />
-                                        <h:outputText value="#{userWizard.user.firstname}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="　　　　　　　名" />
-                                        <h:outputText value="#{userWizard.user.lastname}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Age: " />
-                                        <h:outputText value="#{userWizard.user.age}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Street: " />
-                                        <h:outputText value="#{userWizard.user.street}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Postal: " />
-                                        <h:outputText value="#{userWizard.user.postalCode}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="City: " />
-                                        <h:outputText value="#{userWizard.user.city}" styleClass="outputLabel"/>
-                                    </h:panelGrid>
-
-                                    <h:panelGrid columns="2" columnClasses="label, value">
-                                        <h:outputText value="Email: " />
-                                        <h:outputText value="#{userWizard.user.email}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Phone " />
-                                        <h:outputText value="#{userWizard.user.phone}" styleClass="outputLabel"/>
-
-                                        <h:outputText value="Info: " />
-                                        <h:outputText value="#{userWizard.user.info}" styleClass="outputLabel"/>
-
-                                        <h:outputText />
-                                        <h:outputText />
-                                    </h:panelGrid>
+                            <p:panel header="会員情報" >
+                                <p:messages />
+                                <h:panelGrid columns="4" columnClasses="label, value">
+                                    <span>
+                                        <div class="mozi">　　　仮登録番号</div>
+                                        <h:outputText value="#{membersBean.temp_reg_code}" styleClass="sel"/>
+                                    </span>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <span>
+                                        <div class="mozi">　　　氏名：　姓 </div><h:outputText value="#{userWizard.user.firstname}" styleClass="sel" />
+                                        <div class="mozi">　　　　　　　名 </div><h:outputText value="#{membersBean.mei}" styleClass="sel" />
+                                    </span>
                                 </h:panelGrid>
 
-                                <p:commandButton value="Submit" actionListener="#{userWizard.save}" update="growl" process="@this"/>
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="　　　性別：　" class="mozi"/>
+                                    <h:outputText value="#{membersBean.sex}" />
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="10" columnClasses="label, value">
+                                    <h:outputText value="　生年月日：　" class="mozi"/>
+                                    <div class="mozi"><h:outputText value="#{membersBean.year}"/>年</div>
+                                    <div class="mozi"><h:outputText value="#{membersBean.month}"/>月</div>
+                                    <div class="mozi"><h:outputText value="#{membersBean.day}"/>日</div>
+                                </h:panelGrid><br/>
+
+                                <h:panelGrid columns="8" columnClasses="label, value">
+                                    <h:outputText value="　電話番号：　" class="mozi"/>
+                                    <span>
+                                        <h:outputText value="#{membersBean.tel1}
+                                                      
+                                                      " styleClass="sel" />－
+                                        <h:outputText value="#{membersBean.tel2}" styleClass="sel" />－
+                                        <h:outputText value="#{membersBean.tel3}" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="4" columnClasses="label, value">
+                                    <h:outputText value="郵便番号：　" class="mozi"/>
+                                    <h:outputText value="#{membersBean.postal1}"/><div>ー</div>
+                                    <h:outputText value="#{membersBean.postal2}"/>
+                                    <span>
+                                    <h:outputText value="都道府県：　" class="mozi"/>
+                                        <input id="state" name="state" type="text" />
+                                    </span>
+                                    <span>
+                                    <h:outputText value="市区町村：　" class="mozi"/>
+                                        <input id="city" name="city" type="text"  />
+                                    </span>
+                                    <span>
+                                    <h:outputText value="番地：　" class="mozi"/>
+                                        <input id="address1" name="address1" type="text"  />
+                                    </span>
+                                    <span>
+                                    <h:outputText value="建物名・階・部屋番号：　" class="mozi"/>
+                                        <input id="address2" name="address2" type="text" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" columnClasses="label, value">
+                                    <h:outputText value="　　　住所：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#{membersBean.address}" required="true" id="address" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="3" columnClasses="label, value">
+                                    <h:outputText value="身分証番号：　" class="mozi"/>
+                                    <span>
+                                        <h:inputText value="#{membersBean.ident_number}" required="true" id="idNum" requiredMessage="★必須" styleClass="sel" />
+                                    </span>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="　　　　　　　" />
+                                    <h:selectOneRadio id="idKbn" value="#{membersBean.ident_type}">
+                                        <f:selectItem itemValue="1" itemLabel="免許証"/>
+                                        <f:selectItem itemValue="2" itemLabel="保険証"/>
+                                        <f:selectItem itemValue="3" itemLabel="学生証"/>
+                                    </h:selectOneRadio>
+                                </h:panelGrid>
                             </p:panel>
                         </p:tab>
                     </p:wizard>

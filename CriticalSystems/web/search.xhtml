@@ -8,13 +8,14 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>ＤＶＤ検索</title>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <body>
+    <h:body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
                 <h1>ＤＶＤ検索</h1>
@@ -22,9 +23,9 @@ and open the template in the editor.
                 <h4>　　　　　　　　　　　　　　　　　　　　　　　　　　　キーワードから探す</h4>
                 <form id="form02" action="#">
 
-                    <input id="input02" type="text" placeholder="キーワードを入力してください" /><!--
-                    /input間で改行したい場合はコメントアウト必須/
-                    --><input id="submit02" type="submit" value="" />
+                    <h:inputText id="input02" value="#{}" p:placeholder="キーワードを入力してください" />
+                    <h:inputText value="#{membersBean.temp_reg_code}" required="true" id="temp_reg_code" styleClass="sel />
+                    <h:inputText id="submit02" type="submit" value="" />
                 </form>
                 <h:panelGrid columns="2">
                     <form id="dropdown">
@@ -52,5 +53,5 @@ and open the template in the editor.
                 </h:panelGrid>
             </ui:define>
         </ui:composition>
-    </body>
+    </h:body>
 </html>
