@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <h:outputStylesheet name="./bootstrap/css/bootstrap.min.css" />
+        <h:outputScript library="js" name="./jquery-3.2.0.min.js" />
+        <h:outputScript name="./bootstrap/js/bootstrap.min.js" />
+        <title>機能選択</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <div class="row">
+                <h2>キーワード・ジャンルで探す</h2>
+
+                <form class="classNameHere" role="検索">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="キーワードを入力してください" name="srch-term" id="srch-term"></input>
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i>検索</button>
+                        </div>
+                    </div>
+                    <br></br>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">ジャンルを選択
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                    
+
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">ジャンルを選択
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">JavaScript</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">About Us</a></li>
+                        </ul>
+                    </div>
+                        
+
+                </form>
+
+
+            </div>
+        </div>
+    </h:body>
+</html>

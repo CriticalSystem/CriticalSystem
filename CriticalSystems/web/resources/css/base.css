@@ -137,3 +137,18 @@ thead tr th{
     text-align: center;
     padding: 3px;
 }
+
+.btn-yellow {
+            background: rgb(250, 255, 140);
+            color: #574500;
+            border: none;
+            -moz-box-shadow: none !important;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            }
+            .btn-yellow:hover, .btn-yellow:focus {
+            background: rgb(252, 255, 179);
+            }
+            .btn-yellow:active {
+            background: rgb(247, 255, 71);
+            }

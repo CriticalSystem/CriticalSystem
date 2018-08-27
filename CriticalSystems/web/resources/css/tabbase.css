@@ -1,0 +1,37 @@
+.btn-yellow {
+  background: rgb(250, 255, 140);
+  color: #574500;
+  border: none;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.btn-yellow:hover, .btn-yellow:focus {
+  background: rgb(252, 255, 179);
+}
+.btn-yellow:active {
+  background: rgb(247, 255, 71);
+}
+
+.btn-blue {
+  background: rgb(250, 255, 140);
+  color: #574500;
+  border: none;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.btn-blue:hover, .btn-blue:focus {
+  background: rgb(252, 255, 179);
+}
+.btn-blue:active {
+  background: rgb(247, 255, 71);
+}
+
+/* カスタムボタン　サイズ設定 */
+
+.btn-xxl {
+  padding: 20px 26px;
+  font-size: 35px;
+  border-radius: 8px;
+}
