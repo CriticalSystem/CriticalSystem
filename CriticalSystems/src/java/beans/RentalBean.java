@@ -130,24 +130,24 @@ public class RentalBean implements Serializable{
         return null;
     }
     
-    public String execCreate() {
-        log.info(log.getName() + " | イベント登録処理");
-        slip_number = CreateSlipNumber();
-        receipt= new Receipt(slip_number);
-        String store_code = "102";
-        int total_price = 780;
-//        receipt.setStore_code(store_code);
-        receipt.setTotal_price(total_price);
-        receipt.setMembers_code(member_code);
-        try {
-            receiptdb.create(receipt);
-        } catch (Exception e) {
-            log.fine("■" + log.getName() + "|" + e.getMessage());
-        }
-        log.info(log.getName() + " | 会話スコープ終了");
-        conv.end();
-        return "rental1.xhtml";
-    }
+//    public String execCreate() {
+//        log.info(log.getName() + " | イベント登録処理");
+//        slip_number = CreateSlipNumber();
+//        receipt= new Receipt(slip_number);
+//        String store_code = "102";
+//        int total_price = 780;
+////        receipt.setStore_code(store_code);
+//        receipt.setTotal_price(total_price);
+//        receipt.setMembers_code(member_code);
+//        try {
+//            receiptdb.create(receipt);
+//        } catch (Exception e) {
+//            log.fine("■" + log.getName() + "|" + e.getMessage());
+//        }
+//        log.info(log.getName() + " | 会話スコープ終了");
+//        conv.end();
+//        return "rental1.xhtml";
+//    }
     
     public String CreateSlipNumber(){
         slip_number = "1234567890";
