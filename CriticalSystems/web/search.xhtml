@@ -21,11 +21,10 @@ and open the template in the editor.
                 <h1>ＤＶＤ検索</h1>
                 <br/>
                 <h4>　　　　　　　　　　　　　　　　　　　　　　　　　　　キーワードから探す</h4>
-                <form id="form02" action="#">
-
-                    <h:inputText id="input02" value="#{}" p:placeholder="キーワードを入力してください" />
-                    <h:inputText value="#{membersBean.temp_reg_code}" required="true" id="temp_reg_code" styleClass="sel />
-                    <h:inputText id="submit02" type="submit" value="" />
+                <form id="form02">
+                    <input id="input02" type="text" placeholder="キーワードを入力してください" /><!--
+                    /input間で改行したい場合はコメントアウト必須/
+                    --><a href="searchresult.xhtml"><input id="submit02" type="submit" value="" /></a>
                 </form>
                 <h:panelGrid columns="2">
                     <form id="dropdown">
