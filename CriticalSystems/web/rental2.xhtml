@@ -31,7 +31,7 @@ and open the template in the editor.
              
             <h:column>
             <f:facet name="header">タイトル</f:facet>
-            <h:outputText value="#{item.title_code}" />
+            <h:outputText value="#{rentalBean.gettitle(item.title_code)}" />
             
             
             </h:column>
@@ -50,7 +50,7 @@ and open the template in the editor.
              
              <h:column>
              <f:facet name="header">返却予定日</f:facet>
-            <h:inputText value="" />
+            <h:outputText value="#{item.media}" />
             </h:column>
              
              <h:column>
