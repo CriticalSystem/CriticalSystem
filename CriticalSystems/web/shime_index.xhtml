@@ -36,7 +36,7 @@ and open the template in the editor.
                                     <td>　一万円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <h:inputText id="bill" value="#{shimeBean.10Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="bill" value="#{shimeBean.xKyen}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageBill" />
                                         </h:inputText>枚
@@ -47,7 +47,7 @@ and open the template in the editor.
                                     <td>　五千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <h:inputText id="bill" value="#{shimeBean.5Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="bill" value="#{shimeBean.vKyen}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageBill" />
                                         </h:inputText>枚
@@ -58,7 +58,7 @@ and open the template in the editor.
                                     <td>　二千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <h:inputText id="bill" value="#{shimeBean.2Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="bill" value="#{shimeBean.iiKyen}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageBill" />
                                         </h:inputText>枚
@@ -69,7 +69,7 @@ and open the template in the editor.
                                     <td>　　千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <h:inputText id="bill" value="#{shimeBean.1Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="bill" value="#{shimeBean.iKyen}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageBill" />
                                         </h:inputText>枚
@@ -78,13 +78,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　五百円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.500yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.dyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.500yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.dyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -93,13 +93,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　　百円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.100yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.cyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.100yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.cyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -108,13 +108,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　五十円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.50yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.lyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.50yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.lyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -123,13 +123,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　　十円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.10yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.xyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.10yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.xyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -138,13 +138,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　　五円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.5yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.vyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.5yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.vyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -153,13 +153,13 @@ and open the template in the editor.
                                 </tr>
                                 <tr>
                                     <td>　　一円硬貨</td>
-                                    <td><h:inputText id="coin_1" value="#{shimeBean.1yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.iyen_1}" p:placeholder="0～9まで入力可" rendered="true">
                                             <f:validateLength maximum="9" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_1" />
                                         </h:inputText>本
                                         <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
                                     <td>
-                                        <h:inputText id="coin_2" value="#{shimeBean.1yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                        <h:inputText id="coin_2" value="#{shimeBean.iyen_2}" p:placeholder="0～99まで入力可" rendered="true">
                                             <f:validateLength maximum="99" minimum="0" />
                                             <f:ajax event="blur" execute="@this" render="messageCoin_2" />
                                         </h:inputText>枚
@@ -193,6 +193,7 @@ and open the template in the editor.
                                 </tr>
                             </table>
                         </h:panelGrid>
+                        <h:commandButton action="#{shimeBean.next()}" value="送信" />
                 </h:form>
             </ui:define>
         </ui:composition>
