@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>レジ〆</title>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+
+                <h:form>   
+                    <h1>レジ〆入力</h1>
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                        <p:messages />
+                        <h:panelGrid columns="2" columnClasses="label, value">
+                            <table border="0" class="tarou">
+                                <thead>
+                                    <tr>
+                                        <th>　　金種　　</th>
+                                        <th>　　本数　　</th>
+                                        <th>　　枚数　　</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>　一万円紙幣</td>
+                                    <td></td>
+                                    <td>
+                                        <h:inputText id="bill" value="#{shimeBean.10Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageBill" />
+                                        </h:inputText>枚
+                                        <h:message id="messageBill" for="bill" styleClass="error" />
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>　五千円紙幣</td>
+                                    <td></td>
+                                    <td>
+                                        <h:inputText id="bill" value="#{shimeBean.5Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageBill" />
+                                        </h:inputText>枚
+                                        <h:message id="messageBill" for="bill" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　二千円紙幣</td>
+                                    <td></td>
+                                    <td>
+                                        <h:inputText id="bill" value="#{shimeBean.2Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageBill" />
+                                        </h:inputText>枚
+                                        <h:message id="messageBill" for="bill" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　千円紙幣</td>
+                                    <td></td>
+                                    <td>
+                                        <h:inputText id="bill" value="#{shimeBean.1Kyen}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageBill" />
+                                        </h:inputText>枚
+                                        <h:message id="messageBill" for="bill" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　五百円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.500yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.500yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　百円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.100yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.100yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　五十円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.50yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.50yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　十円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.10yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.10yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　五円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.5yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.5yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　一円硬貨</td>
+                                    <td><h:inputText id="coin_1" value="#{shimeBean.1yen_1}" p:placeholder="0～9まで入力可" rendered="true">
+                                            <f:validateLength maximum="9" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_1" />
+                                        </h:inputText>本
+                                        <h:message id="messageCoin_1" for="coin_1" styleClass="error" /></td>
+                                    <td>
+                                        <h:inputText id="coin_2" value="#{shimeBean.1yen_2}" p:placeholder="0～99まで入力可" rendered="true">
+                                            <f:validateLength maximum="99" minimum="0" />
+                                            <f:ajax event="blur" execute="@this" render="messageCoin_2" />
+                                        </h:inputText>枚
+                                        <h:message id="messageCoin_2" for="coin_2" styleClass="error" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>　　合計金額</td>
+                                    <td colspan="2"><output></output>円</td>
+                                </tr>
+                            </table>
+
+                            <table border="0" class="ziros">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>　　　　金額　　　　</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>売上金額</td>
+                                    <td><output></output>円</td>
+                                </tr> 
+                                <tr>
+                                    <td>合計金額</td>
+                                    <td><output></output>円</td>
+                                </tr>
+                                <tr>
+                                    <td>過不足額</td>
+                                    <td><output></output>円</td>
+                                </tr>
+                            </table>
+                        </h:panelGrid>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

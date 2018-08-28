@@ -8,9 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <!--        <ui:composition template="/templates/template.xhtml" />-->
@@ -20,28 +18,19 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
-                <h:outputScript library="js" name="hiddenmember.js" />
                 <h1>会員情報取得</h1>
                 <br></br>
                 <br></br>
-                <div class="center-block">
-                    <h:form class="form-horizontal">
+                <div class="container">
+                    <form class="form-horizontal">
                         <div class="form-group">
-                            <label class="control-label col-xs-2">会員No</label>
+                            <label class="control-label col-xs-4">会員No:</label>
                             <div class="col-xs-5">
-<!--                                <input type="text" name="no" class="form-control"></input>-->
-                            <!--<h:inputHidden p:id="member_code" required="true" value="#{rentalBean.member_code}"/>-->
-                            <h:inputText id="member_code" required="true" value="#{rentalBean.member_code}" label="イベント名" styleClass="form-control" />
+                                <input type="text" name="no" class="form-control"></input>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-xs-2">身分証番号</label>
-                            <div class="col-xs-5">
-                                <input type="text" name="name" class="form-control"></input>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-2">会員名(カナ)</label>
+                            <label class="control-label col-xs-4">会員名(カナ)</label>
                             <div class="col-xs-5">
                                 <input type="text" name="name" class="form-control"></input>
                             </div>
@@ -50,18 +39,9 @@ and open the template in the editor.
                             <div class="col-xs-offset-2 col-xs-10">
                             </div>
                         </div>
-                        <h:panelGrid columns="2" columnClasses="label, value">
-                                    <h:outputText value="　　　　　　　" />
-                                    <h:selectOneRadio id="idKbn" value="#">
-                                        <f:selectItem itemValue="1" itemLabel="免許証"/>
-                                        <f:selectItem itemValue="2" itemLabel="保険証"/>
-                                        <f:selectItem itemValue="3" itemLabel="学生証"/>
-                                    </h:selectOneRadio>
-                                </h:panelGrid>
-                        <h:commandButton  p:id="btn1" styleClass="btn btn-primary" value="確定" action="#{rentalBean.memberget()}"/>
-                    </h:form>
+                    </form>
 
-<!--                    <table class="table table-striped">
+                    <table class="table table-striped">
                         <thead>
                             <tr class="active">
                                 <th>#</th>
@@ -96,10 +76,11 @@ and open the template in the editor.
                                 <td>1975年3月1日</td>
                             </tr>
                         </tbody>
-                    </table>-->
+                    </table>
                 </div>
+                <button type="button" class="btn btn-primary btn-lg pull-right">確定</button>
             </ui:define>
         </ui:composition>
-    </h:body>
 
+    </h:body>
 </html>

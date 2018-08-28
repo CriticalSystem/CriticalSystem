@@ -237,7 +237,7 @@ table th {
 table.tarou {
     height: 400px;
     position: absolute;
-    top:225px;
+    top:175px;
     left:400px;
     border-collapse: collapse;
     border: 2px solid green; /* 外枠を太く */
@@ -257,7 +257,7 @@ table.tarou thead th{
 table.ziros{
     height: 130px;
     position: absolute;
-    top:300px;
+    top:275px;
     right:400px;
     border-collapse: collapse;
     border: 2px solid green; /* 外枠を太く */

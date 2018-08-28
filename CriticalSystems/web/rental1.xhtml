@@ -8,27 +8,16 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:pr="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-    
-    
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <title>TODO supply a title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
-    <h:body>
-        <div id="body-text" class="body-text" contenteditable="true" data-placeholder="bodyContents"></div>
-        <ui:composition template="/templates/template.xhtml">
-            <ui:define name="content">      
-            <h:outputScript library="js" name="hiddenmember.js" />
-            <h:form>
-            <h:inputHidden p:id="member_code" required="true" value="#{rentalBean.member_code}"/>
-            <!--<h:inputText p:id="membercode" required="true" value="#{rentalBean.member_code}"/>-->
-            <!--<h:inputHidden p:id="membercode" required="true" value="#{rentalBean.member_code}"/>-->
-         <h:commandButton  p:id="btn1" styleClass="btn btn-primary" value="送 信" action="#{rentalBean.memberget()}"/>
+    <body>
+        <h:form>
+            <h:inputText id="member_code" required="true" value="#{rentalBean.member_code}" label="イベント名" styleClass="form-control" />
+         <h:commandButton styleClass="btn btn-primary" value="送 信" action="#{rentalBean.memberget()}"/>
          </h:form>
-            </ui:define>
-        </ui:composition>
-    </h:body>
+    </body>
 </html>

@@ -8,8 +8,7 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>レジ〆</title>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
@@ -20,9 +19,8 @@ and open the template in the editor.
             <ui:define name="content">
 
                 <h:form>   
-                    <h1>レジ〆</h1>
+                    <h1>レジ〆結果</h1>
                     <p:growl id="growl" sticky="true" showDetail="true"/>
-                    <p:panel header="レジ内金額入力" >
                         <p:messages />
                         <h:panelGrid columns="2" columnClasses="label, value">
                             <table border="0" class="tarou">
@@ -37,85 +35,87 @@ and open the template in the editor.
                                     <td>　一万円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.10Kyen}" />枚
                                     </td>
                                 </tr> 
                                 <tr>
                                     <td>　五千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.5Kyen}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　二千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.2Kyen}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　千円紙幣</td>
                                     <td></td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.1Kyen}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　五百円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.500yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.500yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　百円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.100yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.100yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　五十円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.50yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.50yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　十円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.10yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.10yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　五円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.5yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.5yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　一円硬貨</td>
-                                    <td>　　<input type="number" value="0" min="0" max="9" class="spinner"/>本</td>
                                     <td>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>
-                                        <input type="number" value="0" min="0" max="9" class="spinner"/>枚
+                                        <h:outputText value="#{shimeBean.1yen_1}" />本
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{shimeBean.1yen_2}" />枚
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>　　合計金額</td>
-                                    <td colspan="2"><output></output>円</td>
+                                    <td colspan="2"><h:outputText value="#{shimeBean.amount}" />円</td>
                                 </tr>
                             </table>
 
@@ -128,19 +128,18 @@ and open the template in the editor.
                                 </thead>
                                 <tr>
                                     <td>売上金額</td>
-                                    <td><output></output>円</td>
+                                    <td><h:outputText value="#{shimeBean.sales}" />円</td>
                                 </tr> 
                                 <tr>
                                     <td>合計金額</td>
-                                    <td><output></output>円</td>
+                                    <td><h:outputText value="#{shimeBean.amount}" />円</td>
                                 </tr>
                                 <tr>
                                     <td>過不足額</td>
-                                    <td><output></output>円</td>
+                                    <td><h:outputText value="#{shimeBean.difference}" />円</td>
                                 </tr>
                             </table>
                         </h:panelGrid>
-                    </p:panel>
                 </h:form>
             </ui:define>
         </ui:composition>
