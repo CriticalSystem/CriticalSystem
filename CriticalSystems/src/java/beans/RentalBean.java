@@ -8,9 +8,11 @@ package beans;
 import db.DiscDb;
 import db.MembersDb;
 import db.ReceiptDb;
+import db.TitleDb;
 import entity.Disc;
 import entity.Members;
 import entity.Receipt;
+import entity.Title;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class RentalBean implements Serializable{
     private String rack;            //棚番号
     private String div_code;        //種類
     private String title_code;      //タイトル番号
+    private String title_name;      //タイトル名
     private List<Disc> disclist = new ArrayList<>();
     //レシート情報
     private Receipt receipt;
@@ -76,6 +79,8 @@ public class RentalBean implements Serializable{
     MembersDb membersdb;
     @EJB
     DiscDb discdb;
+    @EJB
+    TitleDb titledb;
     
     @Inject
     transient Logger log;
@@ -121,6 +126,17 @@ public class RentalBean implements Serializable{
         return "rental2.xhtml";
     }
     
+    public String gettitle(String title_code) {
+        if(conv.isTransient()) {
+            conv.begin();
+        }
+        log.info("text");
+        Title title = titledb.find(title_code);
+        log.info(title.getTitle_name());
+        setName(title.getTitle_name());
+        return title_name;
+    }
+    
     public String discadd() {
         if(conv.isTransient()) {
             conv.begin();
@@ -129,6 +145,8 @@ public class RentalBean implements Serializable{
         disclist.add(disc);
         return null;
     }
+    
+    
     
 //    public String execCreate() {
 //        log.info(log.getName() + " | イベント登録処理");

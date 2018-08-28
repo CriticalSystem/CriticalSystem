@@ -31,20 +31,20 @@ public class TitleDb {
     public void delete (Title title){
         em.remove(title);
     }
-    public Title find (String key){
-        return em.find(Title.class, key);
+    public Title find (String title_code){
+        return em.find(Title.class, title_code);
     }
     
-    /*
-    * DVD検索
-    */
-    public List<Title> getSearch (String name ,String genre, String media, String store ){
-        TypedQuery<Title> q = em.createNamedQuery(Title.TitleQSearch, Title.class);
-        q.setParameter(1,name);
-        q.setParameter(2,genre);
-        q.setParameter(3,media);
-        q.setParameter(4,store);
-        return q.getResultList();
-    }
+//    /*
+//    * DVD検索
+//    */
+//    public List<Title> getSearch (String name ,String genre, String media, String store ){
+//        TypedQuery<Title> q = em.createNamedQuery(Title.TitleQSearch, Title.class);
+//        q.setParameter(1,name);
+//        q.setParameter(2,genre);
+//        q.setParameter(3,media);
+//        q.setParameter(4,store);
+//        return q.getResultList();
+//    }
     
 }
