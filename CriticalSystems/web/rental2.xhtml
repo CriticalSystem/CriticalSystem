@@ -23,17 +23,16 @@ and open the template in the editor.
          
          <h:inputHidden p:id="disc_code" required="true" value="#{rentalBean.disc_code}" />
          <h:commandButton p:id="btn1" style="display: none" styleClass="btn btn-primary" value="追加" action="#{rentalBean.discadd()}"/><br/>
+         <h:dataTable value="#{rentalBean.receiptminlist}" var="item1" styleClass="table table-striped table-bordered table-hover">
+             <h:column>
+            <f:facet name="header">項番</f:facet>
+            <h:outputText value="#{item1.serial_number}" />
+            </h:column>
+         </h:dataTable>
          <h:dataTable value="#{rentalBean.disclist}" var="item" styleClass="table table-striped table-bordered table-hover">
             <h:column>
-            <f:facet name="header">項番</f:facet>
-            <h:outputText value="#{item.disc_code}" />
-            </h:column>
-             
-            <h:column>
             <f:facet name="header">タイトル</f:facet>
-            <h:outputText value="#{rentalBean.gettitle(item.title_code)}" />
-            
-            
+            <h:outputText value="#{item.title_code}" />
             </h:column>
              <h:column>
              <f:facet name="header">期間</f:facet>
@@ -64,7 +63,7 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">商品数</th>
-                                <th>5点</th>
+                                <th><h:outputText value="#{rentalBean.cnt}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">会員No</th>
@@ -76,11 +75,11 @@ and open the template in the editor.
                             </tr>
                             <tr>
                                 <th class="warning">年齢</th>
-                                <th>33歳</th>
+                                <th><h:outputText value="#{rentalBean.age}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">会員状態</th>
-                                <th>通常会員</th>
+                                <th><h:outputText value="#{rentalBean.member_state}" /></th>
                             </tr>
                         </table>
                     </div>
@@ -118,6 +117,7 @@ and open the template in the editor.
                     <div class="btn-toolbar">
                         <div class="btn-group-vertical">
                             <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
+                            <button type="button" class="btn btn-primary pull-left">割引</button>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
                             <button type="button" class="btn btn-primary pull-left">清算</button>

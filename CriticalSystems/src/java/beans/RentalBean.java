@@ -12,9 +12,10 @@ import db.TitleDb;
 import entity.Disc;
 import entity.Members;
 import entity.Receipt;
+import entity.ReceiptDetails;
 import entity.Title;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -42,6 +43,7 @@ public class RentalBean implements Serializable{
     private Date defect_date;       //退会日
     private String member_state;    //会員状態
     private String discount_number; //割引番号
+    private long age;             //年齢
     //ディスク情報
     private String disc_code;       //ディスク番号
     private Date arrival_date;      //入荷日
@@ -53,6 +55,7 @@ public class RentalBean implements Serializable{
     private String title_code;      //タイトル番号
     private String title_name;      //タイトル名
     private List<Disc> disclist = new ArrayList<>();
+    private int cnt;
     //レシート情報
     private Receipt receipt;
     private String slip_number;     //レシート番号
@@ -64,11 +67,12 @@ public class RentalBean implements Serializable{
 //    private String is_discount;     //割引フラグ
     //レシート明細情報
 //    private String slip_number;   //レシート番号
-    private String details_number;  //明細番号
+    private String serial_number;  //明細番号
 //    private String disc_code;     //ディスク番号
     private Date return_date;       //返却日
     private Date return_plan_date;  //返却予定日
     private String late_price;      //延滞料金
+    private List<ReceiptDetails> receiptminlist = new ArrayList<>();
     private int subtotal;           //小計
     private int azukari;            //預かり金
     private int oturi;             //おつり
@@ -123,6 +127,10 @@ public class RentalBean implements Serializable{
         
         setMember_code(members.getMembersCD());
         setName(members.getName());
+        setBirthday(members.getBirthday());
+        setMember_state(members.getStats());
+        Date now = new Date();
+        setAge(calcAge(birthday,now));
         return "rental2.xhtml";
     }
     
@@ -132,9 +140,9 @@ public class RentalBean implements Serializable{
         }
         log.info("text");
         Title title = titledb.find(title_code);
-        log.info(title.getTitle_name());
-        setName(title.getTitle_name());
-        return title_name;
+        log.info(title.getTitle_Name());
+        setName(title.getTitle_Name());
+        return getTitle_name();
     }
     
     public String discadd() {
@@ -143,9 +151,29 @@ public class RentalBean implements Serializable{
         }
         Disc disc = discdb.find(disc_code);
         disclist.add(disc);
+        cnt = disclist.size();        
+        ReceiptDetails receiptmin = new ReceiptDetails();
+        log.info("1");
+        receiptmin.setDisc_code(disc_code);
+        log.info("2");
+        receiptmin.setSerial_number(cnt);
+        log.info("3");
+        receiptminlist.add(receiptmin);
+        log.info("4");
         return null;
     }
     
+    public static int calcAge(Date birthday, Date now) {
+        int age = now.getYear() - birthday.getYear();
+        if (now.getMonth() < birthday.getMonth()) {
+            age--;
+        } else if (now.getMonth() == birthday.getMonth()) {
+            if (now.getDay() < birthday.getDay()) {
+                age--;
+            }
+        }
+        return age;
+    }
     
     
 //    public String execCreate() {
@@ -500,21 +528,6 @@ public class RentalBean implements Serializable{
 //    public void setIs_discount(String is_discount) {
 //        this.is_discount = is_discount;
 //    }
-
-    /**
-     * @return the details_number
-     */
-    public String getDetails_number() {
-        return details_number;
-    }
-
-    /**
-     * @param details_number the details_number to set
-     */
-    public void setDetails_number(String details_number) {
-        this.details_number = details_number;
-    }
-
     /**
      * @return the return_date
      */
@@ -611,5 +624,75 @@ public class RentalBean implements Serializable{
      */
     public void setOturi(int oturi) {
         this.oturi = oturi;
+    }
+
+    /**
+     * @return the age
+     */
+    public long getAge() {
+        return age;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(long age) {
+        this.age = age;
+    }
+
+    /**
+     * @return the title_name
+     */
+    public String getTitle_name() {
+        return title_name;
+    }
+
+    /**
+     * @param title_name the title_name to set
+     */
+    public void setTitle_name(String title_name) {
+        this.title_name = title_name;
+    }
+
+    /**
+     * @return the cnt
+     */
+    public int getCnt() {
+        return cnt;
+    }
+
+    /**
+     * @param cnt the cnt to set
+     */
+    public void setCnt(int cnt) {
+        this.cnt = cnt;
+    }
+
+    /**
+     * @return the receiptminlist
+     */
+    public List<ReceiptDetails> getReceiptminlist() {
+        return receiptminlist;
+    }
+
+    /**
+     * @param receiptminlist the receiptminlist to set
+     */
+    public void setReceiptminlist(List<ReceiptDetails> receiptminlist) {
+        this.receiptminlist = receiptminlist;
+    }
+
+    /**
+     * @return the serial_number
+     */
+    public String getSerial_number() {
+        return serial_number;
+    }
+
+    /**
+     * @param serial_number the serial_number to set
+     */
+    public void setSerial_number(String serial_number) {
+        this.serial_number = serial_number;
     }
 }

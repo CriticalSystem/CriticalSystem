@@ -5,13 +5,12 @@
  */
 package db;
 
-import entity.Event;
 import entity.Title;
-import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -21,6 +20,9 @@ import javax.persistence.TypedQuery;
 public class TitleDb {
     @PersistenceContext
     private EntityManager em;
+    
+    @Inject
+    transient Logger log;
     
     public void create (Title title) {
         em.persist(title);
@@ -32,6 +34,7 @@ public class TitleDb {
         em.remove(title);
     }
     public Title find (String title_code){
+        log.info("dbtest");
         return em.find(Title.class, title_code);
     }
     

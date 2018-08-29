@@ -36,10 +36,10 @@ public class Title implements Serializable{
     
     @Id
     @NotNull
-    @Column(name = "Title_code")
+    @Column(name = "title_code")
     private String title_code;
     @NotNull
-    @Column(name = "Title_name")
+    @Column(name = "title_name")
     private String title_name;
     @Column(name = "starring")
     private String starring;
@@ -59,28 +59,28 @@ public class Title implements Serializable{
     /**
      * @return the title_code
      */
-    public String getTitle_code() {
+    public String getTitle_Code() {
         return title_code;
     }
 
     /**
      * @param title_code the title_code to set
      */
-    public void setTitle_code(String title_code) {
+    public void setTitle_Code(String title_code) {
         this.title_code = title_code;
     }
 
     /**
      * @return the title_name
      */
-    public String getTitle_name() {
+    public String getTitle_Name() {
         return title_name;
     }
 
     /**
      * @param title_name the title_name to set
      */
-    public void setTitle_name(String title_name) {
+    public void setTitle_Name(String title_name) {
         this.title_name = title_name;
     }
 
