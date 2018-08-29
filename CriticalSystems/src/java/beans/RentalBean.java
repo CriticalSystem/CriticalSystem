@@ -54,7 +54,7 @@ public class RentalBean implements Serializable{
     private String div_code;        //種類
     private String title_code;      //タイトル番号
     private String title_name;      //タイトル名
-    private List<Disc> disclist = new ArrayList<>();
+    private List<Rental> disclist = new ArrayList<>();
     private int cnt;
     //レシート情報
     private Receipt receipt;
