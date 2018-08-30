@@ -10,7 +10,8 @@ and open the template in the editor.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:pr="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <title>貸出</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -31,14 +32,29 @@ and open the template in the editor.
             </h:column>
             <h:column>
             <f:facet name="header">タイトル</f:facet>
-            <h:outputText value="#{item.title_code}" />
+            <h:outputText value="#{rentalBean.gettitle(item.title_code)}" />
             </h:column>
              <h:column>
              <f:facet name="header">期間</f:facet>
-            <select onchange="location = this.options[this.selectedIndex].value">
-            <option>選択</option>
-            <option value="1ndex.htm">7泊8日</option>
-            </select>
+             <f:selectItem>
+            <c:choose>
+                <c:when test="${item.div_code == '1'}">
+                    <option>選択</option>
+                    <option p:id="" value="0">当日</option>
+                    <option p:id="" value="1">1泊2日</option>
+                </c:when>
+                <c:when test="${item.div_code == '2'}">
+                    <option>選択</option>
+                    <option p:id="" value="7">7拍8日</option>
+                </c:when>
+                <c:when test="${item.div_code == '3'}">
+                    <option>選択</option>
+                    <option p:id="" value="0">当日</option>
+                    <option p:id="" value="1">1泊2日</option>
+                    <option p:id="" value="2">2泊3日</option>
+                </c:when>
+            </c:choose>
+            </f:selectItem>
             </h:column>
              
              <h:column>
@@ -48,7 +64,7 @@ and open the template in the editor.
              
              <h:column>
              <f:facet name="header">返却予定日</f:facet>
-            <h:outputText value="#{item.media}" />
+            <h:outputText value="#{item.div_code}" />
             </h:column>
              
              <h:column>

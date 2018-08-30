@@ -141,9 +141,8 @@ public class RentalBean implements Serializable{
         }
         log.info("text");
         Title title = titledb.find(title_code);
-        log.info(title.getTitle_Name());
-        setName(title.getTitle_Name());
-        return getTitle_name();
+        setTitle_name(title.getTitle_Name());
+        return title_name;
     }
     
     public String discadd() {

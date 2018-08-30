@@ -46,12 +46,12 @@ public class Title implements Serializable{
     @NotNull
     @Column(name = "rating")
     private String rating;
-    @Column(name = "comment")
-    private String comment;
+    @Column(name = "title_comment")
+    private String title_comment;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "genre_code")
-    private Genre genre;
+    private Genre genre_code;
     @NotNull
     @Column(name = "imgPath")
     private String imgPath;
@@ -60,28 +60,28 @@ public class Title implements Serializable{
      * @return the title_code
      */
     public String getTitle_Code() {
-        return title_code;
+        return getTitle_code();
     }
 
     /**
      * @param title_code the title_code to set
      */
     public void setTitle_Code(String title_code) {
-        this.title_code = title_code;
+        this.setTitle_code(title_code);
     }
 
     /**
      * @return the title_name
      */
     public String getTitle_Name() {
-        return title_name;
+        return getTitle_name();
     }
 
     /**
      * @param title_name the title_name to set
      */
     public void setTitle_Name(String title_name) {
-        this.title_name = title_name;
+        this.setTitle_name(title_name);
     }
 
     /**
@@ -111,35 +111,7 @@ public class Title implements Serializable{
     public void setRating(String rating) {
         this.rating = rating;
     }
-
-    /**
-     * @return the comment
-     */
-    public String getComment() {
-        return comment;
-    }
-
-    /**
-     * @param comment the comment to set
-     */
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    /**
-     * @return the genre
-     */
-    public Genre getGenre() {
-        return genre;
-    }
-
-    /**
-     * @param genre the genre to set
-     */
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
+    
     /**
      * @return the imgPath
      */
@@ -152,6 +124,62 @@ public class Title implements Serializable{
      */
     public void setImgPath(String imgPath) {
         this.imgPath = imgPath;
+    }
+
+    /**
+     * @return the title_code
+     */
+    public String getTitle_code() {
+        return title_code;
+    }
+
+    /**
+     * @param title_code the title_code to set
+     */
+    public void setTitle_code(String title_code) {
+        this.title_code = title_code;
+    }
+
+    /**
+     * @return the title_name
+     */
+    public String getTitle_name() {
+        return title_name;
+    }
+
+    /**
+     * @param title_name the title_name to set
+     */
+    public void setTitle_name(String title_name) {
+        this.title_name = title_name;
+    }
+
+    /**
+     * @return the title_comment
+     */
+    public String getTitle_comment() {
+        return title_comment;
+    }
+
+    /**
+     * @param title_comment the title_comment to set
+     */
+    public void setTitle_comment(String title_comment) {
+        this.title_comment = title_comment;
+    }
+
+    /**
+     * @return the genre_code
+     */
+    public Genre getGenre_code() {
+        return genre_code;
+    }
+
+    /**
+     * @param genre_code the genre_code to set
+     */
+    public void setGenre_code(Genre genre_code) {
+        this.genre_code = genre_code;
     }
     
     }

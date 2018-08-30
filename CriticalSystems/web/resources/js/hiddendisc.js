@@ -23,7 +23,7 @@ function checkKey(){
         if(scan){
         }else{
             scan = true;
-            alert('読み込み開始');
+//            alert('読み込み開始');
             code1 = "";
         }
         return false;
@@ -32,8 +32,8 @@ function checkKey(){
     if(scan){ 
         code1 += String.fromCharCode(event.keyCode);
         if(code1.length === 13){
-            alert(code1);
-            console.log(code1);
+//            alert(code1);
+//            console.log(code1);
             document.getElementById('disc_code').value = code1;
             document.getElementById("btn1").click();
         }
