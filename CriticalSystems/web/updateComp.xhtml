@@ -20,10 +20,7 @@
                     <h:panelGrid columns="4" columnClasses="label, value">
                         <span>
                             <div class="mozi">　　　会員番号 </div>
-                            <h:inputText value="#{membersBean.member_code}" id="member_code" styleClass="sel"/>
-                            <f:ajax execute="member_code" render="@form" >
-                                <h:commandButton action="#{membersBean.reference()}" />
-                            </f:ajax>
+                            <h:inputText value="#{membersBean.member_code}" id="member_code" styleClass="sel" readonly="true" />
                         </span>
                     </h:panelGrid>
                     <h:panelGrid columns="2" columnClasses="label, value">
@@ -107,7 +104,7 @@
                         </h:selectOneRadio>
                     </h:panelGrid>
 
-                    <h:commandButton value="情報変更画面へ" action="#{membersBean.update()}" />
+                    <h:commandButton value="戻る" action="#{membersBean.Search()}" />
                 </h:form>
             </ui:define>
         </ui:composition>

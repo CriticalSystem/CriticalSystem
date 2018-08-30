@@ -1,5 +1,5 @@
-﻿function setState() {
-    var zip = $('#zip').val();
+function setState() {
+    var zip = document.getElementById("member_register:postal_code").value;
 
     // ここでzipのバリデーションを行ってください
 
@@ -21,10 +21,15 @@
             alert('正しい郵便番号を入力してください');
             return false;
           }
-          //$('#country').val(obj[4]['long_name']); // 国
-          $('#state').val(obj[3]['long_name']); // 都道府県
-          $('#city').val(obj[2]['long_name']);  // 市区町村
-          $('#address1').val(obj[1]['long_name']); // 番地
+	  if(obj.length == 5){
+          document.getElementById("member_register:todouhuken").value = obj[3].long_name; // 国
+          document.getElementById("member_register:sikutyouson").value = obj[2].long_name; // 都道府県
+          document.getElementById("member_register:banti").value = obj[1].long_name;  // 市区町村
+	  }else if (obj.length == 6){
+	  document.getElementById("member_register:todouhuken").value = obj[4].long_name; // 国
+          document.getElementById("member_register:sikutyouson").value = obj[3].long_name + obj[2].long_name; // 都道府県
+          document.getElementById("member_register:banti").value = obj[1].long_name;  // 市区町村
+	  }
         }else{
           alert('住所情報が取得できませんでした');
           return false;

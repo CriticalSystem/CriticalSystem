@@ -15,25 +15,22 @@
             <ui:define name="content">
 
                 <h:form id="member_register">   
-                    <h1>会員情報参照</h1> 
+                    <h1>会員情報変更</h1> 
                     <p:growl id="growl" sticky="true" showDetail="true"/>
                     <h:panelGrid columns="4" columnClasses="label, value">
                         <span>
                             <div class="mozi">　　　会員番号 </div>
-                            <h:inputText value="#{membersBean.member_code}" id="member_code" styleClass="sel"/>
-                            <f:ajax execute="member_code" render="@form" >
-                                <h:commandButton action="#{membersBean.reference()}" />
-                            </f:ajax>
+                            <h:inputText value="#{membersBean.member_code}" id="member_code" styleClass="sel" readonly="true"/>
                         </span>
                     </h:panelGrid>
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <span>
-                            <div class="mozi">　　　氏名：　姓　</div><h:outputText value=" #{membersBean.sei}" id="lastname" styleClass="sel" class="mozi"/>
-                            <div class="mozi">　　　　　　　名　</div><h:outputText value=" #{membersBean.mei}" id="firstname" styleClass="sel" class="mozi"/>
+                            <div class="mozi">　　　氏名：　姓　</div><h:inputText value="#{membersBean.sei}" id="lastname" styleClass="sel" class="mozi"/>
+                            <div class="mozi">　　　　　　　名　</div><h:inputText value="#{membersBean.mei}" id="firstname" styleClass="sel" class="mozi"/>
                         </span>
                         <span>
-                            <div class="mozi">　ふりがな：　姓　</div><h:outputText value=" #{membersBean.seifuri}" id="lastnamefuri" styleClass="sel" />
-                            <div class="mozi">　　　　　　　名　</div><h:outputText value=" #{membersBean.meifuri}" id="firstnamefuri" styleClass="sel" />
+                            <div class="mozi">　ふりがな：　姓　</div><h:inputText value="#{membersBean.seifuri}" id="lastnamefuri" styleClass="sel" />
+                            <div class="mozi">　　　　　　　名　</div><h:inputText value="#{membersBean.meifuri}" id="firstnamefuri" styleClass="sel" />
                         </span>
                     </h:panelGrid>
 
@@ -44,70 +41,82 @@
                     <h:panelGrid columns="10" columnClasses="label, value">
                         <h:outputText value="　生年月日：　" class="mozi"/>
                         <div id="birthday">
-                            <h:outputText value="#{membersBean.birthday}" class="mozi"/>
+                            <h:selectOneMenu id="year" value="#{membersBean.year}">
+                                <f:selectItems value="#{membersBean.yearlist}" var="year" itemValue="year.id" itemLabel="year.id" />
+                            </h:selectOneMenu>年
+                            <h:selectOneMenu id="month" value="#{membersBean.month}">
+                                <f:selectItems value="#{membersBean.monthlist}" />
+                            </h:selectOneMenu>月
+                            <h:selectOneMenu id="day" value="#{membersBean.day}">
+                                <f:selectItems value="#{membersBean.daylist}" />
+                            </h:selectOneMenu>日
                         </div>
                     </h:panelGrid><br/>
 
                     <h:panelGrid columns="8" columnClasses="label, value">
                         <h:outputText value="　電話番号：　" class="mozi"/>
                         <span>
-                            <h:outputText value="#{membersBean.tel_number}" class="mozi" />
+                            <h:inputText value="#{membersBean.tel1}" required="true" id="tel1" requiredMessage="★必須" styleClass="sel" />－
+                            <h:inputText value="#{membersBean.tel2}" required="true" id="tel2" requiredMessage="★必須" styleClass="sel" />－
+                            <h:inputText value="#{membersBean.tel3}" required="true" id="tel3" requiredMessage="★必須" styleClass="sel" />
                         </span>
                     </h:panelGrid>
 
                     <h:panelGrid columns="3" columnClasses="label, value" id="address">
                         <h:outputText value="郵便番号：" class="mozi"/>
-                        <h:outputText value="#{membersBean.postal_code}" id="postal_code" styleClass="sel" />
-                        <!--<input class="studentEnrollment_button" type="button" value="住所を自動で入力する" onClick="setState()" />-->
+                        <h:inputText value="#{membersBean.postal_code}" id="postal_code" styleClass="sel" />
+                        <input class="studentEnrollment_button" type="button" value="住所を自動で入力する" onClick="setState()" />
 
                         <span> 
                             <h:outputText value="都道府県：" class="mozi"/>
-                            <h:outputText value="#{membersBean.pos1}" id="todouhuken" styleClass="sel" />
+                            <h:inputText value="#{membersBean.pos1}" id="todouhuken" styleClass="sel" />
                         </span>
                         <span>
                             <h:outputText value="市区町村：" class="mozi"/>
-                            <h:outputText value="#{membersBean.pos2}" id="sikutyouson" styleClass="sel" />
+                            <h:inputText value="#{membersBean.pos2}" id="sikutyouson" styleClass="sel" />
                         </span>
                         <span>
                             <h:outputText value="番地：" class="mozi"/>
-                            <h:outputText value="#{membersBean.pos3}" id="banti" styleClass="sel" />
+                            <h:inputText value="#{membersBean.pos3}" id="banti" styleClass="sel" />
                         </span>
                         <span>
                             <h:outputText value="建物名・階・部屋番号：" class="mozi"/>
-                            <h:outputText value="#{membersBean.pos4}" id="tatemono" styleClass="sel" />
+                            <h:inputText value="#{membersBean.pos4}" id="tatemono" styleClass="sel" />
                         </span>
                     </h:panelGrid>
 
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <h:outputText value="　職業：" class="mozi"/>
-                        <h:outputText value="#{membersBean.outjob}"/>
+                        <h:selectOneMenu id="job" value="#{membersBean.job_code}">
+                            <f:selectItems value="#{membersBean.joblist}" var="job" itemValue="job.id" itemLabel="job.id" />
+                        </h:selectOneMenu>
                     </h:panelGrid>
 
                     <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:selectBooleanCheckbox value="#{membersBean.is_magazine}" disabled="true" />
+                        <h:selectBooleanCheckbox value="#{membersBean.is_magazine}" disabled="false" />
                         <h:outputLabel value="メールマガジンの配信を希望する" for="1" />
 
                         <h:outputText value="メールアドレス:" class="mozi"/>
-                        <h:outputText value="#{membersBean.email}" id="email" styleClass="sel" />
+                        <h:inputText value="#{membersBean.email}" id="email" styleClass="sel" />
                     </h:panelGrid>
 
                     <h:panelGrid columns="3" columnClasses="label, value">
                         <h:outputText value="身分証番号：　" class="mozi"/>
                         <span>
-                            <h:outputText value="#{membersBean.ident_number}" id="idNum" styleClass="sel" />
+                            <h:inputText value="#{membersBean.ident_number}" id="idNum" styleClass="sel" />
                         </span>
                     </h:panelGrid>
 
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <h:outputText value="　　　　　　　" />
-                        <h:selectOneRadio id="idKbn" value="#{membersBean.ident_type}" disabled="true" required="true">
+                        <h:selectOneRadio id="idKbn" value="#{membersBean.ident_type}" disabled="false" required="true">
                             <f:selectItem itemValue="1" itemLabel="免許証"/>
                             <f:selectItem itemValue="2" itemLabel="保険証"/>
                             <f:selectItem itemValue="3" itemLabel="学生証"/>
                         </h:selectOneRadio>
                     </h:panelGrid>
 
-                    <h:commandButton value="情報変更画面へ" action="#{membersBean.update()}" />
+                    <h:commandButton value="情報変更確認画面へ" action="#{membersBean.updateConfirm()}" />
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -1,32 +1,48 @@
 package beans;
 
+import db.IDCardDb;
+import db.JobDb;
 import db.MembersDb;
 import db.TempMemberDb;
+import entity.IDCard;
+import entity.Job;
 import entity.Members;
 import entity.TempMember;
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.event.ActionEvent;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.constraints.*;
+import org.primefaces.event.FlowEvent;
+import util.CheckDegit;
+import static util.DateUtil.DATE_PATTERN;
 
 @Named
 @ConversationScoped
 public class MembersBean implements Serializable {
-    
+
     private String temp_reg_code;
     private String member_code;
     private String name;
     private String name_ruby;
     private String sex;
-    private Date birthday;
+    private String birthday;
     private String postal_code;
     private String address;
     private String tel_number;
@@ -38,110 +54,448 @@ public class MembersBean implements Serializable {
     private String job_code;
     private String discount_number;
     private List<Members> membersList;
-    
+
     private String ident_number;
     private String ident_type;
     //入力用変数
     private String sei;
     private String mei;
-    
-    private int year;
-    private int month;
-    private int day;
-    
-    private String postal1;
-    private String postal2;
-    
+    private String seifuri;
+    private String meifuri;
+
+    private String year;
+    private String month;
+    private String day;
+
+    private String pos1;
+    private String pos2;
+    private String pos3;
+    private String pos4;
+
     private String tel1;
     private String tel2;
     private String tel3;
-    
+
+    private String outIdentType;
+    private String outsex;
+    private String outjob;
+
+    private Members mem = new Members();
     @EJB
     MembersDb membersdb;
     @EJB
     TempMemberDb tmemberdb;
-    
+    @EJB
+    JobDb jobdb;
+    @EJB
+    IDCardDb idcarddb;
+
     @Inject
     transient Logger log;
-    
     @Inject
     Conversation conv;
 
     @PostConstruct
-    public void start(){
-        if(!conv.isTransient()){
+    public void start() {
+        log.info(log.getName() + " | 会員管理画面 ");
+        if (!conv.isTransient()) {
             log.info(log.getName() + "｜会話スコープ終了");
             conv.end();
         }
     }
-    
+
     public String create() {
-        log.info(log.getName() + " | イベント登録画面 ");
-        if(conv.isTransient()) {
+        log.info(log.getName() + " | 会員登録画面 ");
+        if (conv.isTransient()) {
+            log.info(log.getName() + "｜会話スコープ開始");
             conv.begin();
         }
-        return "/pages/member/create.xhtml";
+        return "register.xhtml";
     }
-    
-    public String confirm() {
-        log.info(log.getName() + " | イベント登録確認画面");
-        return "confirm.xhtml";
+
+    public String Search() {
+//        log.info(log.getName() + " | 会員検索画面 ");
+        if (conv.isTransient()) {
+            log.info(log.getName() + "｜会話スコープ開始");
+            conv.begin();
+        }
+        return "memberSearch.xhtml";
     }
 
     public String delete(Members member) {	// 削除
         membersdb.delete(member);
         return "削除完了画面パス";
     }
-    
+
     public String test() {
-        if(conv.isTransient()) {
+        if (conv.isTransient()) {
             conv.begin();
         }
         Members members = membersdb.find(member_code);
-        
+
         setMember_code(members.getMembersCD());
         setName(members.getName());
         setAddress(members.getAddress());
         return "testt.xhtml";
     }
-    
-     public String next() {	// 削除
-	
-	TempMember tmem =  tmemberdb.find(temp_reg_code);
-	setSei(tmem.getName());
-	setAddress(tmem.getAddress());
-	setSex(tmem.getGender());
-	
-	return null;
+
+    /**
+     *
+     * 仮登録から情報を写す
+     */
+    public String next() {	// 仮登録から
+        TempMember tmem = tmemberdb.find(temp_reg_code);
+        String[] str = tmem.getName().split(" ", 2);
+        setSei(str[0]);
+        setMei(str[1]);
+        str = tmem.getNameRuby().split(" ", 2);
+        setSeifuri(str[0]);
+        setMeifuri(str[1]);
+
+        String a = tmem.getBirthday().toString();
+        str = a.split("-", 3);
+        year = str[0];
+        month = Integer.toString(Integer.parseInt(str[1]));
+        day = Integer.toString(Integer.parseInt(str[2]));
+
+        str = tmem.getTel().split("-", 3);
+        setTel1(str[0]);
+        setTel2(str[1]);
+        setTel3(str[2]);
+
+        str = tmem.getAddress().split(" ", 4);
+        setPostal_code(tmem.getPostalCD());
+        setPos1(str[0]);
+        setPos2(str[1]);
+        setPos3(str[2]);
+        setPos4(str[3]);
+        setSex(tmem.getGender());
+
+        setJob_code(tmem.getJob().getJobCD());
+
+        setIs_magazine(tmem.getMagazine());
+        setEmail(tmem.getMail());
+
+        return null;
+    }
+
+    /**
+     * 会員情報を参照する
+     */
+    public String reference() {	//参照
+        setMem(membersdb.find(member_code));
+        //名前
+        String[] str = mem.getName().split(" ", 2);
+        setSei(str[0]);
+        setMei(str[1]);
+        str = mem.getNameRuby().split(" ", 2);
+        setSeifuri(str[0]);
+        setMeifuri(str[1]);
+
+        birthday = mem.getBirthday().toString();
+        sex = mem.getSex();
+        outputSex();
+        tel_number = mem.getTel();
+
+        str = mem.getAddress().split(" ", 4);
+        setPostal_code(mem.getPostalCD());
+        setPos1(str[0]);
+        setPos2(str[1]);
+        setPos3(str[2]);
+        setPos4(str[3]);
+        setSex(mem.getSex());
+
+        setJob_code(mem.getJob().getJobCD());
+        setOutjob(getJoblist().get(Integer.parseInt(job_code) - 1).getLabel());
+        setIs_magazine(mem.getMagazine());
+        setEmail(mem.getMail());
+
+        IDCard idcard = idcarddb.getIDCard(member_code);
+        setIdent_number(idcard.getIDCardNo());
+        setIdent_type(idcard.getIDCardType());
+
+        return null;
+    }
+
+    /**
+     * 会員情報変更画面へ
+     */
+    public String update() {
+        if (conv.isTransient()) {
+            conv.begin();
+        }
+        setMem(membersdb.find(member_code));
+        String[] str = mem.getName().split(" ", 2);
+        setSei(str[0]);
+        setMei(str[1]);
+        str = mem.getNameRuby().split(" ", 2);
+        setSeifuri(str[0]);
+        setMeifuri(str[1]);
+
+        String a = mem.getBirthday().toString();
+        setBirthday(a);
+        str = a.split("-", 3);
+        year = str[0];
+        month = Integer.toString(Integer.parseInt(str[1]));
+        day = Integer.toString(Integer.parseInt(str[2]));
+
+        sex = mem.getSex();
+        outputSex();
+        setTel_number(mem.getTel());
+        str = mem.getTel().split("-", 3);
+        setTel1(str[0]);
+        setTel2(str[1]);
+        setTel3(str[2]);
+
+        str = mem.getAddress().split(" ", 4);
+        setPostal_code(mem.getPostalCD());
+        setPos1(str[0]);
+        setPos2(str[1]);
+        setPos3(str[2]);
+        setPos4(str[3]);
+        setSex(mem.getSex());
+
+        setJob_code(mem.getJob().getJobCD());
+        setOutjob(getJoblist().get(Integer.parseInt(job_code) - 1).getLabel());
+        setIs_magazine(mem.getMagazine());
+        setEmail(mem.getMail());
+
+        IDCard idcard = idcarddb.getIDCard(member_code);
+        setIdent_number(idcard.getIDCardNo());
+        setIdent_type(idcard.getIDCardType());
+
+        return "change.xhtml";
+    }
+
+    public void updateListener(ActionEvent event) {
+        member_code  = (String) event.getComponent().getAttributes().get("membersCD");
     }
     
-//    public String execCreate() {t
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members members = new Members(member_code);// 新規登録
-//        try {
-//            membersDb.create(members);
-//            membersList = membersDb.find(members_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
+
+    /**
+     * 会員情報変更確認画面へ
+     */
+    public String updateConfirm() {
+        return "updateConfirm.xhtml";
+    }
     
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        Members member = new Members();
-//        try {
-//            membersdb.create(member);
-//            membersList = membersdb.find(member_code);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "complete.xhtml";
-//    }
+    public String updateBack() {
+        return "change.xhtml";
+    }
+    
+    public String execUpdate() {
+        mem.setName(sei.concat(" ".concat(mei)));
+        mem.setNameRuby(seifuri.concat(" ".concat(meifuri)));
+        mem.setSex(sex);
+
+        outputSex();
+
+        setBirthday(birth(year, month, day));
+        mem.setBirthday(Date.valueOf(getBirthday()));
+
+        setTel_number(tel());
+        mem.setTel(tel());
+
+        mem.setPostalCD(postal_code);
+        mem.setAddress(postal());
+
+        Job j = new Job();
+        j.setJobCD(job_code);
+        j.setJobName(jobdb.find(job_code).getJobName());
+        mem.setJob(j);
+        setOutjob(getJoblist().get(Integer.parseInt(job_code) - 1).getLabel());
+
+        mem.setMail(email);
+        mem.setMagazine(is_magazine);
+
+        IDCard idcard = new IDCard();
+        idcard.setMembers(mem);
+        idcard.setIDCardNo(ident_number);
+        idcard.setIDCardType(ident_type);
+        outputIdentType();
+        try {
+            membersdb.update(mem);
+            idcarddb.update(idcard);
+        } catch (Exception e) {
+            if (e.getCause() instanceof ConstraintViolationException) {
+                ConstraintViolationException cve = (ConstraintViolationException) e.getCause();
+                for (ConstraintViolation cv : cve.getConstraintViolations()) {
+                    System.out.println("CONSTRAINT VIOLOATION : " + cv.toString());
+                }
+                log.fine("■" + log.getName() + "|" + e.getMessage());
+            }
+        }
+        conv.end();
+        return "updateComp.xhtml";
+    }
+
+    /**
+     * 会員情報確認画面に遷移する
+     *
+     * @return
+     */
+    public String confirm() {
+        if (conv.isTransient()) {
+            conv.begin();
+        }
+//      log.info(log.getName() + " | 会員登録　確認画面");
+        mem = new Members();
+        mem.setName(sei.concat(" ".concat(mei)));
+        mem.setNameRuby(seifuri.concat(" ".concat(meifuri)));
+        mem.setSex(sex);
+        outputSex();
+
+        setBirthday(birth(year, month, day));
+        mem.setBirthday(Date.valueOf(getBirthday()));
+
+        setTel_number(tel());
+        mem.setTel(tel());
+
+        mem.setPostalCD(postal_code);
+        mem.setAddress(postal());
+
+        Job j = new Job();
+        j.setJobCD(job_code);
+        j.setJobName(jobdb.find(job_code).getJobName());
+        mem.setJob(j);
+        setOutjob(getJoblist().get(Integer.parseInt(job_code) - 1).getLabel());
+
+        mem.setMail(email);
+        mem.setMagazine(is_magazine);
+
+        mem.setStats("通常");
+
+        outputIdentType();
+        return "memberConfirm.xhtml";
+    }
+
+    /**
+     * 会員登録処理
+     */
+    public String execCreate() {
+//        log.info(log.getName() + " | 会員登録処理");
+        //会員番号取得
+        Members m = membersdb.getMaxCode().get(0);
+
+        String str = m.getMembersCD().substring(0, m.getMembersCD().length() - 1);
+        str = String.format("%07d", (Integer.parseInt(str) + 1));
+
+        member_code = CheckDegit.Check(str);
+
+        mem.setMembersCD(member_code);
+
+        Calendar cal = Calendar.getInstance();
+        str = new SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());
+        mem.setJoinDate(str);
+
+        IDCard idcard = new IDCard();
+        idcard.setMembers(mem);
+        idcard.setIDCardNo(ident_number);
+        idcard.setIDCardType(ident_type);
+
+        try {
+            membersdb.create(mem);
+            idcarddb.create(idcard);
+        } catch (Exception e) {
+            if (e.getCause() instanceof ConstraintViolationException) {
+                ConstraintViolationException cve = (ConstraintViolationException) e.getCause();
+                for (ConstraintViolation cv : cve.getConstraintViolations()) {
+                    System.out.println("CONSTRAINT VIOLOATION : " + cv.toString());
+                }
+                log.fine("■" + log.getName() + "|" + e.getMessage());
+            }
+        }
+//        log.info(log.getName() + " | 会員登録正常終了");
+        conv.end();
+        return "memberComplete.xhtml";
+    }
+
+    public String back() {
+        return "register.xhtml";
+    }
+
+    public List<SelectItem> getYearlist() {
+        ArrayList<SelectItem> items = new ArrayList<>();
+        Calendar d = Calendar.getInstance();
+        int y = d.get(Calendar.YEAR);
+        for (int i = 1900; i <= y; i++) {
+            items.add(new SelectItem(Integer.toString(i), Integer.toString(i)));
+        }
+        return items;
+    }
+
+    public List<SelectItem> getMonthlist() {
+        ArrayList<SelectItem> items = new ArrayList<>();
+        Calendar d = Calendar.getInstance();
+        int y = d.get(Calendar.MONTH);
+        for (int i = 0; i <= 11; i++) {
+            items.add(new SelectItem(Integer.toString(i + 1), Integer.toString(i + 1)));
+        }
+        return items;
+    }
+
+    public List<SelectItem> getDaylist() {
+        ArrayList<SelectItem> items = new ArrayList<>();
+        Calendar d = Calendar.getInstance();
+        int y = d.get(Calendar.DATE);
+        for (int i = 1; i <= 31; i++) {
+            items.add(new SelectItem(Integer.toString(i), Integer.toString(i)));
+        }
+        return items;
+    }
+
+    public List<SelectItem> getJoblist() {
+        ArrayList<SelectItem> items = new ArrayList<>();
+        items.add(new SelectItem(1, "会社員・公務員"));
+        items.add(new SelectItem(2, "派遣・アルバイト"));
+        items.add(new SelectItem(3, "自営業"));
+        items.add(new SelectItem(4, "専業主婦"));
+        items.add(new SelectItem(5, "学生"));
+        items.add(new SelectItem(6, "その他"));
+        return items;
+    }
+
+    public String getOutjob() {
+        return outjob;
+    }
+
+    public String birth(String year, String month, String day) {
+        String a;
+
+        a = this.year.concat("-");
+        a = a.concat(this.month).concat("-");
+        a = a.concat(this.day);
+        return a;
+    }
+
+    /**
+     * 入力された電話番号をくっつける
+     *
+     * @return
+     */
+    public String tel() {
+        String a;
+        a = tel1.concat("-");
+        a = a.concat(tel2).concat("-");
+        a = a.concat(tel3);
+        return a;
+    }
+
+    /**
+     * 入力された住所をくっつける
+     *
+     * @return
+     */
+    public String postal() {
+        String a;
+        a = pos1.concat(" ");
+        a = a.concat(pos2).concat(" ");
+        a = a.concat(pos3).concat(" ");
+        if (!(pos4.isEmpty())) {
+            a = a.concat(pos4);
+        }
+        return a;
+    }
 
     public void clear() {	// 変数をクリア
         member_code = null;
@@ -206,14 +560,14 @@ public class MembersBean implements Serializable {
     /**
      * @return the birthday
      */
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
     /**
      * @param birthday the birthday to set
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -426,71 +780,43 @@ public class MembersBean implements Serializable {
     /**
      * @return the year
      */
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
     /**
      * @param year the year to set
      */
-    public void setYear(int year) {
+    public void setYear(String year) {
         this.year = year;
     }
 
     /**
      * @return the month
      */
-    public int getMonth() {
+    public String getMonth() {
         return month;
     }
 
     /**
      * @param month the month to set
      */
-    public void setMonth(int month) {
+    public void setMonth(String month) {
         this.month = month;
     }
 
     /**
      * @return the day
      */
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
     /**
      * @param day the day to set
      */
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
-    }
-
-    /**
-     * @return the postal1
-     */
-    public String getPostal1() {
-        return postal1;
-    }
-
-    /**
-     * @param postal1 the postal1 to set
-     */
-    public void setPostal1(String postal1) {
-        this.postal1 = postal1;
-    }
-
-    /**
-     * @return the postal2
-     */
-    public String getPostal2() {
-        return postal2;
-    }
-
-    /**
-     * @param postal2 the postal2 to set
-     */
-    public void setPostal2(String postal2) {
-        this.postal2 = postal2;
     }
 
     /**
@@ -576,4 +902,159 @@ public class MembersBean implements Serializable {
     public void setTemp_reg_code(String temp_reg_code) {
         this.temp_reg_code = temp_reg_code;
     }
+
+    /**
+     * @return the pos1
+     */
+    public String getPos1() {
+        return pos1;
+    }
+
+    /**
+     * @param pos1 the pos1 to set
+     */
+    public void setPos1(String pos1) {
+        this.pos1 = pos1;
+    }
+
+    /**
+     * @return the pos2
+     */
+    public String getPos2() {
+        return pos2;
+    }
+
+    /**
+     * @param pos2 the pos2 to set
+     */
+    public void setPos2(String pos2) {
+        this.pos2 = pos2;
+    }
+
+    /**
+     * @return the pos3
+     */
+    public String getPos3() {
+        return pos3;
+    }
+
+    /**
+     * @param pos3 the pos3 to set
+     */
+    public void setPos3(String pos3) {
+        this.pos3 = pos3;
+    }
+
+    /**
+     * @return the pos4
+     */
+    public String getPos4() {
+        return pos4;
+    }
+
+    /**
+     * @param pos4 the pos4 to set
+     */
+    public void setPos4(String pos4) {
+        this.pos4 = pos4;
+    }
+
+    /**
+     * @return the seifuri
+     */
+    public String getSeifuri() {
+        return seifuri;
+    }
+
+    /**
+     * @param seifuri the seifuri to set
+     */
+    public void setSeifuri(String seifuri) {
+        this.seifuri = seifuri;
+    }
+
+    /**
+     * @return the meifuri
+     */
+    public String getMeifuri() {
+        return meifuri;
+    }
+
+    /**
+     * @param meifuri the meifuri to set
+     */
+    public void setMeifuri(String meifuri) {
+        this.meifuri = meifuri;
+    }
+
+    public void outputSex() {
+        if (this.sex.equals("1")) {
+            setOutsex("男");
+        } else {
+            setOutsex("女");
+        }
+    }
+
+    /**
+     * 身分証区分を数字から文字に変換する
+     */
+    public void outputIdentType() {
+        if (this.ident_type.equals("1")) {
+            setOutIdentType("免許証");
+        } else if (this.ident_type.equals("2")) {
+            setOutIdentType("保険証");
+        } else if (this.ident_type.equals("3")) {
+            setOutIdentType("学生証");
+        }
+    }
+
+    /**
+     * @return the outsex
+     */
+    public String getOutsex() {
+        return outsex;
+    }
+
+    /**
+     * @param outsex the outsex to set
+     */
+    public void setOutsex(String outsex) {
+        this.outsex = outsex;
+    }
+
+    /**
+     * @return the outIdentType
+     */
+    public String getOutIdentType() {
+        return outIdentType;
+    }
+
+    /**
+     * @param outIdentType the outIdentType to set
+     */
+    public void setOutIdentType(String outIdentType) {
+        this.outIdentType = outIdentType;
+    }
+
+    /**
+     * @param outjob the outjob to set
+     */
+    public void setOutjob(String outjob) {
+        this.outjob = outjob;
+    }
+
+    /**
+     * @return the mem
+     */
+    public Members getMem() {
+        return mem;
+    }
+
+    /**
+     * @param mem the mem to set
+     */
+    public void setMem(Members mem) {
+        this.mem = mem;
+    }
+
 }

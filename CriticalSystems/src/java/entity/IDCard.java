@@ -10,16 +10,22 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * 身分証
  */
-
+@NamedQueries({
+    @NamedQuery(name = IDCard.IDCardQgetMember, query = "SELECT i FROM IDCard i WHERE i.Members.MembersCD = ?1")
+})
 @Entity
 @Table(name="IDCARD")
 public class IDCard implements Serializable{
+    public static final String IDCardQgetMember = "IDCardQgetMember";
+    
     @Id
     @NotNull
     @Column(name = "ident_number")
@@ -30,7 +36,8 @@ public class IDCard implements Serializable{
     @NotNull
     @Column(name = "ident_type")
     private String IDCardType;  //身分証分類
-
+    
+    
     /**
      * @return the IDCardNo
      */

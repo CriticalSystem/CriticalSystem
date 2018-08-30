@@ -23,7 +23,7 @@ import javax.validation.constraints.NotNull;
  * 会員
  */
 @NamedQueries({
-//    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Members m ;"),
+    @NamedQuery(name = Members.MembersQAll, query = "SELECT m FROM Members m"),
 //    @NamedQuery(name = Members.MembersQCode, query = "SELECT m FROM Members m WHERE name LIKE '%'| ?1 |'%';")
     @NamedQuery(name = Members.MembersQMaxCode, query = "SELECT m FROM Members m WHERE m.MembersCD = (SELECT MAX(m.MembersCD) FROM Members m)")
 })
@@ -52,7 +52,7 @@ public class Members implements Serializable {
     private Date Birthday;    //生年月日
     @NotNull
     @Column(name = "postal_code")
-    private int PostalCD;     //郵便番号
+    private String PostalCD;     //郵便番号
     @NotNull
     @Column(name = "address")
     private String Address;   //住所
@@ -79,6 +79,12 @@ public class Members implements Serializable {
     @OneToOne
     @JoinColumn(name = "discount_number")
     private Discount Discount;      //割引CD
+    
+    /**
+     * @return the MembersCD
+     */
+    public Members() {
+    }
 
     /**
      * @return the MembersCD
@@ -153,14 +159,14 @@ public class Members implements Serializable {
     /**
      * @return the PostalCD
      */
-    public int getPostalCD() {
+    public String getPostalCD() {
         return PostalCD;
     }
 
     /**
      * @param PostalCD the PostalCD to set
      */
-    public void setPostalCD(int PostalCD) {
+    public void setPostalCD(String PostalCD) {
         this.PostalCD = PostalCD;
     }
 
@@ -289,5 +295,15 @@ public class Members implements Serializable {
     public void setDefectDate(String DefectDate) {
         this.DefectDate = DefectDate;
     }
-
+    
+    public String getSei() {
+        return this.Name.split(" ", 2)[0];
+    }
+    
+    public String getMei() {
+        return this.Name.split(" ", 2)[1];
+    }
+    
+    
+    
 }
