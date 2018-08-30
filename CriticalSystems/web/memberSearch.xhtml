@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>会員情報</title>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable var="members" value="#{membersView.membersList}" widgetVar="membersTable"
+                                 emptyMessage="該当する会員は存在しません" filteredValue="#{membersView.filteredMembersList}">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="全項目から検索" />
+                                <p:inputText id="globalFilter" onkeyup="PF('membersTable').filter()" style="width:150px" placeholder="キーワードを入力"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column filterBy="#{members.membersCD}" sortBy="#{members.membersCD}" headerText="会員番号" footerText="会員番号" width="110" filterMatchMode="contains">
+                            <h:outputText value="#{members.membersCD}" />
+                        </p:column>
+                        <p:column filterBy="#{members.name}" headerText="氏名" footerText="氏名" filterMatchMode="contains">
+                            <h:outputText value="#{members.name}" />
+                        </p:column>
+                        <p:column filterBy="#{members.nameRuby}" headerText="氏名(ふりがな)" footerText="氏名(ふりがな)" filterMatchMode="contains">
+                            <h:outputText value="#{members.nameRuby}" />
+                        </p:column>
+                        <p:column filterBy="#{members.address}" headerText="住所" footerText="住所" filterMatchMode="contains">
+                            <h:outputText value="#{members.address}" />
+                        </p:column>
+                        <p:column filterBy="#{members.stats}" headerText="状態" footerText="状態" filterMatchMode="contains" width="130">
+                            <h:outputText value="#{members.stats}" />
+                        </p:column>
+                        <p:column  headerText="" footerText="" filterMatchMode="contains" width="130">
+                            <h:commandButton action="#{membersBean.update()}" actionListener="#{membersBean.updateListener}" value="会員情報変更" >
+                                <f:attribute name="membersCD" value="#{members.membersCD}" />
+                            </h:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

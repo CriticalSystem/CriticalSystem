@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"         
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>会員登録</title>
+        <h:outputStylesheet name="mystyle_1.css" library="css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="content">
+
+                <h:form>   
+                    <h1>会員登録</h1> 
+                    <p:growl id="growl" sticky="true" showDetail="true"/>
+                    <h:panelGrid columns="4" columnClasses="label, value">
+                        <h:outputText value="会員情報確認" class="mozi" />
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <span>
+                            <div class="mozi">　　　氏名：　姓 </div><h:inputText value="#{membersBean.sei}" id="lastname" readonly="true" styleClass="sel" />
+                            <div class="mozi">　　　　　　　名 </div><h:inputText value="#{membersBean.mei}" id="firstname" readonly="true" styleClass="sel" />
+                        </span>
+                        <span>
+                            <div class="mozi">　ふりがな：　姓 </div><h:inputText value="#{membersBean.seifuri}" id="lastnamefuri" readonly="true" styleClass="sel" />
+                            <div class="mozi">　　　　　　　名 </div><h:inputText value="#{membersBean.meifuri}" id="firstnamefuri" readonly="true" styleClass="sel" />
+                        </span>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="　　　性別：　" class="mozi"/>
+                        <h:outputText value="#{membersBean.outsex}"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="10" columnClasses="label, value">
+                        <h:outputText value="　生年月日：　" class="mozi"/>
+                        <div id="birthday">
+                            <h:inputText value="#{membersBean.birthday}" class="mozi" readonly="true"/>
+                        </div>
+                    </h:panelGrid><br/>
+
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="　電話番号：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.tel_number}" class="mozi" readonly="true" />
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="郵便番号：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.postal_code}" class="mozi" readonly="true" />
+
+                        <h:outputText value="都道府県：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.pos1}" class="mozi" readonly="true" />
+
+                        <h:outputText value="市区町村：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.pos2}" class="mozi" readonly="true" />
+
+                        <h:outputText value="番地：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.pos3}" class="mozi" readonly="true" />
+                        
+                        <h:outputText value="建物名・階・部屋番号：　" class="mozi"/>
+                        <h:inputText value="#{membersBean.pos4}" class="mozi" readonly="true" />
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="3" columnClasses="label, value">
+                        <h:outputText value="職業：　" class="mozi"/>
+                        <span>
+                            <h:inputText value="#{membersBean.outjob}" id="job" readonly="true" />
+                        </span>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="3" columnClasses="label, value">
+                        <h:outputText value="身分証番号：　" class="mozi"/>
+                        <span>
+                            <h:inputText value="#{membersBean.ident_number}" id="idNum" readonly="true" />
+                        </span>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="身分証形態" class="mozi" />
+                        <h:outputText value="#{membersBean.outIdentType}"/>
+                    </h:panelGrid>
+                    <h:commandButton value="戻る" action="#{membersBean.back()}" />
+                    <h:commandButton  value="登録" action="#{membersBean.execCreate()}" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
