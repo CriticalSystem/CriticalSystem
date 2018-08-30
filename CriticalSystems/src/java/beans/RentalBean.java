@@ -15,9 +15,13 @@ import entity.Receipt;
 import entity.ReceiptDetails;
 import entity.Title;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -69,14 +73,20 @@ public class RentalBean implements Serializable{
 //    private String slip_number;   //レシート番号
     private String serial_number;  //明細番号
 //    private String disc_code;     //ディスク番号
+    private int div_date;        //期間
+    private String div_name;        //期間名
     private Date return_date;       //返却日
-    private Date return_plan_date;  //返却予定日
+    private String return_plan_date;  //返却予定日
     private String late_price;      //延滞料金
     private List<ReceiptDetails> receiptminlist = new ArrayList<>();
     private int subtotal;           //小計
     private int azukari;            //預かり金
     private int oturi;             //おつり
     private List<String> list = new ArrayList<>();
+    
+//    private static Map<String ,Integer>divmap1;
+//    private static Map<String ,Integer>divmap2;
+//    private static Map<String ,Integer>divmap3;
     
     @EJB
     ReceiptDb receiptdb;
@@ -99,6 +109,35 @@ public class RentalBean implements Serializable{
             log.info(log.getName() + "｜会話スコープ終了");
             conv.end();
         }
+    }
+    
+    public String setDivdate0(){
+        setDiv_name("当日");
+        setDiv_date(0);
+        return_plan_date = calcDate(div_date);
+        log.info("当日");
+        return null;
+    }
+    
+    public String setDivdate1(){
+        setDiv_name("1泊2日");
+        setDiv_date(1);
+        return_plan_date = calcDate(div_date);
+        return null;
+    }
+    
+    public String setDivdate2(){
+        setDiv_name("2泊3日");
+        setDiv_date(2);
+        return_plan_date = calcDate(div_date);
+        return null;
+    }
+    
+    public String setDivdate7(){
+        setDiv_name("7泊8日");
+        setDiv_date(7);
+        return_plan_date = calcDate(div_date);
+        return null;
     }
     
     public String create() {
@@ -174,6 +213,17 @@ public class RentalBean implements Serializable{
             }
         }
         return age;
+    }
+    
+    public static String calcDate(int div_date) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, div_date);
+        Date reday = calendar.getTime();
+        String day = sdf.format(reday);
+        return day;
     }
     
     
@@ -544,20 +594,6 @@ public class RentalBean implements Serializable{
     }
 
     /**
-     * @return the return_plan_date
-     */
-    public Date getReturn_plan_date() {
-        return return_plan_date;
-    }
-
-    /**
-     * @param return_plan_date the return_plan_date to set
-     */
-    public void setReturn_plan_date(Date return_plan_date) {
-        this.return_plan_date = return_plan_date;
-    }
-
-    /**
      * @return the late_price
      */
     public String getLate_price() {
@@ -709,5 +745,47 @@ public class RentalBean implements Serializable{
      */
     public void setList(List<String> list) {
         this.list = list;
+    }
+
+    /**
+     * @return the div_name
+     */
+    public String getDiv_name() {
+        return div_name;
+    }
+
+    /**
+     * @param div_name the div_name to set
+     */
+    public void setDiv_name(String div_name) {
+        this.div_name = div_name;
+    }
+
+    /**
+     * @return the div_date
+     */
+    public int getDiv_date() {
+        return div_date;
+    }
+
+    /**
+     * @param div_date the div_date to set
+     */
+    public void setDiv_date(int div_date) {
+        this.div_date = div_date;
+    }
+
+    /**
+     * @return the return_plan_date
+     */
+    public String getReturn_plan_date() {
+        return return_plan_date;
+    }
+
+    /**
+     * @param return_plan_date the return_plan_date to set
+     */
+    public void setReturn_plan_date(String return_plan_date) {
+        this.return_plan_date = return_plan_date;
     }
 }
