@@ -19,7 +19,7 @@ var scan = false;
 var code1 = "";
 function checkKey(){
     
-    if(event.keyCode === 13){
+    if(event.keyCode === 9){
         if(scan){
         }else{
             scan = true;

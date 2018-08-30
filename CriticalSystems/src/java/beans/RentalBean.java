@@ -54,7 +54,7 @@ public class RentalBean implements Serializable{
     private String div_code;        //種類
     private String title_code;      //タイトル番号
     private String title_name;      //タイトル名
-    private List<Rental> disclist = new ArrayList<>();
+    private List<Disc> disclist = new ArrayList<>();
     private int cnt;
     //レシート情報
     private Receipt receipt;
@@ -76,6 +76,7 @@ public class RentalBean implements Serializable{
     private int subtotal;           //小計
     private int azukari;            //預かり金
     private int oturi;             //おつり
+    private List<String> list = new ArrayList<>();
     
     @EJB
     ReceiptDb receiptdb;
@@ -151,15 +152,16 @@ public class RentalBean implements Serializable{
         }
         Disc disc = discdb.find(disc_code);
         disclist.add(disc);
+        getList().add(disc_code);
         cnt = disclist.size();        
-        ReceiptDetails receiptmin = new ReceiptDetails();
-        log.info("1");
-        receiptmin.setDisc_code(disc_code);
-        log.info("2");
-        receiptmin.setSerial_number(cnt);
-        log.info("3");
-        receiptminlist.add(receiptmin);
-        log.info("4");
+//        ReceiptDetails receiptmin = new ReceiptDetails();
+//        log.info("1");
+//        receiptmin.setDisc_code(disc_code);
+//        log.info("2");
+//        receiptmin.setSerial_number(cnt);
+//        log.info("3");
+//        receiptminlist.add(receiptmin);
+//        log.info("4");
         return null;
     }
     
@@ -694,5 +696,19 @@ public class RentalBean implements Serializable{
      */
     public void setSerial_number(String serial_number) {
         this.serial_number = serial_number;
+    }
+
+    /**
+     * @return the list
+     */
+    public List<String> getList() {
+        return list;
+    }
+
+    /**
+     * @param list the list to set
+     */
+    public void setList(List<String> list) {
+        this.list = list;
     }
 }
