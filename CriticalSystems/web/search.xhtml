@@ -21,35 +21,27 @@ and open the template in the editor.
                 <h1>ＤＶＤ検索</h1>
                 <br/>
                 <h4>　　　　　　　　　　　　　　　　　　　　　　　　　　　キーワードから探す</h4>
-                <form id="form02">
-                    <input id="input02" type="text" placeholder="キーワードを入力してください" /><!--
-                    /input間で改行したい場合はコメントアウト必須/
-                    --><a href="searchresult.xhtml"><input id="submit02" type="submit" value="" /></a>
-                </form>
-                <h:panelGrid columns="2">
-                    <form id="dropdown">
-                        ジャンル　
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                すべてのジャンル　　　　　　　　　　　　　　　　　　　　　　　　　
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト１　　　　　　　　　　　　　　　　　　　　　　　　　</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト２</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">リンクのリスト３</a></li>
-                            </ul>
-                        </div>
-                    </form>
-                </h:panelGrid>
-                <h:panelGrid columns="2" columnClasses="label, value">
+
+                <h:form>
+                    <h:inputText id="submit02" p:placeholder="キーワードを入力してください" value="#{searchDvdBean.keyWord}"/>
+
+                    <h:panelGrid columns="2">
+                        ジャンル
+                        <h:selectOneMenu id="dropdown" value="#{searchDvdBean.genre_i}">
+                            <f:selectItems value="#{searchDvdBean.items_g}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+
+                    <h:panelGrid>
                         <h:outputText value="　　　　　　　" />
-                        <h:selectOneRadio id="radiobutton" value="#">
-                            <f:selectItem itemValue="1" itemLabel="ＤＶＤ　"/>
-                            <f:selectItem itemValue="2" itemLabel="Blu-ray　"/>
-                            <f:selectItem itemValue="3" itemLabel="指定なし"/>
+                        <h:selectOneRadio id="radiobutton" value="#{searchDvdBean.media_i}">
+                            <f:selectItem itemValue="0" itemLabel="指定なし　"/>
+                            <f:selectItem itemValue="1" itemLabel="Blu-ray　"/>
+                            <f:selectItem itemValue="2" itemLabel="ＤＶＤ"/>
                         </h:selectOneRadio>
-                </h:panelGrid>
+                    </h:panelGrid>
+                    <h:commandButton styleClass="btn btn-primary" value="next" action="#{searchDvdBean.next()}"/>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>
