@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Template
+To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
@@ -19,7 +19,7 @@ and open the template in the editor.
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
                 <h:form>   
-                    <h1>レジ〆入力</h1>
+                    <h1>レジ〆結果</h1>
                     <p:growl id="growl" sticky="true" showDetail="true"/>
                     <p:messages />
                     <h:panelGrid columns="2" columnClasses="label, value">
@@ -35,11 +35,7 @@ and open the template in the editor.
                                 </h:column>
                                 <h:column headerClass="hd">
                                     <f:facet name="header">枚数</f:facet>
-                                    <h:inputText id="sheet" p:placeholder="0～9まで入力可" value="#{c.sheet}"  rendered="true">
-                                        <f:validateLength maximum="9" minimum="0" />
-                                        <f:ajax event="blur" execute="@this" render="messageSheet" />
-                                    </h:inputText>
-                                    <h:message id="messageSheet" for="sheet" styleClass="error" />
+                                    <h:outputText value="#{c.sheet}" />
                                 </h:column>
                                 <h:column headerClass="hd1"></h:column>
                             </h:dataTable>
@@ -49,18 +45,10 @@ and open the template in the editor.
                                     <h:outputText value="#{c.denom}" />
                                 </h:column>
                                 <h:column headerClass="hd">
-                                    <h:inputText id="piece" value="#{c.piece}" p:placeholder="0～9まで入力可" rendered="true">
-                                        <f:validateLength maximum="9" minimum="0" />
-                                        <f:ajax event="blur" execute="@this" render="messagePiece" />
-                                    </h:inputText>
-                                    <h:message id="messagePiece" for="piece" styleClass="error" />
+                                    <h:outputText value="#{c.piece}" />
                                 </h:column>
                                 <h:column headerClass="hd">
-                                    <h:inputText id="sheet" value="#{c.sheet}" p:placeholder="0～9まで入力可" rendered="true">
-                                        <f:validateLength maximum="9" minimum="0" />
-                                        <f:ajax event="blur" execute="@this" render="messageSheet" />
-                                    </h:inputText>
-                                    <h:message id="messageSheet" for="sheet" styleClass="error" />
+                                    <h:outputText value="#{c.sheet}" />
                                 </h:column>
                                 <h:column headerClass="hd1"></h:column>
                             </h:dataTable>
@@ -74,7 +62,7 @@ and open the template in the editor.
                             </h:column>
                         </h:dataTable>
                     </h:panelGrid>
-                    <h:commandButton action="#{closing_RegisterBean.next()}" value="送信" />
+                    <h:link outcome="closing_register_index.xhtml">戻る</h:link>
                 </h:form>
             </ui:define>
         </ui:composition>
