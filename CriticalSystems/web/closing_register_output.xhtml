@@ -25,7 +25,7 @@ and open the template in the editor.
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <h:panelGrid columns="1" columnClasses="label, value">
                             <h:dataTable value="#{closing_RegisterBean.cash_Register_Bill}" var="c" columnClasses="c5,c0,c1,c2,c6">
-                                <h:column headerClass="hd1"></h:column>
+                                <h:column headerClass="hd1" />
                                 <h:column headerClass="hd">
                                     <f:facet name="header">金種</f:facet>
                                     <h:outputText value="#{c.denom}" />
@@ -37,10 +37,10 @@ and open the template in the editor.
                                     <f:facet name="header">枚数</f:facet>
                                     <h:outputText value="#{c.sheet}" />
                                 </h:column>
-                                <h:column headerClass="hd1"></h:column>
+                                <h:column headerClass="hd1" />
                             </h:dataTable>
                             <h:dataTable value="#{closing_RegisterBean.cash_Register_Coin}" var="c" columnClasses="c5,c0,c1,c2,c6">
-                                <h:column headerClass="hd1"></h:column>
+                                <h:column headerClass="hd1" />
                                 <h:column headerClass="hd">
                                     <h:outputText value="#{c.denom}" />
                                 </h:column>
@@ -50,7 +50,7 @@ and open the template in the editor.
                                 <h:column headerClass="hd">
                                     <h:outputText value="#{c.sheet}" />
                                 </h:column>
-                                <h:column headerClass="hd1"></h:column>
+                                <h:column headerClass="hd1" />
                             </h:dataTable>
                         </h:panelGrid>
                         <h:dataTable value="#{closing_RegisterBean.cash_Register_Result}" var="c" columnClasses="c3,c4">
