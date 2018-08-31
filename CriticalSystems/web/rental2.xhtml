@@ -85,29 +85,29 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">小計</th>
-                                <th><h:outputText value="#{rentalBean.subtotal}" /></th>
+                                <th><h:outputText value="#{rentalBean.subtotal}" />円</th>
                             </tr>
                             <tr>
                                 <th class="warning">消費税</th>
-                                <th><h:outputText value="#{rentalBean.tax(rentalBean.subtotal)}"/></th>
+                                <th><h:outputText value="#{rentalBean.tax(rentalBean.subtotal)}"/>円</th>
                             </tr>
                             <tr class="text-danger">
                                 <th class="warning">割引額</th>
-                                <th>\50</th>
+                                <th><h:outputText value="#{rentalBean.discount}"/>円</th>
                             </tr>
                             <tr>
                                 <th class="warning">合計</th>
-                                <th>\792</th>
+                                <th><h:outputText value="#{rentalBean.total}"/>円</th>
                             </tr>
                         </table>
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">預かり金</th>
-                                <th>\1000</th>
+                                <th><h:inputText p:id="disc_code" required="true" value="#{rentalBean.azukari}" />円</th>
                             </tr>
                             <tr>
                                 <th class="warning">おつり</th>
-                                <th>\208</th>
+                                <th><h:outputText value="#{rentalBean.oturi}"/>円</th>
                             </tr>
                         </table>
                     </div>
@@ -115,7 +115,7 @@ and open the template in the editor.
                     <div class="btn-toolbar">
                         <div class="btn-group-vertical">
                             <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
-                            <button type="button" class="btn btn-primary pull-left">割引</button>
+                            <h:commandButton styleClass="btn btn-primary pull-left" value="割引"  action="#{rentalBean.discount()}"/>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
                             <button type="button" class="btn btn-primary pull-left">清算</button>

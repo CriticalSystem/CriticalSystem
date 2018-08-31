@@ -68,7 +68,8 @@ public class RentalBean implements Serializable{
 //    private String store_code;      //店舗番号
 //    private Date lend_date;         //貸出日
 //    private int total_price;     //合計金額
-//    private String is_discount;     //割引フラグ
+    private boolean is_discount = true;     //割引フラグ
+    private int discount;
     //レシート明細情報
 //    private String slip_number;   //レシート番号
     private String serial_number;  //明細番号
@@ -81,6 +82,8 @@ public class RentalBean implements Serializable{
     private int price;
     private List<ReceiptDetails> receiptminlist = new ArrayList<>();
     private int subtotal = 0;           //小計
+    private int tax;
+    private int total;
     private int azukari;            //預かり金
     private int oturi;             //おつり
     private List<String> list = new ArrayList<>();
@@ -158,12 +161,22 @@ public class RentalBean implements Serializable{
         receipt.setSerial_number(cnt);
         receiptminlist.add(receipt);
         subtotal += price;
+        total = subtotal + getTax() + discount;
         return null;
     }
     
     public int tax(int subtotal){
-        int tax = (int)(subtotal * 0.08);
-        return tax;
+        setTax((int)(subtotal * 0.08));
+        return getTax();
+    }
+    
+    public int discount(){
+        if(isIs_discount()){
+            discount = 0;
+        }else{
+            discount = -50;
+        }
+        return discount;
     }
     
     public String create() {
@@ -762,5 +775,61 @@ public class RentalBean implements Serializable{
      */
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    /**
+     * @return the discount
+     */
+    public int getDiscount() {
+        return discount;
+    }
+
+    /**
+     * @param discount the discount to set
+     */
+    public void setDiscount(int discount) {
+        this.discount = discount;
+    }
+
+    /**
+     * @return the is_discount
+     */
+    public boolean isIs_discount() {
+        return is_discount;
+    }
+
+    /**
+     * @param is_discount the is_discount to set
+     */
+    public void setIs_discount(boolean is_discount) {
+        this.is_discount = is_discount;
+    }
+
+    /**
+     * @return the total
+     */
+    public int getTotal() {
+        return total;
+    }
+
+    /**
+     * @param total the total to set
+     */
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    /**
+     * @return the tax
+     */
+    public int getTax() {
+        return tax;
+    }
+
+    /**
+     * @param tax the tax to set
+     */
+    public void setTax(int tax) {
+        this.tax = tax;
     }
 }
