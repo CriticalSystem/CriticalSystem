@@ -5,6 +5,7 @@
  */
 package beans;
 
+import entity.RegisterInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -36,14 +37,12 @@ public class Closing_RegisterBean {
 //    private int vyen_2;         //  五円硬貨(枚)
 //    private int iyen_1;         //  一円硬貨(本)
 //    private int iyen_2;         //  一円硬貨(枚)
-
-//    private int amount;         //  合計金額(円)
-//    private int sales;          //  売上金額(円)
-//    private int difference;     //  過不足額(円)
+    private int amount;         //  合計金額(円)
+    private int sales;          //  売上金額(円)
+    private int difference;     //  過不足額(円)
 
     private List<Cash_Register> cash_Register_Bill;
     private List<Cash_Register> cash_Register_Coin;
-    private List<Cash_Register_Result> cash_Register_Result;
 
     {
         cash_Register_Bill = new ArrayList<>();
@@ -59,11 +58,6 @@ public class Closing_RegisterBean {
         cash_Register_Coin.add(new Cash_Register("　十円硬貨", 0, 0, 10));
         cash_Register_Coin.add(new Cash_Register("　五円硬貨", 0, 0, 5));
         cash_Register_Coin.add(new Cash_Register("　一円硬貨", 0, 0, 1));
-
-        cash_Register_Result = new ArrayList<>();
-        cash_Register_Result.add(new Cash_Register_Result("合計金額", 0));
-        cash_Register_Result.add(new Cash_Register_Result("売上金額", 0));
-        cash_Register_Result.add(new Cash_Register_Result("過不足額", 0));
 
     }
 
@@ -90,12 +84,42 @@ public class Closing_RegisterBean {
         this.cash_Register_Coin = cash_Register_Coin;
     }
 
-    public List<Cash_Register_Result> getCash_Register_Result() {
-        return cash_Register_Result;
+    public int getAmount() {
+        int amount_bill = 0;
+        int amount_coin = 0;
+        for (int i = 0; i < 4; i++) {
+            int moneys = cash_Register_Bill.get(i).getMoneys() * cash_Register_Bill.get(i).getSheet();
+            amount_bill = amount_bill + moneys;
+        }
+        for (int i = 0; i < 6; i++) {
+            int moneys = cash_Register_Coin.get(i).getMoneys() * ((cash_Register_Coin.get(i).getPiece() * 50) + cash_Register_Coin.get(i).getSheet());
+            amount_coin = amount_coin + moneys;
+        }
+        amount = amount_bill + amount_coin;
+        return amount;
     }
 
-    public void setCash_Register_Result(List<Cash_Register_Result> cash_Register_Result) {
-        this.cash_Register_Result = cash_Register_Result;
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getSales() {
+        RegisterInfo regi = new RegisterInfo();
+        sales = regi.getTotal();
+        return sales;
+    }
+
+    public void setSales(int sales) {
+        this.sales = sales;
+    }
+
+    public int getDifference() {
+        difference = getAmount() - getSales();
+        return difference;
+    }
+
+    public void setDifference(int difference) {
+        this.difference = difference;
     }
 
 }

@@ -24,7 +24,7 @@ and open the template in the editor.
                     <p:messages />
                     <h:panelGrid columns="2" columnClasses="label, value">
                         <h:panelGrid columns="1" columnClasses="label, value">
-                            <h:dataTable value="#{closing_RegisterBean.cash_Register_Bill}" var="c" columnClasses="c5,c0,c1,c2,c6">
+                            <h:dataTable value="#{closing_RegisterBean.cash_Register_Bill}" var="c" columnClasses="c3,c0,c1,c2,c4">
                                 <h:column headerClass="hd1" />
                                 <h:column headerClass="hd">
                                     <f:facet name="header">金種</f:facet>
@@ -39,7 +39,7 @@ and open the template in the editor.
                                 </h:column>
                                 <h:column headerClass="hd1" />
                             </h:dataTable>
-                            <h:dataTable value="#{closing_RegisterBean.cash_Register_Coin}" var="c" columnClasses="c5,c0,c1,c2,c6">
+                            <h:dataTable value="#{closing_RegisterBean.cash_Register_Coin}" var="c" columnClasses="c3,c0,c1,c2,c4">
                                 <h:column headerClass="hd1" />
                                 <h:column headerClass="hd">
                                     <h:outputText value="#{c.denom}" />
@@ -53,14 +53,11 @@ and open the template in the editor.
                                 <h:column headerClass="hd1" />
                             </h:dataTable>
                         </h:panelGrid>
-                        <h:dataTable value="#{closing_RegisterBean.cash_Register_Result}" var="c" columnClasses="c3,c4">
-                            <h:column headerClass="hd">
-                                <h:outputText value="#{c.title}" />
-                            </h:column>
-                            <h:column headerClass="hd">
-                                <h:outputText value="#{c.money}" />
-                            </h:column>
-                        </h:dataTable>
+                        <h:panelGrid columns="2" columnClasses="label, value" id="table">
+                            <font color="black">合計金額　</font><h:outputText value="#{closing_RegisterBean.amount}円" />
+                            <font color="black">売上金額　</font><h:outputText value="#{closing_RegisterBean.sales}円" />
+                            <font color="black">過不足額　</font><h:outputText value="#{closing_RegisterBean.difference}円" />
+                        </h:panelGrid>
                     </h:panelGrid>
                     <h:link outcome="closing_register_index.xhtml">戻る</h:link>
                 </h:form>

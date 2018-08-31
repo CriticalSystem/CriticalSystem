@@ -24,7 +24,7 @@ public class Cash_Register {
         this.denom = denom;
         this.piece = piece;
         this.sheet = sheet;
-        this.moneys = moneys * ((piece * 50) + sheet);
+        this.moneys = moneys;
     }
 
     //  セッター、ゲッター
