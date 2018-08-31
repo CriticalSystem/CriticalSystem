@@ -28,7 +28,7 @@ and open the template in the editor.
          <h:dataTable value="#{rentalBean.receiptminlist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
              <h:column>
             <f:facet name="header" >項番</f:facet>
-            <h:outputText value="#{rentalBean.list.indexOf(item.disc_code) + 1}"/>
+            <h:outputText value="#{item.serial_number}"/>
             </h:column>
             <h:column>
             <f:facet name="header">タイトル</f:facet>
@@ -43,7 +43,7 @@ and open the template in the editor.
              <h:column>
              <f:facet name="header">期間</f:facet>
              <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#divselect">期間</button>
-             <h:outputText value="#{rentalBean.div_name}" />
+             <h:outputText value="#{item.div_sel}" />
             </h:column>
              
              <h:column>
@@ -103,7 +103,7 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">預かり金</th>
-                                <th><h:inputText p:id="disc_code" required="true" value="#{rentalBean.azukari}" />円</th>
+                                <th><h:inputText p:id="disc_code" required="true" value="#{rentalBean.azukari}" style="width:200px"/>円</th>
                             </tr>
                             <tr>
                                 <th class="warning">おつり</th>

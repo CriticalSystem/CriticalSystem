@@ -68,14 +68,15 @@ public class RentalBean implements Serializable{
 //    private String store_code;      //店舗番号
 //    private Date lend_date;         //貸出日
 //    private int total_price;     //合計金額
-    private boolean is_discount = true;     //割引フラグ
+    private boolean is_discount = false;     //割引フラグ
     private int discount;
     //レシート明細情報
 //    private String slip_number;   //レシート番号
     private String serial_number;  //明細番号
 //    private String disc_code;     //ディスク番号
     private int div_date;        //期間
-    private String div_name;        //期間名
+    private String div_sel;         //当日１泊・・
+    private String div_name;        //新作準新作旧作
     private Date return_date;       //返却日
     private String due_date;  //返却予定日
     private String late_price;      //延滞料金
@@ -117,7 +118,7 @@ public class RentalBean implements Serializable{
     }
     
     public String setDivdate0(){
-        setDiv_name("当日");
+        setDiv_sel("当日");
         setDiv_date(0);
         due_date = calcDate(div_date);
         setPrice(200);
@@ -127,7 +128,7 @@ public class RentalBean implements Serializable{
     }
     
     public String setDivdate1(){
-        setDiv_name("1泊2日");
+        setDiv_sel("1泊2日");
         setDiv_date(1);
         setPrice(200);
         due_date = calcDate(div_date);
@@ -136,7 +137,7 @@ public class RentalBean implements Serializable{
     }
     
     public String setDivdate2(){
-        setDiv_name("2泊3日");
+        setDiv_sel("2泊3日");
         setDiv_date(2);
         setPrice(300);
         due_date = calcDate(div_date);
@@ -145,7 +146,7 @@ public class RentalBean implements Serializable{
     }
     
     public String setDivdate7(){
-        setDiv_name("7泊8日");
+        setDiv_sel("7泊8日");
         setDiv_date(7);
         setPrice(160);
         due_date = calcDate(div_date);
@@ -160,9 +161,10 @@ public class RentalBean implements Serializable{
         receipt.setDue_date(due_date);
         receipt.setPrice(price);
         receipt.setSerial_number(cnt);
+        receipt.setDiv_sel(div_sel);
         receiptminlist.add(receipt);
         subtotal += price;
-        total = subtotal + getTax() + discount;
+        total = subtotal + getTax();
         return null;
     }
     
@@ -171,13 +173,17 @@ public class RentalBean implements Serializable{
         return getTax();
     }
     
-    public int discount(){
-        if(isIs_discount()){
+    public String discount(){
+        if(is_discount){
+            total += 50;
             discount = 0;
+            is_discount = false;
         }else{
+            total -= 50;
             discount = -50;
+            is_discount = true;
         }
-        return discount;
+        return null;
     }
     
     public String create() {
@@ -229,7 +235,7 @@ public class RentalBean implements Serializable{
             conv.begin();
         }
         Disc disc = discdb.find(disc_code);
-        String media = disc.getMedia();
+        media = disc.getMedia();
         return media;
     }
     
@@ -237,13 +243,18 @@ public class RentalBean implements Serializable{
         if(conv.isTransient()) {
             conv.begin();
         }
-        Disc disc = discdb.find(disc_code);
-        disclist.add(disc);
-        getList().add(disc_code);
-        cnt = disclist.size(); 
-        ReceiptDetails receipt = new ReceiptDetails();
-        receipt.setDisc_code(disc_code);
-        receiptminlist.add(receipt);
+        if(member_state.equals("通常会員")){
+            Disc disc = discdb.find(disc_code);
+            disclist.add(disc);
+            getList().add(disc_code);
+            cnt = disclist.size(); 
+            ReceiptDetails receipt = new ReceiptDetails();
+            receipt.setSerial_number(cnt);
+            receipt.setDisc_code(disc_code);
+            receiptminlist.add(receipt);
+        }else{
+            
+        }
         return null;
     }
     
@@ -832,5 +843,19 @@ public class RentalBean implements Serializable{
      */
     public void setTax(int tax) {
         this.tax = tax;
+    }
+
+    /**
+     * @return the div_sel
+     */
+    public String getDiv_sel() {
+        return div_sel;
+    }
+
+    /**
+     * @param div_sel the div_sel to set
+     */
+    public void setDiv_sel(String div_sel) {
+        this.div_sel = div_sel;
     }
 }

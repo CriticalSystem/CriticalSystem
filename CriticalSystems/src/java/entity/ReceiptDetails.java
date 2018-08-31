@@ -43,7 +43,10 @@ public class ReceiptDetails implements Serializable{
     @NotNull
     @Column(name = "price")
     private int price;          //料金
-
+    @NotNull
+    @Column(name = "div_sel")
+    private String div_sel;          
+    
     /**
      * @return the serial_number
      */
@@ -139,5 +142,20 @@ public class ReceiptDetails implements Serializable{
     public void setDue_date(String due_date) {
         this.due_date = due_date;
     }
+
+    /**
+     * @return the div_sel
+     */
+    public String getDiv_sel() {
+        return div_sel;
+    }
+
+    /**
+     * @param div_sel the div_sel to set
+     */
+    public void setDiv_sel(String div_sel) {
+        this.div_sel = div_sel;
+    }
+    
     
 }
