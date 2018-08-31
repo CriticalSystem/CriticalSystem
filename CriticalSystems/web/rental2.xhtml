@@ -25,19 +25,19 @@ and open the template in the editor.
          <h:inputHidden p:id="disc_code" required="true" value="#{rentalBean.disc_code}" />
          <h:commandButton p:id="btn1" style="display: none" styleClass="btn btn-primary" value="追加" action="#{rentalBean.discadd()}"/><br/>
          
-         <h:dataTable value="#{rentalBean.disclist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
+         <h:dataTable value="#{rentalBean.receiptminlist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
              <h:column>
             <f:facet name="header" >項番</f:facet>
             <h:outputText value="#{rentalBean.list.indexOf(item.disc_code) + 1}"/>
             </h:column>
             <h:column>
             <f:facet name="header">タイトル</f:facet>
-            <h:outputText value="#{rentalBean.gettitle(item.title_code)}" />
+            <h:outputText value="#{rentalBean.gettitle(item.disc_code)}" />
             </h:column>
              
              <h:column>
              <f:facet name="header">分類</f:facet>
-            <h:outputText value="#{item.media}" />
+            <h:outputText value="#{rentalBean.getMedia(item.disc_code)}" />
             </h:column>
              
              <h:column>
@@ -48,12 +48,12 @@ and open the template in the editor.
              
              <h:column>
              <f:facet name="header">返却予定日</f:facet>
-            <h:outputText value="#{rentalBean.return_plan_date}" />
+             <h:outputText value="#{item.due_date}" />
             </h:column>
              
              <h:column>
              <f:facet name="header">単価</f:facet>
-            <h:outputText value="#{item.media}" />
+             <h:outputText value="#{item.price}" />
             </h:column>
         </h:dataTable>
          <div class="row">
@@ -85,11 +85,11 @@ and open the template in the editor.
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">小計</th>
-                                <th>\780</th>
+                                <th><h:outputText value="#{rentalBean.subtotal}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">消費税</th>
-                                <th>\62</th>
+                                <th><h:outputText value="#{rentalBean.tax(rentalBean.subtotal)}"/></th>
                             </tr>
                             <tr class="text-danger">
                                 <th class="warning">割引額</th>
@@ -148,20 +148,10 @@ and open the template in the editor.
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#160;</span></button>
                                 <h4 class="modal-title">期間を選択してください</h4>
                                 <h:outputText value="${rentalBean.div_code}" />
-                                <c:choose>
-                                    <c:when test="${rentalBean.div_code == '1'}">
-                                        <h:commandButton styleClass="btn btn-primary" value="当日"  action="#{rentalBean.setDivdate0()}"/>
-                                        <h:commandButton styleClass="btn btn-primary" value="1泊2日"  action="#{rentalBean.setDivdate1()}"/>
-                                    </c:when>
-                                    <c:when test="${rentalBean.div_code == '3'}">
-                                        <h:commandButton styleClass="btn btn-primary" value="当日"  action="#{rentalBean.setDivdate0()}"/>
-                                        <h:commandButton styleClass="btn btn-primary" value="1泊2日"  action="#{rentalBean.setDivdate1()}"/>
-                                        <h:commandButton styleClass="btn btn-primary" value="2泊3日"  action="#{rentalBean.setDivdate2()}"/>
-                                    </c:when>
-                                    <c:when test="${rentalBean.div_code == '2'}">
-                                        <h:commandButton styleClass="btn btn-primary" value="7泊8日"  action="#{rentalBean.setDivdate7()}"/>
-                                    </c:when>
-                                </c:choose>
+                                <h:commandButton styleClass="btn btn-primary" value="当日"  action="#{rentalBean.setDivdate0()}"/>
+                                <h:commandButton styleClass="btn btn-primary" value="1泊2日"  action="#{rentalBean.setDivdate1()}"/>
+                                <h:commandButton styleClass="btn btn-primary" value="2泊3日"  action="#{rentalBean.setDivdate2()}"/>
+                                <h:commandButton styleClass="btn btn-primary" value="7泊8日"  action="#{rentalBean.setDivdate7()}"/>
                             </div>
                         </div>
                     </div>

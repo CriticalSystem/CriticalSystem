@@ -76,10 +76,11 @@ public class RentalBean implements Serializable{
     private int div_date;        //期間
     private String div_name;        //期間名
     private Date return_date;       //返却日
-    private String return_plan_date;  //返却予定日
+    private String due_date;  //返却予定日
     private String late_price;      //延滞料金
+    private int price;
     private List<ReceiptDetails> receiptminlist = new ArrayList<>();
-    private int subtotal;           //小計
+    private int subtotal = 0;           //小計
     private int azukari;            //預かり金
     private int oturi;             //おつり
     private List<String> list = new ArrayList<>();
@@ -114,30 +115,55 @@ public class RentalBean implements Serializable{
     public String setDivdate0(){
         setDiv_name("当日");
         setDiv_date(0);
-        return_plan_date = calcDate(div_date);
+        due_date = calcDate(div_date);
+        setPrice(200);
         log.info("当日");
+        addDetails();
         return null;
     }
     
     public String setDivdate1(){
         setDiv_name("1泊2日");
         setDiv_date(1);
-        return_plan_date = calcDate(div_date);
+        setPrice(200);
+        due_date = calcDate(div_date);
+        addDetails();
         return null;
     }
     
     public String setDivdate2(){
         setDiv_name("2泊3日");
         setDiv_date(2);
-        return_plan_date = calcDate(div_date);
+        setPrice(300);
+        due_date = calcDate(div_date);
+        addDetails();
         return null;
     }
     
     public String setDivdate7(){
         setDiv_name("7泊8日");
         setDiv_date(7);
-        return_plan_date = calcDate(div_date);
+        setPrice(160);
+        due_date = calcDate(div_date);
+        addDetails();
         return null;
+    }
+    
+    public String addDetails(){
+        receiptminlist.remove(receiptminlist.size() -1);
+        ReceiptDetails receipt = new ReceiptDetails();
+        receipt.setDisc_code(disc_code);
+        receipt.setDue_date(due_date);
+        receipt.setPrice(price);
+        receipt.setSerial_number(cnt);
+        receiptminlist.add(receipt);
+        subtotal += price;
+        return null;
+    }
+    
+    public int tax(int subtotal){
+        int tax = (int)(subtotal * 0.08);
+        return tax;
     }
     
     public String create() {
@@ -174,14 +200,23 @@ public class RentalBean implements Serializable{
         return "rental2.xhtml";
     }
     
-    public String gettitle(String title_code) {
+    public String gettitle(String disc_code) {
         if(conv.isTransient()) {
             conv.begin();
         }
-        log.info("text");
-        Title title = titledb.find(title_code);
+        Disc disc = discdb.find(disc_code);
+        Title title = titledb.find(disc.getTitle_code());
         setTitle_name(title.getTitle_Name());
         return title_name;
+    }
+    
+    public String getMedia(String disc_code){
+        if(conv.isTransient()) {
+            conv.begin();
+        }
+        Disc disc = discdb.find(disc_code);
+        String media = disc.getMedia();
+        return media;
     }
     
     public String discadd() {
@@ -191,15 +226,10 @@ public class RentalBean implements Serializable{
         Disc disc = discdb.find(disc_code);
         disclist.add(disc);
         getList().add(disc_code);
-        cnt = disclist.size();        
-//        ReceiptDetails receiptmin = new ReceiptDetails();
-//        log.info("1");
-//        receiptmin.setDisc_code(disc_code);
-//        log.info("2");
-//        receiptmin.setSerial_number(cnt);
-//        log.info("3");
-//        receiptminlist.add(receiptmin);
-//        log.info("4");
+        cnt = disclist.size(); 
+        ReceiptDetails receipt = new ReceiptDetails();
+        receipt.setDisc_code(disc_code);
+        receiptminlist.add(receipt);
         return null;
     }
     
@@ -215,7 +245,7 @@ public class RentalBean implements Serializable{
         return age;
     }
     
-    public static String calcDate(int div_date) {
+    public String calcDate(int div_date) {
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Calendar calendar = Calendar.getInstance();
@@ -223,6 +253,7 @@ public class RentalBean implements Serializable{
         calendar.add(Calendar.DATE, div_date);
         Date reday = calendar.getTime();
         String day = sdf.format(reday);
+        setDue_date(day);
         return day;
     }
     
@@ -509,76 +540,6 @@ public class RentalBean implements Serializable{
     public void setSlip_number(String slip_number) {
         this.slip_number = slip_number;
     }
-
-//    /**
-//     * @return the employees_code
-//     */
-//    public String getEmployees_code() {
-//        return employees_code;
-//    }
-//
-//    /**
-//     * @param employees_code the employees_code to set
-//     */
-//    public void setEmployees_code(String employees_code) {
-//        this.employees_code = employees_code;
-//    }
-//
-//    /**
-//     * @return the store_code
-//     */
-//    public String getStore_code() {
-//        return store_code;
-//    }
-//
-//    /**
-//     * @param store_code the store_code to set
-//     */
-//    public void setStore_code(String store_code) {
-//        this.store_code = store_code;
-//    }
-//
-//    /**
-//     * @return the lend_date
-//     */
-//    public Date getLend_date() {
-//        return lend_date;
-//    }
-//
-//    /**
-//     * @param lend_date the lend_date to set
-//     */
-//    public void setLend_date(Date lend_date) {
-//        this.lend_date = lend_date;
-//    }
-//
-//    /**
-//     * @return the total_price
-//     */
-//    public String getTotal_price() {
-//        return total_price;
-//    }
-//
-//    /**
-//     * @param total_price the total_price to set
-//     */
-//    public void setTotal_price(String total_price) {
-//        this.total_price = total_price;
-//    }
-//
-//    /**
-//     * @return the is_discount
-//     */
-//    public String getIs_discount() {
-//        return is_discount;
-//    }
-//
-//    /**
-//     * @param is_discount the is_discount to set
-//     */
-//    public void setIs_discount(String is_discount) {
-//        this.is_discount = is_discount;
-//    }
     /**
      * @return the return_date
      */
@@ -776,16 +737,30 @@ public class RentalBean implements Serializable{
     }
 
     /**
-     * @return the return_plan_date
+     * @return the due_date
      */
-    public String getReturn_plan_date() {
-        return return_plan_date;
+    public String getDue_date() {
+        return due_date;
     }
 
     /**
-     * @param return_plan_date the return_plan_date to set
+     * @param due_date the due_date to set
      */
-    public void setReturn_plan_date(String return_plan_date) {
-        this.return_plan_date = return_plan_date;
+    public void setDue_date(String due_date) {
+        this.due_date = due_date;
+    }
+
+    /**
+     * @return the price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

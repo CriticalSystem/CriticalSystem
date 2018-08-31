@@ -37,7 +37,7 @@ public class ReceiptDetails implements Serializable{
     private Date return_date;    //返却日
     @NotNull
     @Column(name = "due_date")
-    private Date due_date;       //返却予定日
+    private String due_date;       //返却予定日
     @Column(name = "late_fees")
     private int late_fees;       //延滞料
     @NotNull
@@ -70,21 +70,6 @@ public class ReceiptDetails implements Serializable{
     public void setReturn_date(Date return_date) {
         this.return_date = return_date;
     }
-
-    /**
-     * @return the due_date
-     */
-    public Date getDue_date() {
-        return due_date;
-    }
-
-    /**
-     * @param due_date the due_date to set
-     */
-    public void setDue_date(Date due_date) {
-        this.due_date = due_date;
-    }
-
     /**
      * @return the late_fees
      */
@@ -139,6 +124,20 @@ public class ReceiptDetails implements Serializable{
      */
     public void setSlip_number(String slip_number) {
         this.slip_number = slip_number;
+    }
+
+    /**
+     * @return the due_date
+     */
+    public String getDue_date() {
+        return due_date;
+    }
+
+    /**
+     * @param due_date the due_date to set
+     */
+    public void setDue_date(String due_date) {
+        this.due_date = due_date;
     }
     
 }
