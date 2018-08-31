@@ -92,6 +92,7 @@ public class RentalBean implements Serializable{
 //    private static Map<String ,Integer>divmap2;
 //    private static Map<String ,Integer>divmap3;
     
+    
     @EJB
     ReceiptDb receiptdb;
     @EJB
