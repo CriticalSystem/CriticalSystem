@@ -220,6 +220,21 @@ public class RentalBean implements Serializable{
         return "rental2.xhtml";
     }
     
+    public String memberget1() {
+        if(conv.isTransient()) {
+            conv.begin();
+        }
+        Members members = membersdb.find(member_code);
+        
+        setMember_code(members.getMembersCD());
+        setName(members.getName());
+        setBirthday(members.getBirthday());
+        setMember_state(members.getStats());
+        Date now = new Date();
+        setAge(calcAge(birthday,now));
+        return "hen1.xhtml";
+    }
+    
     public String gettitle(String disc_code) {
         if(conv.isTransient()) {
             conv.begin();
@@ -283,24 +298,24 @@ public class RentalBean implements Serializable{
     }
     
     
-//    public String execCreate() {
-//        log.info(log.getName() + " | イベント登録処理");
-//        slip_number = CreateSlipNumber();
-//        receipt= new Receipt(slip_number);
+    public String execCreate() {
+        log.info(log.getName() + " | イベント登録処理");
+        slip_number = CreateSlipNumber();
+        receipt= new Receipt(slip_number);
 //        String store_code = "102";
-//        int total_price = 780;
-////        receipt.setStore_code(store_code);
-//        receipt.setTotal_price(total_price);
-//        receipt.setMembers_code(member_code);
-//        try {
-//            receiptdb.create(receipt);
-//        } catch (Exception e) {
-//            log.fine("■" + log.getName() + "|" + e.getMessage());
-//        }
-//        log.info(log.getName() + " | 会話スコープ終了");
-//        conv.end();
-//        return "rental1.xhtml";
-//    }
+        int total_price = 300;
+//        receipt.setStore_code(store_code);
+        receipt.setTotal_price(total_price);
+        receipt.setMembers_code(member_code);
+        try {
+            receiptdb.create(receipt);
+        } catch (Exception e) {
+            log.fine("■" + log.getName() + "|" + e.getMessage());
+        }
+        log.info(log.getName() + " | 会話スコープ終了");
+        conv.end();
+        return "kasidasi.xhtml";
+    }
     
     public String CreateSlipNumber(){
         slip_number = "1234567890";

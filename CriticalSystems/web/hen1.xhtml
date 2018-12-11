@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
         <!--        <ui:composition template="/templates/template.xhtml" />-->
@@ -19,103 +20,48 @@ and open the template in the editor.
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
                 <h2>返却</h2>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr class="active bg-light warning">
-                                <th>項番</th>
-                                <th>注文内容</th>
-                                <th>貸し出し日</th>
-                                <th>返却予定日</th>
-                                <th>延滞期間</th>
-                                <th>単価</th>
-                                <th>延滞料金</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td>アイアンマン1</td>
-                                <td class="text-center">
-                                    2018年 7月23日(月)
-                                </td>
-                                <td class="text-center">
-                                    2018年 7月30日(月)
-                                </td>
-                                <td class="text-center">旧作</td>
-                                <td class="text-center">-</td>
-                                <td class="text-right">-</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">2</td>
-                                <td>アイアンマン2</td>
-                                <td class="text-center">
-                                    2018年 7月23日(月)
-                                </td>
-                                <td class="text-center">
-                                    2018年 7月30日(月)
-                                </td>
-                                <td class="text-center">旧作</td>
-                                <td class="text-center">-</td>
-                                <td class="text-right">-</td>
-                            </tr>
-                            <tr class="danger">
-                                <td class="text-center">3</td>
-                                <td>アイアンマン4</td>
-                                <td class="text-center">
-                                    2018年 7月23日(月)
-                                </td>
-                                <td class="text-center">
-                                    2018年 7月24日(火)
-                                </td>
-                                <td class="text-center">準新作</td>
-                                <td class="text-center">\300</td>
-                                <td class="text-right">\300</td>
-                            </tr>
-                            <tr class="danger">
-                                <td class="text-center">4</td>
-                                <td>アイアンマン5</td>
-                                <td class="text-center">
-                                    2018年 7月23日(月)
-                                </td>
-                                <td class="text-center">
-                                    2018年 7月23日(月)
-                                </td>
-                                <td class="text-center">新作</td>
-                                <td class="text-center">\300</td>
-                                <td class="text-right">\600</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="row">
+                 <h:dataTable value="#{rentalBean.receiptminlist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
+             <h:column>
+            <f:facet name="header" >項番</f:facet>
+            <h:outputText value="#{item.serial_number}"/>
+            </h:column>
+            <h:column>
+            <f:facet name="header">タイトル</f:facet>
+            <h:outputText value="#{rentalBean.gettitle(item.disc_code)}" />
+            </h:column>
+             <h:column>
+             <f:facet name="header">返却予定日</f:facet>
+             <h:outputText value="#{item.due_date}" />
+            </h:column>     
+             <h:column>
+             <f:facet name="header">単価</f:facet>
+             <h:outputText value="#{item.price}" />
+            </h:column>
+        </h:dataTable>
                     <div class="col-md-4">
                         <table class="table table-bordered">
                             <tr>
                                 <th class="warning">商品数</th>
-                                <th>4点</th>
+                                <th><h:outputText value="#{rentalBean.cnt}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">会員No</th>
-                                <th>12345678</th>
+                                <th><h:outputText value="#{rentalBean.member_code}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">会員名</th>
-                                <th>山田太郎</th>
+                                <th><h:outputText value="#{rentalBean.name}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">年齢</th>
-                                <th>33歳</th>
+                                <th><h:outputText value="#{rentalBean.age}" /></th>
                             </tr>
                             <tr>
                                 <th class="warning">会員状態</th>
-                                <th>通常会員</th>
+                                <th><h:outputText value="#{rentalBean.member_state}" /></th>
                             </tr>
-
                         </table>
                     </div>
-                    <div class="col-md-1"></div>
                     <div class="col-md-4">
                         <table class="table table-bordered">
                             <tr>
@@ -140,7 +86,7 @@ and open the template in the editor.
                             <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
-                            <button type="button" class="btn btn-primary pull-left">清算</button>
+                            <button type="button" class="btn btn-primary pull-left">返却</button>
                         </div>
                     </div>
 
@@ -161,7 +107,6 @@ and open the template in the editor.
                             </div>
                         </div>
                     </div>
-                </div>
             </ui:define>
         </ui:composition>
     </h:body>

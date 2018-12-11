@@ -21,4 +21,5 @@
         <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="jdbc/se" object-type="user" pool-name="oracle-thin_XE_sexPool"/>
+    <jdbc-resource enabled="true" jndi-name="mydb/jdbc11" object-type="user" pool-name="oracle-thin_HCS1_h20163045Pool"/>
 </resources>
