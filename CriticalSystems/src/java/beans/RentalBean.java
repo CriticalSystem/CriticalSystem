@@ -353,9 +353,9 @@ public class RentalBean implements Serializable{
         try {
             //receiptdb.delete(receipt);
             receipt.setRental_flg("1");
-            receipt.setDisc_code(disc_code);
-            receipt.setEmployees_code(member_code);
-            receipt.setSlip_number(slip_number);
+//            receipt.setDisc_code(disc_code);
+//            receipt.setEmployees_code(member_code);
+//            receipt.setSlip_number(slip_number);
             receiptdb.update(receipt);
         } catch (Exception e) {
             log.fine("■" + log.getName() + "|" + e.getMessage());

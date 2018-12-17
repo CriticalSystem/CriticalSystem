@@ -14,6 +14,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -28,10 +29,13 @@ public class Rental implements Serializable{
     private String member_code;     //会員番号
     @Column(name = "name")
     private String name;            //名前
+    @Temporal(TemporalType.DATE)
     @Column(name = "birthday")
     private Date birthday;          //誕生日
+    @Temporal(TemporalType.DATE)
     @Column(name = "join_date")
     private Date join_date;         //入会日
+    @Temporal(TemporalType.DATE)
     @Column(name = "defect_date")
     private Date defect_date;       //退会日
     @Column(name = "member_state")
@@ -42,6 +46,7 @@ public class Rental implements Serializable{
     private long age;             //年齢
     @Column(name = "disc_code")
     private String disc_code;       //ディスク番号
+    @Temporal(TemporalType.DATE)
     @Column(name = "arrival_date")
     private Date arrival_date;      //入荷日
     @Column(name = "is_disposal")
@@ -67,8 +72,10 @@ public class Rental implements Serializable{
     @Column(name = "serial_number")
     private String serial_number;  //明細番号
     
+    @Temporal(TemporalType.DATE)
     @Column(name = "return_date")
     private Date return_date;       //返却日
+    @Temporal(TemporalType.DATE)
     @Column(name = "return_plan_date")
     private Date return_plan_date;  //返却予定日
     @Column(name = "late_price")
