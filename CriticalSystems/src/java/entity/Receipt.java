@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
  */
 @NamedQueries({
     @NamedQuery(name = "Receipt.ReceiptQAll" , query = "SELECT r FROM Receipt r"),
-    @NamedQuery(name = "Receipt.ReceiptDel" , query = "DELETE FROM Receipt"),
+    //@NamedQuery(name = "Receipt.ReceiptDel" , query = "DELETE FROM Receipt"),
 })
 
 @Entity
@@ -49,6 +49,8 @@ public class Receipt implements Serializable{
     private boolean is_discount;   // 割引フラグ
     @Column(name = "disc_code")
     private String disc_code;
+    @Column(name = "rental_flg")
+    private String rental_flg;
     
     public Receipt() {
     }
@@ -167,5 +169,19 @@ public class Receipt implements Serializable{
      */
     public void setDisc_code(String disc_code) {
         this.disc_code = disc_code;
+    }
+
+    /**
+     * @return the rental_flg
+     */
+    public String getRental_flg() {
+        return rental_flg;
+    }
+
+    /**
+     * @param rental_flg the rental_flg to set
+     */
+    public void setRental_flg(String rental_flg) {
+        this.rental_flg = rental_flg;
     }
 }

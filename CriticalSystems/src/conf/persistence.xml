@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="CriticalSystemsPU2" transaction-type="JTA">
-    <jta-data-source>mydb/jdbc14</jta-data-source>
+  <persistence-unit name="CriticalSystemsPU" transaction-type="JTA">
+    <jta-data-source>jdbc/mydb100</jta-data-source>
+    <class>entity.Comment</class>
+    <class>entity.Disc</class>
     <class>entity.Discount</class>
     <class>entity.Division</class>
     <class>entity.Employee</class>
@@ -17,19 +19,17 @@
     <class>entity.ReceiptDetails</class>
     <class>entity.Register</class>
     <class>entity.RegisterInfo</class>
+    <class>entity.Rental</class>
     <class>entity.Role</class>
     <class>entity.Sales</class>
     <class>entity.StockMoving</class>
     <class>entity.Store</class>
     <class>entity.TempMember</class>
     <class>entity.Title</class>
-    <class>entity.Comment</class>
-    <class>entity.Disc</class>
     <class>entity.User</class>
-    <class>entity.Rental</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

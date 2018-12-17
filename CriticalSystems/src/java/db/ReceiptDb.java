@@ -18,8 +18,8 @@ public class ReceiptDb {
     public void update (Receipt receipt){
         em.merge(receipt);
     }
-    public void delete (String key){
-        em.remove(key);
+    public void delete (Receipt receipt){
+        em.remove(receipt);
     }
     public Receipt find (String key){
         return em.find(Receipt.class, key);
@@ -29,7 +29,7 @@ public class ReceiptDb {
         return em.createNamedQuery(Receipt.ReceiptQAll,Receipt.class).getResultList();
     }
     
-    public void del(){
-        em.createNamedQuery(Receipt.ReceiptDel, Receipt.class);
-    }
+//    public void del(){
+//        em.createNamedQuery(Receipt.ReceiptDel, Receipt.class);
+//    }
 }

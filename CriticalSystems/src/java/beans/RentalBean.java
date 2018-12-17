@@ -324,6 +324,7 @@ public class RentalBean implements Serializable{
         receipt.setTotal_price(total_price);
         receipt.setMembers_code(member_code);
         receipt.setDisc_code(disc_code);
+        receipt.setRental_flg("0");
         try {
             receiptdb.create(receipt);
         } catch (Exception e) {
@@ -338,7 +339,24 @@ public class RentalBean implements Serializable{
         log.info(log.getName() + " | イベント登録処理");
         try {
             //receiptdb.delete(receipt);
-            receiptdb.del();
+            receiptdb.delete(receipt);
+        } catch (Exception e) {
+            log.fine("■" + log.getName() + "|" + e.getMessage());
+        }
+        log.info(log.getName() + " | 会話スコープ終了");
+        conv.end();
+        return "kashihen.xhtml";
+    }
+    
+    public String execUpdate() {
+        log.info(log.getName() + " | イベント登録処理");
+        try {
+            //receiptdb.delete(receipt);
+            receipt.setRental_flg("1");
+            receipt.setDisc_code(disc_code);
+            receipt.setEmployees_code(member_code);
+            receipt.setSlip_number(slip_number);
+            receiptdb.update(receipt);
         } catch (Exception e) {
             log.fine("■" + log.getName() + "|" + e.getMessage());
         }
