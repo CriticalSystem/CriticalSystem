@@ -1,5 +1,6 @@
 package db;
 
+import entity.Disc;
 import entity.Receipt;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -17,10 +18,18 @@ public class ReceiptDb {
     public void update (Receipt receipt){
         em.merge(receipt);
     }
-    public void delete (Receipt receipt){
-        em.remove(receipt);
+    public void delete (String key){
+        em.remove(key);
     }
     public Receipt find (String key){
         return em.find(Receipt.class, key);
+    }
+    
+    public List<Receipt> getAll (){
+        return em.createNamedQuery(Receipt.ReceiptQAll,Receipt.class).getResultList();
+    }
+    
+    public void del(){
+        em.createNamedQuery(Receipt.ReceiptDel, Receipt.class);
     }
 }

@@ -155,7 +155,5 @@ public class ReceiptDetails implements Serializable{
      */
     public void setDiv_sel(String div_sel) {
         this.div_sel = div_sel;
-    }
-    
-    
+    } 
 }

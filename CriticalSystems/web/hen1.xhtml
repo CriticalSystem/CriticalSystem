@@ -8,7 +8,6 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"         
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <h:outputStylesheet name="mystyle_1.css" library="css" />
@@ -19,8 +18,9 @@ and open the template in the editor.
     <h:body>
         <ui:composition template="/templates/template.xhtml">
             <ui:define name="content">
+             <h:form>
                 <h2>返却</h2>
-                 <h:dataTable value="#{rentalBean.receiptminlist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
+             <h:dataTable value="#{rentalBean.receiptminlist}" var="item"  columnClasses="c1" styleClass="table table-striped table-bordered table-hover">
              <h:column>
             <f:facet name="header" >項番</f:facet>
             <h:outputText value="#{item.serial_number}"/>
@@ -31,7 +31,7 @@ and open the template in the editor.
             </h:column>
              <h:column>
              <f:facet name="header">返却予定日</f:facet>
-             <h:outputText value="#{item.due_date}" />
+             <h:outputText value="aa" />
             </h:column>     
              <h:column>
              <f:facet name="header">単価</f:facet>
@@ -86,10 +86,11 @@ and open the template in the editor.
                             <button type="button" class="btn btn-success pull-left" data-toggle="modal" data-target="#myModal">手打ち入力</button>
                             <button type="button" class="btn btn-danger pull-left">中止</button>
                             <button type="button" class="btn btn-warning pull-left">取消し</button>
-                            <button type="button" class="btn btn-primary pull-left">返却</button>
+                            <h:commandButton styleClass="btn btn-primary pull-left" value="返却" action="#{rentalBean.execDelete()}"/>
                         </div>
                     </div>
-
+                    </h:form>
+                    <h:form>
                     <div class="modal fade" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -98,15 +99,16 @@ and open the template in the editor.
                                     <h4 class="modal-title">JANコードを入力してください</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <input type="text"></input>
+                                <h:inputText id="disc_code" required="true" value="#{rentalBean.disc_code}" />
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">中止</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+                                <h:commandButton styleClass="btn btn-primary" value="確定"  action="#{rentalBean.discadd1()}"/>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">中止</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

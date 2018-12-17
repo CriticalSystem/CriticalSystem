@@ -61,7 +61,8 @@ public class RentalBean implements Serializable{
     private List<Disc> disclist = new ArrayList<>();
     private int cnt;
     //レシート情報
-    private Receipt receipt;
+    Receipt receipt;
+    private List<Receipt> receiptlist = new ArrayList<>();
     private String slip_number;     //レシート番号
 ////    private String members_code;    //会員番号
 //    private String employees_code;  //店員番号
@@ -220,7 +221,7 @@ public class RentalBean implements Serializable{
         return "rental2.xhtml";
     }
     
-    public String memberget1() {
+    public String memberget1(String membercode) {
         if(conv.isTransient()) {
             conv.begin();
         }
@@ -273,6 +274,21 @@ public class RentalBean implements Serializable{
         return null;
     }
     
+    public String discadd1() {
+        if(conv.isTransient()) {
+            conv.begin();
+        }
+        Disc disc = discdb.find(disc_code);
+        disclist.add(disc);
+        getList().add(disc_code);
+        cnt = disclist.size(); 
+        ReceiptDetails receipt = new ReceiptDetails();
+        receipt.setSerial_number(cnt);
+        receipt.setDisc_code(disc_code);
+        receiptminlist.add(receipt);
+        return null;
+    }
+    
     public static int calcAge(Date birthday, Date now) {
         int age = now.getYear() - birthday.getYear();
         if (now.getMonth() < birthday.getMonth()) {
@@ -301,12 +317,13 @@ public class RentalBean implements Serializable{
     public String execCreate() {
         log.info(log.getName() + " | イベント登録処理");
         slip_number = CreateSlipNumber();
-        receipt= new Receipt(slip_number);
+        Receipt receipt= new Receipt(slip_number);
 //        String store_code = "102";
         int total_price = 300;
 //        receipt.setStore_code(store_code);
         receipt.setTotal_price(total_price);
         receipt.setMembers_code(member_code);
+        receipt.setDisc_code(disc_code);
         try {
             receiptdb.create(receipt);
         } catch (Exception e) {
@@ -315,6 +332,19 @@ public class RentalBean implements Serializable{
         log.info(log.getName() + " | 会話スコープ終了");
         conv.end();
         return "kasidasi.xhtml";
+    }
+    
+    public String execDelete() {
+        log.info(log.getName() + " | イベント登録処理");
+        try {
+            //receiptdb.delete(receipt);
+            receiptdb.del();
+        } catch (Exception e) {
+            log.fine("■" + log.getName() + "|" + e.getMessage());
+        }
+        log.info(log.getName() + " | 会話スコープ終了");
+        conv.end();
+        return "kashihen.xhtml";
     }
     
     public String CreateSlipNumber(){
@@ -620,20 +650,6 @@ public class RentalBean implements Serializable{
      */
     public void setSubtotal(int subtotal) {
         this.subtotal = subtotal;
-    }
-
-    /**
-     * @return the receipt
-     */
-    public Receipt getReceipt() {
-        return receipt;
-    }
-
-    /**
-     * @param receipt the receipt to set
-     */
-    public void setReceipt(Receipt receipt) {
-        this.receipt = receipt;
     }
 
     /**

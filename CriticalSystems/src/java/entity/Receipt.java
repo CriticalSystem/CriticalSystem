@@ -19,12 +19,20 @@ import javax.validation.constraints.NotNull;
 /**
  * 貸出
  */
+@NamedQueries({
+    @NamedQuery(name = "Receipt.ReceiptQAll" , query = "SELECT r FROM Receipt r"),
+    @NamedQuery(name = "Receipt.ReceiptDel" , query = "DELETE FROM Receipt"),
+})
 
 @Entity
 @Table(name="RECEIPT")
 public class Receipt implements Serializable{
 //    public static final String ReceiptQAll = "";
+    public static final String ReceiptDel = "ReceiptDel";
+    public static final String ReceiptQAll = "ReceiptQAll";
+    
     @Id
+    @NotNull
     @Column(name = "slip_number")
     private String slip_number;      //伝票No
     @JoinColumn(name = "members_code")
@@ -39,6 +47,8 @@ public class Receipt implements Serializable{
     private int total_price;      //合計金額
     @Column(name = "is_discount")
     private boolean is_discount;   // 割引フラグ
+    @Column(name = "disc_code")
+    private String disc_code;
     
     public Receipt() {
     }
@@ -143,5 +153,19 @@ public class Receipt implements Serializable{
      */
     public void setIs_discount(boolean is_discount) {
         this.is_discount = is_discount;
+    }
+
+    /**
+     * @return the disc_code
+     */
+    public String getDisc_code() {
+        return disc_code;
+    }
+
+    /**
+     * @param disc_code the disc_code to set
+     */
+    public void setDisc_code(String disc_code) {
+        this.disc_code = disc_code;
     }
 }
